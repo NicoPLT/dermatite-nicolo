@@ -511,11 +511,12 @@ def test_scrape_product_rejects_wrong_product(config, products, fx):
 
 
 def test_blocked_and_rate_limited_stop_pharmacy(config, products):
-    sc, _ = _scraper(config, FakeScraperSession(exc=DomainBlocked("challenge")), {"P001": ["https://x/a"], "P002": ["https://x/b"]})
+    a, b = "https://www.farmacia-test.it/a", "https://www.farmacia-test.it/b"
+    sc, _ = _scraper(config, FakeScraperSession(exc=DomainBlocked("challenge")), {"P001": [a], "P002": [b]})
     offers = sc.run([products["P001"], products["P002"]])
     assert [o.status for o in offers] == [STATUS_BLOCKED, STATUS_BLOCKED]
     sess = FakeScraperSession(exc=DomainRateLimited("HTTP 429 persistente"))
-    sc, _ = _scraper(config, sess, {"P001": ["https://x/a"], "P002": ["https://x/b"]})
+    sc, _ = _scraper(config, sess, {"P001": [a], "P002": [b]})
     offers = sc.run([products["P001"], products["P002"]])
     assert [o.status for o in offers] == [STATUS_RATE_LIMITED, STATUS_RATE_LIMITED]
     assert len(sess.calls) == 1  # dopo il 429 persistente nessun'altra richiesta

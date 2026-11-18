@@ -19,7 +19,8 @@ from urllib.parse import parse_qsl, quote_plus, urlencode, urljoin, urlsplit, ur
 
 from .extract import (AVAILABLE, UNAVAILABLE, UNKNOWN, PageData, extract_page, resolve_availability,
                       resolve_price, soup_of)
-from .http import DomainBlocked, DomainRateLimited, FetchError, PoliteSession, RobotsDisallowed
+from .http import (DomainBlocked, DomainRateLimited, FetchError, PoliteSession, RobotsDisallowed, UnsafeTarget,
+                   domain_key, same_site)
 from .matcher import ACCEPTED_LEVELS, MATCH_ID, MatchResult, match_product
 from .sitemap import fetch_sitemap_urls, keyword_prefilter, rank_candidates
 
@@ -59,15 +60,30 @@ class Offer:
     rejected_candidates: list[dict] = field(default_factory=list)
     shipping_jsonld: list[dict] | None = None   # costo/paese da OfferShippingDetails, se dichiarati
     variant: str | None = None                   # variante scelta (ProductGroup/offerte multiple)
+    currency_method: str | None = None           # come è stata stabilita la valuta EUR
+
+    @property
+    def _priced(self) -> bool:
+        return self.status == STATUS_OK and self.verified and self.price is not None and self.currency == "EUR"
 
     @property
     def usable(self) -> bool:
-        """Utilizzabile dall'ottimizzatore: verificato e non esaurito."""
-        return self.status == STATUS_OK and self.verified and self.price is not None and self.availability != UNAVAILABLE
+        """Utilizzabile dal carrello verificato: prezzo verificato in EUR e disponibilità CONFERMATA.
+
+        Disponibilità sconosciuta o con fonti in conflitto (risolta come SCONOSCIUTA) non basta:
+        quelle offerte restano "alternative potenziali" (vedi availability_uncertain).
+        """
+        return self._priced and self.availability == AVAILABLE
+
+    @property
+    def availability_uncertain(self) -> bool:
+        """Prezzo verificato ma disponibilità da verificare: mai vincitrice certa."""
+        return self._priced and self.availability == UNKNOWN
 
     def to_dict(self) -> dict:
         d = asdict(self)
         d["usable"] = self.usable
+        d["availability_uncertain"] = self.availability_uncertain
         return d
 
 
@@ -145,7 +161,13 @@ class BaseScraper:
         self.fatal: str | None = None  # BLOCCATO/LIMITATO: interrompe la farmacia
 
     # ------------------------------------------------------------------ fetch
+    def _check_site(self, url: str) -> None:
+        """Solo URL del sito della farmacia (una sitemap o un link non possono portare altrove)."""
+        if self.base_url and not same_site(url, self.base_url):
+            raise UnsafeTarget(f"URL fuori dal dominio di {self.pharmacy_id}: {url}")
+
     def fetch(self, url: str, accept: str | None = None):
+        self._check_site(url)
         return self.session.get(url, accept=accept)
 
     def fetch_bytes(self, url: str) -> bytes:
@@ -234,8 +256,21 @@ class BaseScraper:
                       match_reasons=m.reasons, ids_found={"ean": sorted(page.eans), "minsan": sorted(page.minsans)},
                       price_sources=dict(page.price_sources), availability_sources=dict(page.availability_sources),
                       scraped_at=self.now_iso, notes=list(page.notes))
-        if page.currency and page.currency.upper() != "EUR":
-            offer.notes.append(f"valuta {page.currency} non supportata")
+        currency = (page.currency or "").upper()
+        if currency and currency != "EUR":
+            # mai convertire: una valuta diversa o fonti discordanti (es. 'CHF/EUR') => prezzo non utilizzabile
+            offer.currency = currency
+            offer.notes.append(f"valuta {currency} non supportata" + (" (fonti discordanti)" if "/" in currency else ""))
+            offer.status = STATUS_PRICE_UNVERIFIED
+            return offer
+        if currency:
+            offer.currency_method = "dichiarata (" + ", ".join(sorted(page.currency_sources)) + ")"
+        elif is_italian_site(final_url):
+            # Nessuna valuta dichiarata: su un negozio .it i prezzi al pubblico sono per legge in euro.
+            offer.currency_method = "implicita: nessuna valuta dichiarata, sito .it"
+        else:
+            offer.currency = None
+            offer.notes.append("valuta non dichiarata su un sito non italiano: prezzo non verificabile")
             offer.status = STATUS_PRICE_UNVERIFIED
             return offer
         av = resolve_availability(page.availability_sources)
@@ -393,11 +428,31 @@ def as_dicts(offers: list[Offer]) -> list[dict[str, Any]]:
     return [o.to_dict() for o in offers]
 
 
+def is_italian_site(url: str | None) -> bool:
+    return domain_key(url or "").endswith(".it")
+
+
+# Parametri che non identificano la pagina: tracciamento, sessione, ricerca, paginazione.
+# Tutti gli altri (product_id, id, sku, ean, minsan, route...) restano nella chiave.
+_IGNORED_QUERY_PARAMS = {"gclid", "fbclid", "msclkid", "dclid", "gbraid", "wbraid", "yclid", "srsltid", "_ga", "_gl",
+                         "mc_cid", "mc_eid", "session", "sessionid", "sid", "phpsessid", "jsessionid", "search", "q",
+                         "page"}
+
+
 def _url_key(url: str | None) -> str:
+    """Chiave di confronto di una pagina prodotto.
+
+    Ignora schema, 'www.', slash finale, maiuscole del percorso, ordine dei parametri e i
+    parametri di tracciamento/ricerca; conserva quelli che identificano il prodotto, così
+    '?route=product/product&product_id=1' e '...&product_id=2' restano pagine diverse.
+    """
     if not url:
         return ""
     p = urlsplit(url)
-    return (p.netloc.lower().removeprefix("www.") + p.path.rstrip("/")).lower()
+    kept = sorted((k.lower(), v) for k, v in parse_qsl(p.query, keep_blank_values=True)
+                  if not k.lower().startswith("utm_") and k.lower() not in _IGNORED_QUERY_PARAMS)
+    key = (p.netloc.lower().removeprefix("www.") + p.path.rstrip("/")).lower()
+    return key + ("?" + urlencode(kept) if kept else "")
 
 
 def resolve_shared_urls(offers: list[Offer]) -> list[str]:

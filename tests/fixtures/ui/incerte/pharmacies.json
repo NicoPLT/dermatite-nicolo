@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-11-12T07:00:00Z",
+  "pharmacies": [
+    {
+      "id": "aurora",
+      "name": "Farmacia Aurora",
+      "domain": "aurora.example",
+      "base_url": "https://aurora.example",
+      "source": "Fixture UI",
+      "status": "ACTIVE",
+      "scraper_status": "OK",
+      "discovered_at": "2026-11-12T07:00:00Z",
+      "last_run": "2026-11-12T07:00:00Z",
+      "last_success": "2026-11-12T07:00:00Z",
+      "products_with_verified_price": [
+        "P001",
+        "P002"
+      ],
+      "products_found": [
+        "P001",
+        "P002"
+      ],
+      "errors": []
+    },
+    {
+      "id": "cedro",
+      "name": "Farmacia del Cedro",
+      "domain": "cedro.example",
+      "base_url": "https://cedro.example",
+      "source": "Fixture UI",
+      "status": "ACTIVE",
+      "scraper_status": "OK",
+      "discovered_at": "2026-11-12T07:00:00Z",
+      "last_run": "2026-11-12T07:00:00Z",
+      "last_success": "2026-11-12T07:00:00Z",
+      "products_with_verified_price": [
+        "P001",
+        "P002"
+      ],
+      "products_found": [
+        "P001",
+        "P002"
+      ],
+      "errors": []
+    }
+  ],
+  "last_discovery": null
+}

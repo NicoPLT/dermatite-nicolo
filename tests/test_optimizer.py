@@ -4,6 +4,7 @@ Tutte le offerte qui sono SIMULATE.
 """
 import itertools
 import random
+from datetime import date
 
 import pytest
 
@@ -18,9 +19,12 @@ def offer(pid, ph, price, avail="DISPONIBILE", match="ID", usable=True):
             "usable": usable, "url": f"https://{ph}.test/{pid}", "status": "OK"}
 
 
-def ship(std, thr=None, incl=True, rel="alta"):
+TODAY = date.today().isoformat()
+
+
+def ship(std, thr=None, incl=True, rel="alta", verified_at=TODAY):
     return {"standard_cost_eur": std, "free_threshold_eur": thr, "free_threshold_inclusive": incl,
-            "free_threshold_verified": thr is not None, "reliability": rel}
+            "free_threshold_verified": thr is not None, "reliability": rel, "verified_at": verified_at}
 
 
 def test_single_pharmacy_with_free_shipping_beats_split():

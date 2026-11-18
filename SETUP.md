@@ -1,104 +1,69 @@
-# Setup Rapido – Dermocosmetic Price Tracker
+# Setup rapido – Dermocosmetic Price Tracker
 
-## ✅ Fatto automaticamente
+Guida breve per pubblicare il progetto. I dettagli sono nel [README](README.md#pubblicazione-su-github).
 
-- [x] Progetto committato (git init + initial commit)
-- [x] 196 test passano
-- [x] Scraper funziona (dry-run: 34 offerte da 9 farmacie)
-- [x] Dashboard pronta (HTML statica, Tailwind CDN, Chart.js)
-- [x] GitHub Actions workflow pronto
+## 1. Creare il repository su GitHub
 
-## 📋 Prossimi passi (5 minuti)
+- https://github.com/new → nome a scelta (es. `dermatite-nicolo`)
+- **Pubblico** se vuoi GitHub Pages gratis (su repository privati Pages richiede un piano a pagamento)
+- Non inizializzarlo con README
 
-### 1. Creare il repo su GitHub
-```
-https://github.com/new
-- Nome: dermatite-nicolo
-- Pubblico (necessario per Pages)
-- NON inizializzare con README
-```
+## 2. Caricare il codice
 
-### 2. Pushare il codice
 ```bash
-git remote add origin https://github.com/TUO_USERNAME/dermatite-nicolo.git
+git remote add origin https://github.com/<tuo-utente>/<tuo-repo>.git
 git branch -M main
 git push -u origin main
 ```
 
-### 3. Abilitare GitHub Pages
-**Repo → Settings → Pages**
-- Source: `main` (root)
-- Salva
+## 3. Permessi di GitHub Actions
 
-🔗 Dashboard live: `https://TUO_USERNAME.github.io/dermatite-nicolo/`
+*Settings → Actions → General → Workflow permissions* → **Read and write permissions**.
 
-### 4. Configurare GitHub Actions (scraper automatico)
+Non serve nessun token personale (PAT) né alcun secret: il workflow usa il `GITHUB_TOKEN` automatico,
+con i permessi dichiarati nel file (`contents: write`). Non creare un secret chiamato `GITHUB_TOKEN`.
 
-**A. Creare un PAT:**
-- GitHub → Settings → Developer settings → Personal access tokens (classic)
-- New token: nome `GITHUB_TOKEN_SCRAPER`
-- Permessi: `repo` + `workflow`
-- Copia il token
+## 4. Abilitare GitHub Pages
 
-**B. Aggiungere il secret al repo:**
-- Repo → Settings → Secrets and variables → Actions
-- New secret: `GITHUB_TOKEN` = token copiato
+*Settings → Pages → Build and deployment → Source: Deploy from a branch → `main` / `(root)`* → Salva.
 
-**C. Verificare il workflow:**
-- Repo → Actions → dovresti vedere `scraper`
-- Schedulo: ogni giorno alle 02:00 UTC (modificabile in `.github/workflows/scrape.yml`)
+Dashboard: `https://<tuo-utente>.github.io/<tuo-repo>/`.
+Ogni commit dei dati su `main` riavvia il deploy automatico "pages build and deployment".
 
-## 🧪 Test locali
+## 5. Verificare il workflow
 
-```bash
-# Tutti i test
-python -m pytest -q
+*Actions → **Scrape prezzi** → Run workflow*. Il flusso è:
 
-# Dry-run dello scraper
-python scraper.py --dry-run
-
-# Una sola farmacia
-python scraper.py --pharmacy clubfarma --dry-run
-
-# Dashboard locale
-python -m http.server 8000
-# Apri http://localhost:8000
+```text
+test offline → scraping → validazione JSON → commit dei dati su main → deploy di GitHub Pages
 ```
 
-## 📊 Data flow
+- Orario automatico: **ogni giorno alle 08:00 ora di Roma** (due cron in UTC, 06:00 e 07:00, e un controllo che lascia
+  passare solo quello giusto). Il lunedì anche scoperta farmacie e verifica spedizioni.
+- Se i test o la validazione falliscono non viene committato nulla e restano pubblicati i dati precedenti.
+- Log sempre disponibili come artifact; in caso di errore anche i file generati (`dati-<id>`).
 
-1. GitHub Actions esegue `python scraper.py` ogni giorno
-2. Genera `data.json` + `price_history.json`
-3. Committa automaticamente i dati nel branch `main`
-4. Dashboard ricarica i dati automaticamente
+## Test e prove locali
 
-## ⚠️ Farmacie ACTIVE
+```bash
+pip install -r requirements.txt
+python -m pytest -q                           # tutti offline; il test del browser si salta senza Playwright
+python validation.py                          # controlla i JSON pubblicati
+python scraper.py --pharmacy clubfarma --dry-run   # prova una farmacia senza scrivere data.json
+python -m http.server 8000                    # dashboard su http://localhost:8000
+```
 
-Attualmente monitorizzate:
-- ✅ alpifarma
-- ✅ clubfarma
-- ✅ farmaciairisdiana
-- ✅ farmasave
-- ✅ farmastrike
-- ✅ farmavil lage
-- ✅ meafarma
-- ✅ redcare
-- ✅ verafarma
+`python scraper.py --pharmacy <id>` **senza** `--dry-run` è una scansione parziale: aggiorna solo quella farmacia e conserva
+le offerte delle altre (vedi README, "Pubblicazione dei dati e scansioni parziali").
 
-Per aggiungerne altre: vedi `CLAUDE.md → Aggiungere una farmacia`
+## Farmacie monitorate
 
-## 📝 Prima del primo scraping reale
+L'elenco aggiornato delle farmacie `ACTIVE` è in `pharmacies.json` e nella sezione *Mercato* della dashboard.
+Per aggiungerne altre: `CLAUDE.md → Aggiungere una farmacia`. Per toglierne una: `python pharmacy_discovery.py demote <dominio>`
+(le sue offerte escono subito dal carrello).
 
-Raccomandato:
-1. Verificare che `config.json` abbia i 5 prodotti corretti
-2. Testare 1-2 farmacie con `--pharmacy <id> --dry-run`
-3. Quando tutto ok, fare `git push` e il primo scraping avverrà entro 24h
+## Da ricordare
 
-## 🎯 Prossimi obiettivi
-
-- [ ] Push su GitHub
-- [ ] Abilitare Pages
-- [ ] Configurare GitHub Actions
-- [ ] Primo scraping automatico ✨
-- [ ] Aggiungere/verificare altre farmacie
-- [ ] Monitorare P002 (difficile da trovare)
+- Il confronto riguarda solo le farmacie monitorate; prezzi e disponibilità vanno ricontrollati sul sito della farmacia.
+- Il progetto non dà consigli medici.
+- Aggiorna `config.json → http.user_agent` con l'URL del tuo repository.

@@ -24,12 +24,15 @@ import logging
 import math
 import re
 import sys
+from datetime import date, datetime
 from typing import Any
 from urllib.parse import urlencode
 
-from storage import ROOT, days_since, now_utc_iso, read_json, write_json_atomic
+from storage import ROME, ROOT, days_since, now_utc_iso, read_json, write_json_atomic
+from validation import normalize_format, parse_day, valid_price
 
 log = logging.getLogger("tracker.physical")
+DEFAULT_STORE_PRICE_MAX_AGE_DAYS = 30
 PHYSICAL_PATH = ROOT / "physical_pharmacies.json"
 STORE_PRICES_PATH = ROOT / "store_prices.json"
 NOMINATIM = "https://nominatim.openstreetmap.org/search"
@@ -235,6 +238,55 @@ def refresh(config: dict, session, *, force: bool = False) -> dict:
     return data
 
 
+def store_price_problem(sp: dict, products_by_id: dict[str, dict], *, max_age_days: float, today: date) -> str | None:
+    """Motivo per cui una rilevazione in negozio NON è utilizzabile (None = valida).
+
+    Una rilevazione con `available: false` ma per il resto valida è un'osservazione legittima
+    di non disponibilità: viene esclusa dal calcolo con il motivo "non disponibile".
+    """
+    if not isinstance(sp, dict):
+        return "voce non valida"
+    if not sp.get("store_id"):
+        return "farmacia (store_id) mancante"
+    product = products_by_id.get(sp.get("product_id"))
+    if product is None:
+        return f"prodotto {sp.get('product_id')!r} non presente nel catalogo"
+    if not valid_price(sp.get("price")):
+        return f"prezzo non valido ({sp.get('price')!r}): serve un numero maggiore di zero"
+    current = (product.get("format") or {}).get("label")
+    if not sp.get("format"):
+        return f"formato non indicato (atteso {current})"
+    if normalize_format(sp["format"]) != normalize_format(current):
+        return f"formato {sp['format']} diverso da quello monitorato ({current})"
+    observed = parse_day(sp.get("observed_at"))
+    if observed is None:
+        return "data di rilevazione (observed_at) mancante o non valida"
+    if observed > today:
+        return f"data di rilevazione nel futuro ({observed.isoformat()})"
+    if (today - observed).days > max_age_days:
+        return f"rilevazione del {observed.isoformat()} più vecchia di {max_age_days:.0f} giorni"
+    if not str(sp.get("source") or "").strip():
+        return "fonte della rilevazione mancante"
+    if sp.get("available") is False:
+        return "non disponibile"
+    return None
+
+
+def split_store_prices(entries: list, products: list[dict], *, max_age_days: float,
+                       today: date | None = None) -> tuple[list[dict], list[dict]]:
+    """(rilevazioni utilizzabili, rilevazioni escluse con motivo). Il file non viene mai modificato."""
+    today = today or datetime.now(ROME).date()
+    by_id = {p["id"]: p for p in products}
+    valid, excluded = [], []
+    for sp in entries or []:
+        why = store_price_problem(sp, by_id, max_age_days=max_age_days, today=today)
+        if why is None:
+            valid.append(sp)
+        else:
+            excluded.append({**(sp if isinstance(sp, dict) else {}), "excluded_reason": why})
+    return valid, excluded
+
+
 def load_physical(config: dict, cache: dict | None = None) -> dict | None:
     """Vista per l'ottimizzatore/dashboard, ricalcolata con i parametri di viaggio ATTUALI."""
     cache = cache if cache is not None else read_json(PHYSICAL_PATH, default=None)
@@ -244,8 +296,11 @@ def load_physical(config: dict, cache: dict | None = None) -> dict | None:
     max_km = float(travel.get("max_distance_km") or 3)
     loc = cache.get("location") or {}
     products = [p["id"] for p in config.get("products", [])]
-    store_prices = (read_json(STORE_PRICES_PATH, default={}) or {}).get("entries") or []
+    max_age = float((config.get("physical") or {}).get("store_price_max_age_days") or DEFAULT_STORE_PRICE_MAX_AGE_DAYS)
+    store_prices, excluded = split_store_prices((read_json(STORE_PRICES_PATH, default={}) or {}).get("entries") or [],
+                                                config.get("products", []), max_age_days=max_age)
     priced = {(s.get("store_id"), s.get("product_id")): s for s in store_prices}
+    unavailable = {(s.get("store_id"), s.get("product_id")) for s in excluded if s["excluded_reason"] == "non disponibile"}
     stores = []
     for ph in cache.get("pharmacies_raw") or []:
         d = haversine_km(loc["lat"], loc["lon"], ph["lat"], ph["lon"])
@@ -253,11 +308,12 @@ def load_physical(config: dict, cache: dict | None = None) -> dict | None:
             continue
         avail = {}
         for pid in products:
-            sp = priced.get((ph["id"], pid))
-            if sp is None:
-                avail[pid] = "non verificata"
+            if (ph["id"], pid) in priced:
+                avail[pid] = "confermata"
+            elif (ph["id"], pid) in unavailable:
+                avail[pid] = "non disponibile"
             else:
-                avail[pid] = "confermata" if sp.get("available", True) else "non disponibile"
+                avail[pid] = "non verificata"
         stores.append({**ph, "distance_km": round(d, 2), "travel": travel_estimate(d, travel), "availability": avail})
     stores.sort(key=lambda s: s["distance_km"])
     stores = stores[: int(travel.get("max_physical_pharmacies") or 25)]
@@ -275,12 +331,15 @@ def load_physical(config: dict, cache: dict | None = None) -> dict | None:
         "travel": travel,
         "pharmacies": stores,
         "pickup_points": pickups,
-        "store_prices": [s for s in store_prices if s.get("price") is not None and s.get("available", True)],
+        "store_prices": store_prices,
+        "store_prices_excluded": excluded,
+        "store_price_max_age_days": max_age,
         "availability_values": list(AVAILABILITY_VALUES),
         "notes": [
             "Prezzi e giacenze delle farmacie fisiche non sono pubblicati online: disponibilità 'non verificata'.",
             "Costi di viaggio = STIMA (distanza in linea d'aria × fattore strada, andata e ritorno).",
-        ],
+        ] + ([f"{len(excluded)} rilevazioni di store_prices.json escluse dal calcolo (vedi store_prices_excluded)."]
+             if excluded else []),
     }
 
 

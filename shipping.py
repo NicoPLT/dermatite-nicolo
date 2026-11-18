@@ -4,8 +4,12 @@ Regole:
 - costo standard sconosciuto => costo None (MAI gratis): il carrello è "incompleto";
 - la soglia di spedizione gratuita si applica solo se `free_threshold_verified` è vero;
 - soglia "a partire da" = inclusiva (>=); "superiore a" = esclusiva (>), interpretazione prudente;
+- ogni tariffa ha uno STATO (vedi shipping_status): solo "verificata" entra nel carrello
+  verificato; "scaduta", "discordante" e "sconosciuta" rendono il carrello incompleto
+  (il costo noto resta visibile tra le alternative, mai come vincitore certo);
 - `python shipping.py --check` rilegge le pagine ufficiali (se robots.txt lo consente) e
   segnala le differenze; con `--apply` aggiorna i valori trovati in modo univoco.
+  Un valore ambiguo o non più trovato sulla pagina rende la tariffa "discordante".
 """
 from __future__ import annotations
 
@@ -16,10 +20,17 @@ import sys
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
-from storage import ROOT, now_utc_iso, read_json, today_rome, write_json_atomic
+from storage import ROOT, days_since, now_utc_iso, read_json, today_rome, write_json_atomic
+from validation import parse_day
 
 log = logging.getLogger("tracker.shipping")
 SHIPPING_PATH = ROOT / "shipping_config.json"
+
+STATUS_VERIFIED = "verificata"
+STATUS_EXPIRED = "scaduta"
+STATUS_DISCORDANT = "discordante"
+STATUS_UNKNOWN = "sconosciuta"
+DEFAULT_MAX_AGE_DAYS = 60
 
 
 @dataclass
@@ -31,6 +42,7 @@ class ShippingQuote:
     free_shipping_applied: bool = False
     reliability: str = "sconosciuta"
     notes: list[str] = field(default_factory=list)
+    status: str = STATUS_UNKNOWN
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -40,13 +52,60 @@ def load_config(path: str | Path = SHIPPING_PATH) -> dict:
     return read_json(path, default={"schema_version": 1, "pharmacies": {}})
 
 
+def max_age_days(cfg: dict) -> float:
+    return float(cfg.get("max_age_days") or DEFAULT_MAX_AGE_DAYS)
+
+
+def shipping_status(ph: dict | None, *, max_age: float = DEFAULT_MAX_AGE_DAYS) -> tuple[str, str]:
+    """(stato, motivazione) della tariffa di una farmacia.
+
+    - sconosciuta: tariffa standard assente (e nessuna soglia verificata) o data di verifica mancante;
+    - discordante: l'ultimo controllo automatico ha trovato valori diversi, ambigui o assenti
+      sulla pagina ufficiale (e non c'è stata una verifica manuale successiva);
+    - scaduta: verifica più vecchia di `max_age` giorni;
+    - verificata: altrimenti.
+    """
+    if not ph:
+        return STATUS_UNKNOWN, "farmacia assente da shipping_config.json"
+    has_threshold = ph.get("free_threshold_verified") and ph.get("free_threshold_eur") is not None
+    if ph.get("standard_cost_eur") is None and not has_threshold:
+        return STATUS_UNKNOWN, "costo di spedizione standard sconosciuto"
+    verified = parse_day(ph.get("verified_at"))
+    if verified is None:
+        return STATUS_UNKNOWN, "data di verifica mancante: tariffa non attendibile"
+    last = (ph.get("auto_check") or {}).get("last_check") or {}
+    checked = parse_day(last.get("at"))
+    if last.get("differences") and (checked is None or verified <= checked):
+        return STATUS_DISCORDANT, (f"controllo del {checked or 'n.d.'} sulla pagina ufficiale: "
+                                   + "; ".join(last["differences"][:3]))
+    age = days_since(ph.get("verified_at"))
+    if age is not None and age > max_age:
+        return STATUS_EXPIRED, f"ultima verifica il {verified.isoformat()}, oltre {max_age:.0f} giorni fa"
+    return STATUS_VERIFIED, f"verificata il {verified.isoformat()}"
+
+
 def quote(cfg: dict, pharmacy_id: str, subtotal: float, *, cod: bool = False) -> ShippingQuote:
-    """Costo di spedizione a domicilio per un ordine con il subtotale indicato."""
+    """Costo di spedizione a domicilio per un ordine con il subtotale indicato.
+
+    Il costo noto viene sempre calcolato; `complete` è vero solo se la tariffa è "verificata"
+    e non mancano componenti (costi extra, contrassegno).
+    """
     ph = (cfg.get("pharmacies") or {}).get(pharmacy_id)
     subtotal = round(float(subtotal), 2)
     if not ph:
         return ShippingQuote(pharmacy_id, subtotal, None, False, notes=["farmacia assente da shipping_config.json"])
-    q = ShippingQuote(pharmacy_id, subtotal, None, False, reliability=ph.get("reliability") or "sconosciuta")
+    status, reason = shipping_status(ph, max_age=max_age_days(cfg))
+    q = ShippingQuote(pharmacy_id, subtotal, None, False, reliability=ph.get("reliability") or "sconosciuta",
+                      status=status)
+    q = _price(ph, q, cod)
+    if status != STATUS_VERIFIED and q.cost is not None:
+        q.complete = False
+        q.notes.append(f"tariffa {status}: {reason}")
+    return q
+
+
+def _price(ph: dict, q: ShippingQuote, cod: bool) -> ShippingQuote:
+    subtotal = q.subtotal
     thr = ph.get("free_threshold_eur")
     if thr is not None and ph.get("free_threshold_verified"):
         inclusive = ph.get("free_threshold_inclusive")
@@ -86,13 +145,21 @@ def pickup_info(cfg: dict, pharmacy_id: str) -> dict | None:
 
 
 def summary(cfg: dict) -> dict:
-    """Vista compatta per data.json/dashboard."""
+    """Vista compatta per data.json/dashboard, con stato e motivazione della tariffa."""
     out = {}
     for pid, ph in (cfg.get("pharmacies") or {}).items():
         out[pid] = {k: ph.get(k) for k in (
             "standard_cost_eur", "free_threshold_eur", "free_threshold_inclusive", "free_threshold_verified",
             "cod_cost_eur", "pickup_available", "pickup_cost_eur", "source_url", "verified_at", "reliability", "notes")}
+        out[pid]["status"], out[pid]["status_reason"] = shipping_status(ph, max_age=max_age_days(cfg))
     return out
+
+
+def unverified(cfg: dict, pharmacy_ids) -> list[str]:
+    """Farmacie (tra quelle indicate) la cui tariffa non è 'verificata'."""
+    phs = cfg.get("pharmacies") or {}
+    return sorted(pid for pid in pharmacy_ids
+                  if shipping_status(phs.get(pid), max_age=max_age_days(cfg))[0] != STATUS_VERIFIED)
 
 
 # --------------------------------------------------------------------------- verifica automatica
@@ -124,7 +191,8 @@ def check(cfg: dict, session, *, apply: bool = False) -> list[dict]:
         url, patterns = ac.get("url"), ac.get("patterns") or {}
         if not url or not patterns:
             continue
-        entry = {"pharmacy_id": pid, "url": url, "at": now_utc_iso(), "found": {}, "differences": [], "error": None}
+        entry = {"pharmacy_id": pid, "url": url, "at": now_utc_iso(), "found": {}, "differences": [], "applied": [],
+                 "error": None}
         try:
             if not session.is_allowed(url):
                 raise FetchError("pagina vietata da robots.txt")
@@ -139,16 +207,22 @@ def check(cfg: dict, session, *, apply: bool = False) -> list[dict]:
             entry["error"] = str(exc)
         for key, value in entry["found"].items():
             if value is None:
+                # valore sparito o ambiguo: la tariffa precedente non è più confermata (mai applicato)
                 entry["differences"].append(f"{key}: non trovato o ambiguo sulla pagina")
             elif ph.get(key) != value:
-                entry["differences"].append(f"{key}: configurato {ph.get(key)} / pagina {value}")
+                msg = f"{key}: configurato {ph.get(key)} / pagina {value}"
                 if apply:
                     ph[key] = value
-                    ph["verified_at"] = today_rome()
-                    ph["reliability"] = "alta"
+                    entry["applied"].append(msg)
+                else:
+                    entry["differences"].append(msg)
         if not entry["error"] and not entry["differences"]:
             ph["verified_at"] = today_rome()
-        ac["last_check"] = {k: entry[k] for k in ("at", "found", "differences", "error")}
+            if entry["applied"]:
+                ph["reliability"] = "alta"
+        # Le differenze non risolte restano nel controllo: shipping_status() le legge e la tariffa
+        # diventa "discordante" finché un controllo o una verifica manuale successiva non la conferma.
+        ac["last_check"] = {k: entry[k] for k in ("at", "found", "differences", "applied", "error")}
         report.append(entry)
     return report
 

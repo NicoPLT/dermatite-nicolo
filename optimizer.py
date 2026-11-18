@@ -8,6 +8,8 @@ Canali di acquisto per ogni prodotto:
 Costo totale = prodotti + spedizioni (una per ordine, con soglie verificate) + costi di ritiro
 + viaggi (UNO per luogo visitato, anche se lì si ritirano più prodotti).
 Componenti sconosciute => carrello "incompleto": mai vincitore certo, elencato a parte.
+Il carrello verificato usa solo offerte con disponibilità CONFERMATA; le offerte con prezzo
+verificato ma disponibilità sconosciuta formano a parte le "alternative potenziali".
 
 Modalità:
   A = tutto online a domicilio da UNA farmacia
@@ -23,11 +25,15 @@ import heapq
 import itertools
 import json
 import logging
+import math
 import sys
 from dataclasses import dataclass, field
 from typing import Any, Callable
 
+from validation import normalize_format, valid_price
+
 log = logging.getLogger("tracker.optimizer")
+LARGE_SEARCH = 2_000_000  # oltre questa soglia la ricerca esaustiva resta esatta ma viene segnalata
 
 HOME, PICKUP, STORE = "domicilio", "ritiro", "negozio"
 MODE_LABELS = {
@@ -109,7 +115,10 @@ def build_options(products: list[dict], offers: list[dict], shipping_cfg: dict, 
     notes: list[str] = []
     channels: dict[str, Channel] = {}
     options: dict[str, list[Option]] = {p["id"]: [] for p in products}
-    usable = [o for o in offers if o.get("usable") and offer_matches_current_format(o, products)]
+    # Difesa anche per snapshot scritti prima della regola "solo disponibilità confermata".
+    # `_uncertain` marca le copie interne usate SOLO per le alternative potenziali (mai nel carrello verificato).
+    usable = [o for o in offers if o.get("usable") and offer_matches_current_format(o, products)
+              and valid_price(o.get("price")) and (o.get("availability") == "DISPONIBILE" or o.get("_uncertain"))]
     dropped = sum(1 for o in offers if o.get("usable") and not offer_matches_current_format(o, products))
     if dropped:
         notes.append(f"{dropped} offerte di un formato non più monitorato sono state ignorate.")
@@ -145,11 +154,18 @@ def build_options(products: list[dict], offers: list[dict], shipping_cfg: dict, 
                                         pickup_cost=pp.get("pickup_cost_eur"), travel=pp.get("travel"))
             options[o["product_id"]].append(Option(o["product_id"], channels[key], float(o["price"]), o))
 
-    # Negozi fisici: SOLO con prezzi rilevati (inseriti manualmente con data e fonte).
+    # Negozi fisici: SOLO con prezzi rilevati (inseriti manualmente con data e fonte), già validati
+    # da physical_pharmacies.split_store_prices; qui si ricontrollano prezzo, formato e disponibilità.
     stores = {s["id"]: s for s in (physical or {}).get("pharmacies") or []}
+    current_format = {p["id"]: (p.get("format") or {}).get("label") for p in products}
     for sp in (physical or {}).get("store_prices") or []:
         st = stores.get(sp.get("store_id"))
-        if st is None or sp.get("price") is None or sp.get("product_id") not in options:
+        if st is None or not valid_price(sp.get("price")) or sp.get("product_id") not in options:
+            continue
+        if sp.get("available") is False:
+            continue
+        cur = current_format.get(sp["product_id"])
+        if sp.get("format") and cur and normalize_format(sp["format"]) != normalize_format(cur):
             continue
         if max_km is not None and (st.get("distance_km") is None or st["distance_km"] > max_km):
             continue
@@ -164,6 +180,10 @@ def build_options(products: list[dict], offers: list[dict], shipping_cfg: dict, 
     if not (physical or {}).get("store_prices"):
         notes.append("Nessun prezzo rilevato in farmacia fisica: i prezzi in negozio non sono pubblicati online, "
                       "quindi l'acquisto in negozio (modalità C) non è calcolabile. Puoi inserirli in store_prices.json.")
+    excluded = (physical or {}).get("store_prices_excluded") or []
+    if excluded:
+        notes.append(f"{len(excluded)} prezzi rilevati in negozio esclusi dal calcolo (scaduti, di un altro formato, "
+                     "senza data o fonte, non validi o non disponibili): restano in store_prices.json.")
     return options, list(channels.values()), notes
 
 
@@ -323,14 +343,20 @@ def optimize(products: list[dict], offers: list[dict], shipping_cfg: dict, physi
     options, channels, notes = build_options(products, offers, shipping_cfg, physical, pharmacy_names)
     missing_products = [pid for pid, opts in options.items() if not opts]
     target = [pid for pid in options if options[pid]]
+    estimate = math.prod(len(options[pid]) for pid in target) if target else 0
     result: dict[str, Any] = {
         "complete_possible": not missing_products,
         "products_without_offers": missing_products,
         "products_considered": target,
         "options_per_product": {pid: len(opts) for pid, opts in options.items()},
         "evaluated_combinations": 0,
+        "combinations_estimate": estimate,
+        "uncertain_alternatives": [],
         "notes": notes,
     }
+    if estimate > LARGE_SEARCH:
+        log.warning("Ricerca esaustiva ampia: %d combinazioni", estimate)
+        notes.append(f"Ricerca esaustiva su {estimate:,} combinazioni: il calcolo resta esatto ma è lento.".replace(",", "."))
     if missing_products:
         result["notes"].append("Impossibile comprare tutti e 5 i prodotti: nessuna offerta verificata e disponibile per "
                                + ", ".join(missing_products) + ". I carrelli sotto sono PARZIALI.")
@@ -338,6 +364,7 @@ def optimize(products: list[dict], offers: list[dict], shipping_cfg: dict, physi
         result.update({"best_overall": None, "best_single_pharmacy": None, "best_max_two_pharmacies": None,
                        "best_any_number": None, "by_mode": {}, "rankings": {"domicilio": [], "ritiro_fisico": [], "misto": []},
                        "incomplete_alternatives": [], "savings_vs_single": None})
+        _add_uncertain(result, products, offers, shipping_cfg, physical, pharmacy_names, None, 0)
         result.update(comparison_display(result, physical))
         return result
 
@@ -397,9 +424,56 @@ def optimize(products: list[dict], offers: list[dict], shipping_cfg: dict, physi
             result["notes"].append(
                 f"{len(cheaper)} carrelli incompleti hanno un costo NOTO inferiore al migliore verificato: "
                 "potrebbero convenire ma mancano dati fondamentali (es. spedizione sconosciuta).")
+    _add_uncertain(result, products, offers, shipping_cfg, physical, pharmacy_names, best, len(target))
     result["physical_comparison"] = physical_comparison(result, physical)
     result.update(comparison_display(result, physical))
     return result
+
+
+def _add_uncertain(result: dict, products: list[dict], offers: list[dict], shipping_cfg: dict, physical: dict | None,
+                   names: dict[str, str], best: Cart | None, verified_coverage: int) -> None:
+    alts = uncertain_alternatives(products, offers, shipping_cfg, physical, names, best, verified_coverage)
+    result["uncertain_alternatives"] = alts
+    if alts:
+        what = "1 alternativa potenziale usa" if len(alts) == 1 else f"{len(alts)} alternative potenziali usano"
+        result["notes"].append(f"{what} offerte con disponibilità da verificare: non sono vincitrici certe "
+                               "(controlla la disponibilità sul sito della farmacia).")
+
+
+def uncertain_alternatives(products: list[dict], offers: list[dict], shipping_cfg: dict, physical: dict | None,
+                           names: dict[str, str], best: Cart | None, verified_coverage: int) -> list[dict]:
+    """Carrelli che includono almeno un'offerta con prezzo verificato ma disponibilità SCONOSCIUTA.
+
+    Stesse regole del carrello verificato (soglie, spedizioni, viaggi); si mostrano solo se costano
+    meno del migliore verificato o coprono più prodotti. Mai vincitori certi.
+    """
+    extra = [dict(o, usable=True, _uncertain=True) for o in offers
+             if o.get("availability_uncertain") and not o.get("usable") and valid_price(o.get("price"))]
+    if not extra:
+        return []
+    options, _, _ = build_options(products, [o for o in offers if o.get("usable")] + extra, shipping_cfg, physical, names)
+    target = [pid for pid in options if options[pid]]
+    top = _Top(INCOMPLETE_SIZE)
+    for assignment in itertools.product(*(options[pid] for pid in target)):
+        if not any(opt.offer.get("_uncertain") for opt in assignment):
+            continue
+        cart = evaluate(assignment)
+        if cart is None or not cart.complete:
+            continue
+        if best is not None and len(target) <= verified_coverage and cart.total >= best.total:
+            continue
+        top.push(cart)
+    products_by_id = {p["id"]: p for p in products}
+    out = []
+    for cart in top.sorted():
+        d = cart_to_dict(cart, products_by_id)
+        d["reliability"] = "da verificare"
+        d["label"] = "Alternativa potenziale: disponibilità da verificare"
+        d["uncertain_products"] = sorted(it.product_id for it in cart.items if it.offer.get("_uncertain"))
+        d["products_covered"] = len(target)
+        d["covers_more_products"] = len(target) > verified_coverage
+        out.append(d)
+    return out
 
 
 def comparison_display(result: dict, physical: dict | None) -> dict:
@@ -490,22 +564,23 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
     logging.basicConfig(level=logging.INFO)
     data = read_json(ROOT / "data.json", required=True)
-    if not data.get("offers"):
+    if data.get("offers") is None:
         print("data.json non contiene offerte: esegui prima scraper.py")
         return 1
     config = read_json(ROOT / "config.json", required=True)
-    shipping_cfg = read_json(ROOT / "shipping_config.json", default={})
     from physical_pharmacies import load_physical
-    physical = load_physical(config)
-    names = {pid: p.get("name", pid) for pid, p in (data.get("pharmacies") or {}).items()}
-    res = optimize(config["products"], data["offers"], shipping_cfg, physical, names)
+    from snapshot import recompute
+    from storage import now_utc_iso
+    # Stesso ricalcolo di demote/cambio formato: registro, spedizioni e parametri di viaggio ATTUALI.
+    summary = recompute(data, config=config, registry=read_json(ROOT / "pharmacies.json", default=None),
+                        shipping_cfg=read_json(ROOT / "shipping_config.json", default={}),
+                        physical=load_physical(config), now=now_utc_iso(), reason="ricalcolo manuale (optimizer.py)")
+    res = data["carts"]
     if args.dry_run:
         print(json.dumps({k: res[k] for k in ("best_overall", "savings_vs_single", "notes")}, ensure_ascii=False, indent=2))
         return 0
-    data["carts"] = res
-    data["physical"] = physical
     write_json_atomic(ROOT / "data.json", data)
-    print("Carrelli ricalcolati:", res["evaluated_combinations"], "combinazioni")
+    print("Carrelli ricalcolati:", res["evaluated_combinations"], "combinazioni;", summary)
     return 0
 
 

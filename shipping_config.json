@@ -2,6 +2,13 @@
   "schema_version": 1,
   "updated_at": "2026-11-18T08:19:58Z",
   "zone": "Italia continentale (Milano). Isole, Livigno, Venezia e zone disagiate hanno tariffe diverse non considerate.",
+  "max_age_days": 60,
+  "status_levels": {
+    "verificata": "verified_at presente, meno vecchia di max_age_days e nessuna differenza aperta dall'ultimo controllo automatico: entra nel carrello verificato",
+    "scaduta": "verified_at più vecchia di max_age_days: ricontrollare la pagina ufficiale e aggiornare verified_at",
+    "discordante": "l'ultimo controllo automatico (auto_check.last_check.differences) ha trovato valori diversi, ambigui o assenti: la tariffa precedente non vale finché non viene riconfermata",
+    "sconosciuta": "costo standard o data di verifica mancanti: mai gratis, carrello incompleto"
+  },
   "reliability_levels": {
     "alta": "letto sulla pagina ufficiale della farmacia (spedizioni/FAQ/condizioni) nella data indicata",
     "media": "dichiarato solo in banner/homepage, senza tabella tariffe",

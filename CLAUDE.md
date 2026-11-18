@@ -21,14 +21,29 @@ App statica (GitHub Pages) + scraper Python eseguito da GitHub Actions. Risponde
 ## Regole non negoziabili
 
 - **Mai prezzi inventati o stimati.** Un valore mancante è `null`/`None`, mai `0`. Dati simulati SOLO in `tests/fixtures/`.
+- **Solo EUR, mai conversioni.** Valuta diversa o fonti discordanti (`PageData.currency_sources`) → `PREZZO NON VERIFICATO`.
+  Valuta non dichiarata = EUR solo su domini `.it` (`Offer.currency_method`).
+- **Carrello verificato = disponibilità confermata.** `Offer.usable` richiede `DISPONIBILE`; `SCONOSCIUTA` o conflitto →
+  `availability_uncertain`, solo in `carts.uncertain_alternatives` ("Alternativa potenziale"), mai vincitore certo.
 - **Spedizione sconosciuta ≠ gratis.** La soglia di spedizione gratuita si applica solo se `free_threshold_verified` è vero.
+  Solo lo stato `verificata` di `shipping.shipping_status` (verified_at entro `max_age_days`, nessuna differenza aperta
+  dall'ultimo `--check`) rende completo un carrello; `scaduta`/`discordante`/`sconosciuta` → carrello incompleto.
+- **Prezzi in negozio validati** (`physical_pharmacies.split_store_prices`): > 0, formato corrente, `observed_at` entro
+  `physical.store_price_max_age_days`, fonte presente, non `available: false`. Le voci escluse restano nel file.
 - In UI la dicitura è sempre "Miglior prezzo trovato tra le farmacie monitorate", mai "migliore del mercato".
 - **Rispetta robots.txt e ToS.** Niente bypass di CAPTCHA, Cloudflare, Akamai o login. Niente `playwright-stealth`, niente UA falsi.
   Ritmo: ≥2 s tra le richieste allo stesso dominio, 1 richiesta alla volta per dominio, User-Agent identificabile (`config.json → http`).
+  Redirect seguiti a mano solo sullo stesso sito, mai verso reti private/loopback; tetto alla dimensione delle risposte e al gzip;
+  `BaseScraper.fetch` rifiuta URL fuori dal dominio della farmacia. Nei test usa `fakes.make_session` (nessuna query DNS).
 - Se un sito blocca (403/429 persistente/challenge): stato `BLOCKED` o `RATE_LIMITED`, documentalo in `pharmacies.json` e passa oltre.
 - Offerte con match prodotto/formato non affidabile → escluse dalla classifica verificata.
-- Scrittura JSON **atomica** (`storage.write_json_atomic`: file temporaneo + `os.replace`).
-  Mai sovrascrivere `data.json`/`price_history.json` con dati vuoti se lo scraping fallisce.
+- Scrittura JSON **atomica** (`storage.write_json_atomic`: file temporaneo + `os.replace`; più file insieme con
+  `storage.write_many_atomic`, staging completo prima di ogni sostituzione).
+  Mai sovrascrivere `data.json`/`price_history.json` con dati vuoti se lo scraping fallisce. `scraper.py` valida con
+  `validation.py` PRIMA di pubblicare; tutti i file di un'esecuzione hanno lo stesso `run_id`.
+- **Scansione parziale** (`--pharmacy` senza `--dry-run`): le offerte delle altre farmacie ACTIVE vengono riportate
+  (`carried_from`), `data.json → scope.type = "parziale"`; lo storico riceve solo i prezzi letti oggi.
+- Qualsiasi modifica che invalida lo snapshot (demote, cambio formato, spedizioni, viaggio) passa da `snapshot.recompute`.
 - Nessuna credenziale o dato personale nei JSON pubblici. Località = città o CAP, mai l'indirizzo.
 - Le nuove farmacie scoperte non diventano mai `ACTIVE` da sole: l'attivazione è manuale.
 - Il ritiro fisico non è mai gratis di default. Il costo del viaggio è sempre una stima etichettata come tale.
@@ -55,7 +70,9 @@ App statica (GitHub Pages) + scraper Python eseguito da GitHub Actions. Risponde
 - `physical_pharmacies.py`: farmacie fisiche (Nominatim + Overpass/OSM) e costi di viaggio stimati.
 - `optimizer.py`: ottimizzatore esaustivo del carrello (5 prodotti, modalità A–E).
 - `pharmacy_discovery.py`: scoperta settimanale di nuovi rivenditori (`pharmacies.json`, stato `DISCOVERED`).
-- `storage.py`: I/O JSON atomico, storico append-only con campo `format` e migrazione senza perdite.
+- `storage.py`: I/O JSON atomico (anche multi-file), storico append-only con campo `format` e migrazione senza perdite.
+- `snapshot.py`: migliori prezzi, statistiche e `recompute()` di `data.json` (demote, cambio formato, ricalcolo carrelli).
+- `validation.py`: contratto dati (prezzi > 0 in EUR, carrelli senza offerte escluse, storico mai accorciato); CLI per il workflow.
 - `maintenance.py`: operazioni sui dati (cambio formato, migrazione dello storico).
 - `index.html`, `assets/styles.css` e `assets/app.js`: dashboard statica (Tailwind CDN + Chart.js CDN + moduli JS vanilla). Ogni modifica UI deve usare i token e i componenti definiti nel [design system](docs/design-system.md).
 - Il confronto delle modalità e le stime locali usano i risultati pubblicati dall’ottimizzatore in `carts.channel_comparison` e `carts.travel_previews`. Un importo assente si presenta come «n.d.».
@@ -68,7 +85,8 @@ pip install -r requirements.txt
 python -m pytest -q                         # tutti i test (offline, usano tests/fixtures)
 python -m py_compile *.py scrapers/*.py tests/*.py
 python scraper.py                           # scraping reale delle farmacie ACTIVE
-python scraper.py --pharmacy clubfarma      # una sola farmacia
+python scraper.py --pharmacy clubfarma      # una sola farmacia (scansione PARZIALE: le altre restano invariate)
+python validation.py                        # contratto dei JSON pubblicati (il workflow usa --against-git)
 python scraper.py --dry-run                 # niente scrittura su data.json/price_history.json
 python scraper.py --refresh-candidates      # rilegge sitemap/ricerche per gli URL candidati
 python scraper.py --product P003 --dry-run  # ricerca mirata (solo dry-run)

@@ -481,7 +481,10 @@ def main(argv: list[str] | None = None) -> int:
         print(msg)
         if ok:
             write_json_atomic(REGISTRY_PATH, registry)
-            _refresh_candidates_in_data(registry)
+            if args.cmd == "demote":
+                print(recompute_data_after_status_change(registry, config, f"demote {args.domain}"))
+            else:
+                _refresh_candidates_in_data(registry)
         return 0 if ok else 1
 
     report = discover(registry, session, config["products"], verify=not args.no_verify, batch=args.batch,
@@ -494,6 +497,27 @@ def main(argv: list[str] | None = None) -> int:
         _refresh_candidates_in_data(registry)
         print(f"pharmacies.json aggiornato ({today_rome()}): {len(registry['pharmacies'])} farmacie nel registro")
     return 0
+
+
+def recompute_data_after_status_change(registry: dict, config: dict, reason: str, *, path=None) -> str:
+    """Dopo che una farmacia esce da ACTIVE: le sue offerte non sono più acquistabili.
+
+    data.json viene ricalcolato subito (migliori prezzi, carrelli, statistiche) e le sue offerte
+    passano tra le candidate NON_VERIFICATO; lo storico resta intatto.
+    """
+    from physical_pharmacies import load_physical
+    from snapshot import recompute
+
+    path = path or ROOT / "data.json"
+    data = read_json(path, default=None)
+    if not data or data.get("offers") is None:
+        return "data.json assente: niente da ricalcolare"
+    shipping_cfg = read_json(SHIPPING_PATH, default={"pharmacies": {}})
+    summary = recompute(data, config=config, registry=registry, shipping_cfg=shipping_cfg,
+                        physical=load_physical(config), now=now_utc_iso(), reason=reason)
+    write_json_atomic(path, data)
+    return (f"data.json ricalcolato: {summary['offers_kept']} offerte valide restano, "
+            f"{summary['offers_moved_to_candidates']} passate tra le candidate non verificate")
 
 
 def _refresh_candidates_in_data(registry: dict) -> None:

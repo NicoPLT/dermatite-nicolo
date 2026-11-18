@@ -71,26 +71,71 @@ def read_json(path: str | Path, default: Any = None, *, required: bool = False) 
         raise StorageError(f"Impossibile leggere {p}: {exc}") from exc
 
 
-def write_json_atomic(path: str | Path, obj: Any) -> None:
-    """Scrive `obj` in `path` in modo atomico (temp file + fsync + os.replace)."""
-    p = Path(path)
-    p.parent.mkdir(parents=True, exist_ok=True)
-    payload = json.dumps(obj, ensure_ascii=False, indent=2, allow_nan=False)
+def _stage(path: Path, obj: Any) -> str:
+    """Serializza e valida `obj`, lo scrive in un file temporaneo accanto a `path` e ne restituisce il nome."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = json.dumps(obj, ensure_ascii=False, indent=2, allow_nan=False)  # NaN/oggetti -> ValueError/TypeError
     json.loads(payload)  # validazione: non scriviamo mai JSON non valido
-    fd, tmp = tempfile.mkstemp(prefix=f".{p.name}.", suffix=".tmp", dir=str(p.parent))
+    fd, tmp = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=str(path.parent))
     try:
         with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as fh:
             fh.write(payload)
             fh.write("\n")
             fh.flush()
             os.fsync(fh.fileno())
+    except BaseException:
+        _unlink(tmp)
+        raise
+    return tmp
+
+
+def _unlink(tmp: str) -> None:
+    try:
+        os.unlink(tmp)
+    except OSError:
+        pass
+
+
+def write_json_atomic(path: str | Path, obj: Any) -> None:
+    """Scrive `obj` in `path` in modo atomico (temp file + fsync + os.replace)."""
+    p = Path(path)
+    tmp = _stage(p, obj)
+    try:
         os.replace(tmp, p)
     except BaseException:
-        try:
-            os.unlink(tmp)
-        except OSError:
-            pass
+        _unlink(tmp)
         raise
+
+
+def write_many_atomic(items: dict[Path, Any]) -> list[Path]:
+    """Pubblica più file JSON come un'unica operazione, per quanto il file system lo consente.
+
+    1. staging: TUTTI i file vengono serializzati, validati e scritti in temporanei; se uno
+       fallisce, i temporanei sono rimossi e nessun file pubblicato viene toccato;
+    2. pubblicazione: os.replace di ciascun temporaneo, nell'ordine dato (di solito storico,
+       poi data.json, poi metadati). Un errore qui (raro: disco/permessi) solleva StorageError
+       che elenca esattamente quali file sono stati aggiornati e quali no.
+    Restituisce i percorsi pubblicati.
+    """
+    staged: list[tuple[str, Path]] = []
+    try:
+        for path, obj in items.items():
+            staged.append((_stage(Path(path), obj), Path(path)))
+    except BaseException:
+        for tmp, _ in staged:
+            _unlink(tmp)
+        raise
+    done: list[Path] = []
+    for i, (tmp, path) in enumerate(staged):
+        try:
+            os.replace(tmp, path)
+        except OSError as exc:
+            for t, _ in staged[i:]:
+                _unlink(t)
+            raise StorageError(f"Pubblicazione interrotta su {path.name}: aggiornati {[p.name for p in done] or 'nessuno'}, "
+                               f"NON aggiornati {[p.name for _, p in staged[i:]]} ({exc})") from exc
+        done.append(path)
+    return done
 
 
 # --------------------------------------------------------------------------- storico
@@ -181,6 +226,29 @@ def merge_history(existing: dict | None, new_entries: Iterable[dict], *, today: 
     return out
 
 
+def prepare_history(path: str | Path, new_entries: list[dict], *, today: str | None = None,
+                    products: list[dict] | None = None) -> tuple[dict, dict | None]:
+    """Calcola in memoria lo storico aggiornato SENZA scriverlo.
+
+    Restituisce (storico_attuale, storico_nuovo); storico_nuovo è None se non ci sono voci
+    nuove con prezzo. Solleva StorageError se il file attuale è illeggibile o se il risultato
+    sarebbe più corto dell'attuale. Con `products` migra prima le voci senza formato.
+    """
+    today = today or today_rome()
+    valid = [e for e in new_entries if e.get("price") is not None]
+    existing = read_json(path, default={"schema_version": HISTORY_SCHEMA, "entries": []})
+    before = len(existing.get("entries") or [])
+    if not valid:
+        return existing, None
+    current = existing
+    if products:
+        current, _ = migrate_history(existing, products)
+    merged = merge_history(current, valid, today=today)
+    if len(merged["entries"]) < before:  # difesa in profondità
+        raise StorageError("Lo storico risultante sarebbe più corto di quello esistente: scrittura annullata")
+    return existing, merged
+
+
 def update_history_file(path: str | Path, new_entries: list[dict], *, today: str | None = None,
                         products: list[dict] | None = None) -> int:
     """Aggiorna price_history.json. Restituisce il numero di voci dopo l'aggiornamento.
@@ -188,16 +256,8 @@ def update_history_file(path: str | Path, new_entries: list[dict], *, today: str
     Non scrive nulla se non ci sono voci nuove con prezzo; non scrive mai uno
     storico più corto di quello esistente. Con `products` migra prima le voci senza formato.
     """
-    today = today or today_rome()
-    valid = [e for e in new_entries if e.get("price") is not None]
-    existing = read_json(path, default={"schema_version": HISTORY_SCHEMA, "entries": []})
-    before = len(existing.get("entries") or [])
-    if not valid:
-        return before
-    if products:
-        existing, _ = migrate_history(existing, products)
-    merged = merge_history(existing, valid, today=today)
-    if len(merged["entries"]) < before:  # difesa in profondità
-        raise StorageError("Lo storico risultante sarebbe più corto di quello esistente: scrittura annullata")
+    existing, merged = prepare_history(path, new_entries, today=today, products=products)
+    if merged is None:
+        return len(existing.get("entries") or [])
     write_json_atomic(path, merged)
     return len(merged["entries"])

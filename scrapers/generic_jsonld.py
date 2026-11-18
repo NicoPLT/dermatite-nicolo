@@ -26,8 +26,8 @@ from urllib.parse import quote_plus, urljoin, urlsplit
 
 from .base import (STATUS_BLOCKED, STATUS_MATCH_UNRELIABLE, STATUS_NO_STRUCTURED, STATUS_OK, STATUS_RATE_LIMITED,
                    BaseScraper, Offer, UrlCache, clean_result_url)
-from .extract import (AVAILABLE, UNAVAILABLE, LdVariant, PageData, extract_page, ids_from_url, iter_jsonld,
-                      normalize_minsan, soup_of)
+from .extract import (AVAILABLE, UNAVAILABLE, LdVariant, PageData, combine_currencies, extract_page, ids_from_url,
+                      iter_jsonld, normalize_minsan, soup_of)
 from .http import DomainBlocked, DomainRateLimited, FetchError, RobotsDisallowed, domain_key
 from .matcher import ACCEPTED_LEVELS, MATCH_ID, match_product, normalize, volumes_ml
 from .sitemap import PRODUCT_CHILD, fetch_sitemap_urls, keyword_prefilter, rank_candidates
@@ -135,6 +135,7 @@ class GenericJsonLdScraper(BaseScraper):
             raise RequestBudgetExceeded(f"tetto di {self.budget} richieste per {domain_key(self.base_url)} raggiunto")
 
     def fetch(self, url: str, accept: str | None = None):
+        self._check_site(url)
         self._check_budget()
         if not self.session.is_allowed(url):  # robots.txt prima di ogni path (può costare 1 richiesta)
             raise RobotsDisallowed(f"Vietato da robots.txt: {url}")
@@ -301,7 +302,10 @@ class GenericJsonLdScraper(BaseScraper):
         return replace(page, titles={"json_ld": name}, eans=set(v.eans), minsans=set(),
                        price_sources={"json_ld": v.price} if v.price is not None else {},
                        availability_sources={"json_ld": v.availability} if v.availability else {},
-                       currency=v.currency, variants=[v], skus=set(v.skus), notes=list(page.notes))
+                       # la valuta vale per tutta la pagina: quella della variante + meta/microdata
+                       currency=combine_currencies([v.currency, *(c for k, c in page.currency_sources.items()
+                                                                   if k != "json_ld")]),
+                       variants=[v], skus=set(v.skus), notes=list(page.notes))
 
     def choose_variant(self, product: dict, page: PageData) -> tuple[LdVariant | None, str]:
         if product.get("ean"):

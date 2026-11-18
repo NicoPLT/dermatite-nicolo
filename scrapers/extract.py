@@ -333,11 +333,42 @@ def _public_spec_price(spec: Any) -> float | None:
     return next(iter(public)) if len(public) == 1 else None
 
 
+def _currency_code(value: Any) -> str | None:
+    if isinstance(value, dict):
+        value = value.get("name") or value.get("@id")
+    code = str(value or "").strip().upper()
+    return code or None
+
+
+def offer_currencies(offer: dict) -> set[str]:
+    """Valute dichiarate da un Offer: priceCurrency dell'offerta e di ogni priceSpecification."""
+    out = set()
+    c = _currency_code(offer.get("priceCurrency"))
+    if c:
+        out.add(c)
+    spec = offer.get("priceSpecification")
+    for s in spec if isinstance(spec, list) else ([spec] if isinstance(spec, dict) else []):
+        if isinstance(s, dict):
+            c = _currency_code(s.get("priceCurrency"))
+            if c:
+                out.add(c)
+    return out
+
+
+def combine_currencies(values: Iterable[str | None]) -> str | None:
+    """Una sola valuta -> quella; nessuna -> None; più valute diverse -> 'CHF/EUR' (mai utilizzabile)."""
+    codes = set()
+    for v in values:
+        codes.update(x for x in str(v or "").upper().split("/") if x)
+    return "/".join(sorted(codes)) if codes else None
+
+
 def ld_price_and_availability(product: dict) -> tuple[float | None, str | None, str | None]:
     """Prezzo, disponibilità e valuta dal JSON-LD. Se ci sono più offerte con prezzi
-    diversi il prezzo è ambiguo e si restituisce None (mai indovinare)."""
+    diversi il prezzo è ambiguo e si restituisce None (mai indovinare). Valute diverse tra
+    offerte o priceSpecification vengono restituite insieme (es. 'CHF/EUR'): mai convertite."""
     offers = _ld_offers(product)
-    prices, avails, currency = set(), set(), None
+    prices, avails, currencies = set(), set(), set()
     for o in offers:
         if "AggregateOffer" in _types(o):
             lo, hi = parse_price(o.get("lowPrice")), parse_price(o.get("highPrice"))
@@ -354,10 +385,10 @@ def ld_price_and_availability(product: dict) -> tuple[float | None, str | None, 
         a = normalize_availability(o.get("availability"))
         if a:
             avails.add(a)
-        currency = currency or o.get("priceCurrency")
+        currencies |= offer_currencies(o)
     price = next(iter(prices)) if len(prices) == 1 else None
     avail = next(iter(avails)) if len(avails) == 1 else (None if not avails else UNKNOWN)
-    return price, avail, currency
+    return price, avail, combine_currencies(currencies)
 
 
 def ld_ids(product: dict, *, sku_is_minsan: bool) -> tuple[set[str], set[str]]:
@@ -497,7 +528,8 @@ class PageData:
     minsans: set[str] = field(default_factory=set)
     price_sources: dict[str, float] = field(default_factory=dict)
     availability_sources: dict[str, str] = field(default_factory=dict)
-    currency: str | None = None
+    currency: str | None = None   # valuta risolta tra le fonti ('CHF/EUR' se discordanti)
+    currency_sources: dict[str, str] = field(default_factory=dict)  # fonte -> valuta dichiarata
     notes: list[str] = field(default_factory=list)
     variants: list[LdVariant] = field(default_factory=list)   # dal JSON-LD del prodotto principale
     structured: bool = False   # trovato almeno un dato strutturato di prodotto (JSON-LD, microdata o meta)
@@ -539,7 +571,8 @@ def extract_page(html: str, url: str, *, price_css: Iterable[str] = (), availabi
             page.notes.append("JSON-LD: prezzo assente o ambiguo (più offerte con prezzi diversi)")
         if avail:
             page.availability_sources["json_ld"] = avail
-        page.currency = cur
+        if cur:
+            page.currency_sources["json_ld"] = cur
         e, m = ld_ids(prod, sku_is_minsan=sku_is_minsan)
         page.eans |= e
         page.minsans |= m
@@ -551,6 +584,11 @@ def extract_page(html: str, url: str, *, price_css: Iterable[str] = (), availabi
         p = parse_price(el.get("content") or _text(el))
         if p is not None:
             page.price_sources["microdata"] = p
+    el = scope.find(attrs={"itemprop": "priceCurrency"})
+    if el is not None:
+        cur = _currency_code(el.get("content") or _text(el))
+        if cur:
+            page.currency_sources["microdata"] = cur
     el = scope.find(attrs={"itemprop": "availability"})
     if el is not None:
         a = normalize_availability(el.get("href") or el.get("content") or _text(el))
@@ -580,6 +618,11 @@ def extract_page(html: str, url: str, *, price_css: Iterable[str] = (), availabi
         p = parse_price(metas.get(key))
         if p is not None:
             page.price_sources["meta"] = p
+            break
+    for key in ("product:price:currency", "og:price:currency", "product:sale_price:currency"):
+        cur = _currency_code(metas.get(key))
+        if cur:
+            page.currency_sources["meta"] = cur
             break
     for key in ("product:availability", "og:availability"):
         a = normalize_availability(metas.get(key))
@@ -660,6 +703,10 @@ def extract_page(html: str, url: str, *, price_css: Iterable[str] = (), availabi
         page.eans |= e
         if sku_is_minsan:
             page.minsans |= m
+    page.currency = combine_currencies(page.currency_sources.values())
+    if page.currency and "/" in page.currency:
+        page.notes.append("valuta: fonti in disaccordo (" + ", ".join(
+            f"{k}={v}" for k, v in sorted(page.currency_sources.items())) + ")")
     return page
 
 

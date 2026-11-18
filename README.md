@@ -27,7 +27,15 @@ P003 richiede "lipocrema" ed esclude "mani"; P004 fa il contrario. Una stessa pa
 ## Principi
 
 - **Nessun prezzo inventato.** Un valore mancante è `null`, mai `0`. I dati simulati esistono solo in `tests/fixtures/`.
-- **Spedizione sconosciuta ≠ gratis.** La soglia di spedizione gratuita si applica solo se è stata verificata sul sito della farmacia.
+- **Solo euro.** Un prezzo è utilizzabile solo se la valuta è EUR. Valute diverse (CHF, USD…) o fonti discordanti (es. JSON-LD in EUR
+  e meta tag in CHF) rendono l'offerta "PREZZO NON VERIFICATO": nessuna conversione automatica. Se la pagina non dichiara la valuta,
+  il prezzo vale come euro solo su un dominio `.it` (`currency_method` dell'offerta dice come è stata stabilita).
+- **Disponibilità confermata.** Il carrello verificato usa solo offerte "DISPONIBILE". Un prezzo verificato con disponibilità
+  sconosciuta o con fonti in conflitto resta visibile come **alternativa potenziale** ("Disponibilità da verificare"), mai come vincitore certo.
+- **Spedizione sconosciuta ≠ gratis.** La soglia di spedizione gratuita si applica solo se è stata verificata sul sito della farmacia,
+  e solo una tariffa con stato "verificata" (vedi [Spedizioni](#spedizioni)) entra nel carrello verificato.
+- **Solo farmacie monitorate, nessun consiglio medico.** Il confronto riguarda soltanto le farmacie monitorate. Il progetto non fa
+  diagnosi né raccomandazioni mediche. Prezzi e disponibilità vanno sempre ricontrollati sul sito della farmacia prima dell'acquisto.
 - **Match rigoroso.** Un'offerta entra in classifica solo se EAN o Minsan coincidono, oppure se nome, marca e formato coincidono con regole severe.
   Multipack, varianti (colorata, AP+MAX, edizione limitata…) e formati diversi vengono esclusi.
 - **Prezzo verificato da più fonti.** Il prezzo viene letto da JSON-LD, microdata, meta tag e HTML e le fonti vengono confrontate.
@@ -77,8 +85,11 @@ Per l’anteprima aggiungi `?data=tests/fixtures/ui/<caso>/` all’URL. La barra
 | [nessuna-offerta](http://localhost:8000/?data=tests/fixtures/ui/nessuna-offerta/) | Catalogo presente, zero offerte e storico vuoto. |
 | [storico-due](http://localhost:8000/?data=tests/fixtures/ui/storico-due/) | Due giorni di prezzi per prodotto, con grafico e tabella. |
 | [errore](http://localhost:8000/?data=tests/fixtures/ui/errore/) | `price_history.json` volutamente troncato per provare lo stato di errore dello storico mentre carrello e registro sono disponibili. |
+| [incerte](http://localhost:8000/?data=tests/fixtures/ui/incerte/) | Scansione parziale (offerte di una farmacia riportate dalla scansione precedente), un'offerta con disponibilità da verificare e la relativa alternativa potenziale, una tariffa di spedizione "discordante". |
 
-L’[audit UX](docs/ux-audit.md) include le schermate iniziali a 375, 768 e 1280 px. Le [schermate del redesign](docs/screenshots/dopo/) seguono lo schema `<caso>-<larghezza>.png`, ad esempio `reale-375.png` e `completo-1280.png`. Per rigenerarle con il server locale sulla porta 8000, esegui `python tests/ui_review.py --url http://127.0.0.1:8000/`. Per modificare l’interfaccia consulta il [design system](docs/design-system.md).
+`tests/test_dashboard_browser.py` apre ogni caso a 375, 768 e 1280 px (più un `data.json` corrotto) e controlla errori JavaScript, overflow orizzontale, tastiera, storico senza Chart.js e le diciture dei dati incerti. Blocca tutte le richieste esterne e viene saltato se Playwright non è installato.
+
+L’[audit UX](docs/ux-audit.md) include le schermate iniziali a 375, 768 e 1280 px. Le [schermate del redesign](docs/screenshots/dopo/) seguono lo schema `<caso>-<larghezza>.png`, ad esempio `reale-375.png` e `completo-1280.png`. Per rigenerarle con il server locale sulla porta 8000, esegui `python tests/ui_review.py --url http://127.0.0.1:8000/` (controlla anche il contrasto). Per modificare l’interfaccia consulta il [design system](docs/design-system.md).
 
 ## Configurazione
 
@@ -86,10 +97,11 @@ Tutto si configura in `config.json`:
 
 | Sezione | Cosa contiene |
 |---|---|
-| `http` | User-Agent, ritmo delle richieste, timeout, retry. **Aggiorna `user_agent` con l'URL del tuo repository.** |
+| `http` | User-Agent, ritmo delle richieste, timeout, retry. Facoltativi: `max_redirects` (5), `max_response_bytes` (30 MB), `block_private_networks` (true). **Aggiorna `user_agent` con l'URL del tuo repository.** |
 | `scraping` | Candidati per prodotto, frequenza di rilettura delle sitemap, tolleranza sui prezzi. |
 | `location` | Città o CAP (mai un indirizzo) per le farmacie fisiche. |
 | `travel` | Mezzo (`mezzi_pubblici`, `auto`, `piedi`, `bici`), distanza massima, €/km auto, parcheggio, biglietti A/R. |
+| `physical` | `store_price_max_age_days`: età massima dei prezzi rilevati in negozio (default 30 giorni). |
 | `products` | Catalogo, identificativi verificati, parole chiave, varianti accettate ed escluse. |
 
 I costi di viaggio sono **parametri tuoi, non prezzi rilevati**. Il default (mezzi pubblici, 4,40 € andata e ritorno) è un'ipotesi da adattare.
@@ -99,18 +111,34 @@ I costi di viaggio sono **parametri tuoi, non prezzi rilevati**. Il default (mez
 ```bash
 python scraper.py                         # tutte le farmacie ACTIVE -> data.json + price_history.json
 python scraper.py --pharmacy clubfarma --dry-run   # prova una farmacia senza scrivere i dati
+python scraper.py --pharmacy clubfarma    # scansione PARZIALE: aggiorna solo clubfarma (vedi sotto)
 python scraper.py --refresh-candidates    # rilegge sitemap/ricerche per trovare gli URL prodotto
 python scraper.py --product P003 --dry-run   # ricerca mirata di un prodotto (solo in prova)
-python optimizer.py                       # ricalcola i carrelli dal data.json esistente
+python optimizer.py                       # ricalcola carrelli, migliori prezzi e statistiche dal data.json esistente
+python validation.py                      # controlla il contratto dei JSON pubblicati
 python -m http.server 8000                # dashboard su http://localhost:8000
 ```
 
 Codici di uscita di `scraper.py`:
 - `0`: almeno un'offerta valida;
 - `2`: nessuna offerta valida. `data.json` e lo storico **non** vengono sovrascritti e il fallimento viene registrato in `last_attempt`;
-- `3`: errore di scrittura.
+- `3`: validazione o scrittura fallita. Anche qui i dati precedenti restano pubblicati.
 
 I log giornalieri sono in `logs/scrape_AAAA-MM-GG.log`. Su Actions si scaricano come artifact.
+
+### Pubblicazione dei dati e scansioni parziali
+
+- **Mai a metà.** `data.json`, `price_history.json`, `pharmacies.json` e `product_urls.json` vengono preparati in memoria,
+  controllati da `validation.py` (prezzi > 0 e in EUR, nessun carrello con offerte escluse o di farmacie non ACTIVE, storico
+  mai accorciato) e solo dopo scritti in file temporanei e sostituiti. Tutti portano lo stesso `run_id` dell'esecuzione.
+  Il log dice esattamente quali file sono stati scritti.
+- **`--dry-run`** non scrive mai `data.json` né lo storico (aggiorna solo registro e cache URL, che sono metadati sui siti).
+- **`--pharmacy <id>` senza `--dry-run`** è una scansione **parziale**: le offerte delle altre farmacie ACTIVE restano quelle della
+  scansione precedente (con `carried_from` e la loro data di rilevazione), carrelli e migliori prezzi vengono ricalcolati
+  sull'insieme, lo storico riceve **solo** i prezzi letti oggi. `data.json → scope` indica `parziale`, le farmacie scansionate,
+  quelle riportate e la data dell'ultima scansione completa; la dashboard lo segnala. Una scansione parziale **non** equivale a una completa.
+- **`--product`** è ammesso solo con `--dry-run`: non altera mai il carrello globale.
+- Se la scansione (anche parziale) non produce offerte valide, resta pubblicato lo snapshot precedente.
 
 ## Spedizioni
 
@@ -124,7 +152,17 @@ python shipping.py --check --apply    # aggiorna i valori trovati in modo univoc
 python shipping.py --quote meafarma 45.50
 ```
 
-Se una farmacia ha costo `null`, ogni carrello che la include risulta **incompleto** e non può essere un vincitore certo.
+Ogni tariffa ha uno **stato**, mostrato in dashboard con la motivazione:
+
+| Stato | Quando | Effetto |
+|---|---|---|
+| `verificata` | `verified_at` presente e più recente di `max_age_days` (60), nessuna differenza aperta | entra nel carrello verificato |
+| `scaduta` | `verified_at` più vecchia di `max_age_days` | carrello incompleto finché non la ricontrolli |
+| `discordante` | l'ultimo `--check` ha trovato un valore diverso, ambiguo o assente sulla pagina ufficiale | la tariffa precedente **non** resta affidabile; serve un nuovo controllo o una verifica manuale con `verified_at` successiva |
+| `sconosciuta` | costo standard o `verified_at` mancanti | carrello incompleto, mai gratis |
+
+Se una farmacia ha costo `null` o una tariffa non verificata, ogni carrello che la include risulta **incompleto** e non può essere un vincitore certo:
+il costo noto resta visibile tra le alternative incomplete. Le soglie "a partire da" sono inclusive (≥), quelle "oltre" esclusive (>).
 
 ## Località e ritiro fisico
 
@@ -138,9 +176,13 @@ python physical_pharmacies.py --postcode 20121 --mode auto
   Le distanze partono dal centro della città o del CAP, in linea d'aria × `road_factor`.
 - **I prezzi in negozio non sono pubblicati online.** La disponibilità in farmacia fisica è quindi "non verificata".
   L’ottimizzatore calcola la **soglia di convenienza** che compare nella dashboard. È il totale sotto cui comprare in negozio costa meno dell’ordine online, incluso il viaggio.
-- Se rilevi prezzi di persona, inseriscili in `store_prices.json` con data e fonte. L'ottimizzatore li userà per le modalità C e D.
-- Il ritiro di ordini online (es. alpifarma, gratuito ad Alagna Valsesia) viene proposto solo entro la distanza massima.
-- Nelle impostazioni **Località di ritiro** puoi salvare città, CAP, mezzo e distanza in questo browser. La simulazione locale usa le stime di viaggio precalcolate per le farmacie della scansione.
+- Se rilevi prezzi di persona, inseriscili in `store_prices.json` con `format`, `observed_at` e `source`. L'ottimizzatore li usa
+  per le modalità C e D solo se: prezzo numerico > 0, prodotto del catalogo, formato uguale a quello corrente, data valida e non
+  più vecchia di `physical.store_price_max_age_days` (30 giorni), fonte presente e `available` diverso da `false`. Le voci escluse
+  restano nel file (tracciabilità) e la dashboard ne mostra il motivo.
+- Il ritiro di ordini online (es. alpifarma, gratuito ad Alagna Valsesia) viene proposto solo entro la distanza massima. Il ritiro non è mai gratis di default.
+- Nelle impostazioni **Località di ritiro** puoi salvare città, CAP, mezzo e distanza **solo in questo browser**: cambiano l'anteprima
+  locale (distanze e stime di viaggio precalcolate), **non** i dati pubblicati né i carrelli dell'ultima scansione reale.
   Per cambiare località per tutti, avvia il workflow con l'input `location` oppure usa il comando qui sopra.
 
 ## Come viene calcolato il carrello
@@ -163,9 +205,17 @@ Risultati:
 - classifiche a domicilio, ritiro fisico e misto;
 - risparmio rispetto all'acquisto in un solo punto;
 - affidabilità di ogni carrello;
-- alternative incomplete, elencate a parte.
+- alternative incomplete (costo noto parziale, es. spedizione da verificare), elencate a parte;
+- **alternative potenziali** (`carts.uncertain_alternatives`): stessi calcoli, ma con almeno un'offerta a disponibilità da verificare.
+  Compaiono solo se costano meno del carrello verificato o coprono più prodotti, e non sono mai vincitrici certe.
 
 Se un prodotto non è acquistabile in nessuna farmacia, i carrelli sono dichiarati **parziali**.
+`carts.combinations_estimate` riporta il numero di combinazioni esplorate: la ricerca resta esaustiva (nessuna potatura) e oltre
+due milioni di combinazioni viene solo segnalata come lenta.
+
+`optimizer.py`, `pharmacy_discovery.py demote` e `maintenance.py format-change` usano lo stesso ricalcolo (`snapshot.py`):
+una farmacia che esce da ACTIVE perde subito le sue offerte acquistabili (passano tra le candidate non verificate) e
+migliori prezzi, carrelli e statistiche vengono ricalcolati, anche quando non resta nessuna offerta.
 
 ## Cambiare il formato di un prodotto
 
@@ -175,8 +225,9 @@ Esempio reale: P003 è passato da 50 ml a 100 ml il 18/11/2026.
    Aggiorna anche `search_queries`, `url_filter` e `match`. Aggiungi in `format_history` il formato precedente con la data `until`.
 2. `python maintenance.py format-change P003`. Il comando:
    - aggiunge il campo `format` alle voci di storico che non lo hanno, senza cancellarne nessuna (le vecchie P003 diventano "50 ml");
-   - scarta da `data.json` le offerte del vecchio formato e ricalcola i carrelli;
-   - azzera gli URL in cache del prodotto.
+   - scarta da `data.json` le offerte del vecchio formato e ricalcola carrelli, migliori prezzi e statistiche (anche se non resta nessuna offerta);
+   - registra in `data.json → format_changes` formato precedente, nuovo formato e data;
+   - azzera gli URL in cache **solo** di quel prodotto.
    È idempotente.
 3. `python scraper.py --product P003 --dry-run` per controllare subito cosa si trova.
    Le offerte vere entrano in `data.json` al run successivo.
@@ -205,7 +256,7 @@ Per i siti senza scraper dedicato, `scrapers/generic_jsonld.py` cerca i 5 prodot
 python scraper.py --probe farmacialoreto.it        # valuta un dominio -> docs/probe/farmacialoreto.it.md
 python scraper.py --probe-all --probe-limit 5      # i siti DISCOVERED/UNDER_REVIEW senza scraper dedicato
 python pharmacy_discovery.py promote farmacialoreto.it   # promozione MANUALE ad ACTIVE (chiede conferma)
-python pharmacy_discovery.py demote farmacialoreto.it    # torna a UNDER_REVIEW
+python pharmacy_discovery.py demote farmacialoreto.it    # torna a UNDER_REVIEW e ricalcola subito data.json
 ```
 
 - **Pagine prodotto**: si parte dalla sitemap (da robots.txt o `/sitemap.xml`, prima le sitemap "prodotti").
@@ -284,8 +335,27 @@ Regole:
    Il file `.nojekyll` evita l'elaborazione Jekyll. La dashboard sarà su `https://<tuo-utente>.github.io/<tuo-repo>/`.
 5. **Verifica l'automazione:** *Actions → Scrape prezzi → Run workflow*. Al termine controlla:
    - che ci sia un commit "Aggiornamento prezzi …";
-   - la dashboard (Pages si aggiorna in 1–2 minuti);
+   - la dashboard (Pages si aggiorna in 1–2 minuti, con il workflow automatico "pages build and deployment");
    - l'artifact dei log.
+
+Non serve nessun token personale: il workflow usa il `GITHUB_TOKEN` automatico con `contents: write`.
+
+### Flusso del workflow
+
+```text
+test offline → scraping → validazione JSON → commit dei dati su main → deploy di GitHub Pages dal branch
+```
+
+- I test girano **prima** di toccare i dati: se falliscono, nessuno scraping e nessun commit.
+- `python validation.py --against-git` controlla tutti i JSON e che lo storico non sia più corto di quello in `main`: se fallisce, niente commit.
+- Se lo scraping non produce offerte valide o la validazione interna fallisce, resta pubblicato lo snapshot precedente e il workflow termina in errore.
+- Snapshot parziale, carrello parziale o tentativo non pubblicato producono un avviso (`::warning::`) nel riepilogo dell'esecuzione.
+- Vengono committati solo i file generati. `config.json` viene committato **solo** quando il workflow è avviato con l'input `location`/`postcode`:
+  una modifica manuale fatta nel frattempo su GitHub non viene mai sovrascritta.
+- Se il push viene rifiutato, il workflow si riallinea con `git pull --rebase` **senza** risoluzione automatica dei conflitti; in caso di conflitto
+  si ferma con un errore e allega i file generati come artifact `dati-<id>`.
+- `concurrency` impedisce due esecuzioni contemporanee; log sempre allegati come artifact.
+- Il deploy di Pages è quello automatico di GitHub legato al branch: se fallisce lo vedi in *Actions → pages build and deployment*.
 
 ### Come funziona l'orario delle 08:00
 
@@ -333,7 +403,13 @@ Un'esecuzione dura circa 7–8 minuti, quasi tutti di attesa per rispettare il r
 - **Spedizioni**: vale la tariffa per l'Italia continentale. Isole, Livigno, Venezia e i supplementi per peso non sono modellati.
   Farmacia Iris Diana calcola la spedizione al checkout in base al peso: il costo è sconosciuto.
 - **Disponibilità**: è quella dichiarata dalla pagina al momento della lettura. Su siti senza dati strutturati (farmavillage)
-  è dedotta dalla presenza del pulsante carrello.
+  è dedotta dalla presenza del pulsante carrello. Una disponibilità sconosciuta non entra mai nel carrello verificato.
+- **Scansioni parziali**: mescolano prezzi di giorni diversi; la dashboard indica quali farmacie sono state aggiornate e quando.
+- **Preferenze nel browser**: città, CAP, mezzo e distanza salvati nella dashboard non aggiornano i dati pubblicati.
+- **Sicurezza dello scraping**: si seguono solo redirect sullo stesso sito (stesso dominio registrabile, approssimato alle ultime due
+  etichette), mai verso reti private o loopback; risposte oltre 30 MB e gzip oltre 120 MB decompressi vengono rifiutati; le sitemap
+  annidate si fermano a 3 livelli. La robots.txt della destinazione di un redirect è controllata solo se già nota.
+- **Nessun consiglio medico**: il progetto confronta prezzi, non valuta prodotti né terapie.
 - **Uso**: progetto personale e non commerciale. Se il repository è pubblico, anche i prezzi raccolti lo diventano.
   Le condizioni d'uso di alcuni siti (es. efarma) consentono solo un uso personale.
 - **Nominatim e Overpass**: il loro robots.txt esclude i crawler dagli endpoint API. Qui sono usati come API, nei limiti delle loro usage policy
@@ -343,13 +419,15 @@ Un'esecuzione dura circa 7–8 minuti, quasi tutti di attesa per rispettare il r
 
 ```
 ├── scraper.py  pharmacy_discovery.py  optimizer.py  shipping.py  physical_pharmacies.py  storage.py  maintenance.py
+├── snapshot.py  (ricalcolo coerente di data.json)  validation.py  (contratto dati, usato anche dal workflow)
 ├── config.json  data.json  price_history.json  pharmacies.json  shipping_config.json
 ├── product_urls.json  physical_pharmacies.json  store_prices.json
 ├── index.html  README.md  CLAUDE.md  requirements.txt  .nojekyll
 ├── assets/    (fogli di stile, moduli JavaScript e favicon della dashboard)
 ├── scrapers/  (base, http, robots, extract, matcher, sitemap, platforms, generic_jsonld, un modulo per farmacia)
 ├── docs/probe/  (un report per ogni dominio valutato con lo scraper generico)
-├── tests/     (test_scraper, test_optimizer, test_shipping, test_data, fixtures/ con dati SIMULATI)
+├── tests/     (test_scraper, test_optimizer, test_shipping, test_data, test_affidabilita, test_dashboard_browser,
+│               fixtures/ con dati SIMULATI)
 ├── docs/analisi_siti.md
 ├── docs/design-system.md  docs/ux-audit.md  docs/screenshots/
 ├── logs/

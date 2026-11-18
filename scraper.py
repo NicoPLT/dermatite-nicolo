@@ -5,8 +5,13 @@ Esempi:
   python scraper.py --pharmacy clubfarma --dry-run
   python scraper.py --pharmacy farmasave --activate   # attiva SOLO se estrae un'offerta autentica (match per ID)
   python scraper.py --refresh-candidates         # rilegge sitemap/ricerche
+  python scraper.py --pharmacy clubfarma          # scansione PARZIALE: le altre farmacie restano invariate
 
-Codici di uscita: 0 = almeno un'offerta valida; 2 = nessuna offerta valida (dati precedenti conservati).
+Pubblicazione (mai a metà): data.json, storico, registro e cache URL vengono preparati in
+memoria, validati (validation.py) e poi pubblicati insieme con lo stesso `run_id`.
+
+Codici di uscita: 0 = almeno un'offerta valida; 2 = nessuna offerta valida (dati precedenti conservati);
+3 = validazione o scrittura fallita (dati precedenti conservati).
 """
 from __future__ import annotations
 
@@ -24,12 +29,14 @@ from physical_pharmacies import load_physical
 from scrapers import REGISTRY, UrlCache
 from scrapers.generic_jsonld import (CANDIDATE_RELIABILITY, GenericJsonLdScraper, apply_probe,
                                      candidate_offers_from_registry, probe, write_probe_markdown)
-from scrapers.base import (STATUS_BLOCKED, STATUS_ERROR, STATUS_MATCH_UNRELIABLE, STATUS_NOT_FOUND, STATUS_OK,
+from scrapers.base import (STATUS_BLOCKED, STATUS_ERROR, STATUS_MATCH_UNRELIABLE, STATUS_OK,
                            STATUS_PRICE_UNVERIFIED, STATUS_RATE_LIMITED, STATUS_ROBOTS, Offer, resolve_shared_urls)
 from scrapers.http import PoliteSession
-from shipping import quote, summary as shipping_summary
-from storage import (ROME, ROOT, StorageError, history_entry, now_utc_iso, read_json, today_rome,
-                     update_history_file, write_json_atomic)
+from shipping import summary as shipping_summary
+from snapshot import best_prices, carried_offers, offer_stats, product_view, refresh_single_item_shipping
+from storage import (ROME, ROOT, StorageError, history_entry, now_utc_iso, prepare_history, read_json, today_rome,
+                     write_json_atomic, write_many_atomic)
+from validation import history_problems, valid_price, validate_data
 
 log = logging.getLogger("tracker")
 PATHS = {
@@ -177,7 +184,14 @@ def market_summary(registry: dict, since_days: int = 7) -> dict:
 
 
 def build_data(config: dict, registry: dict, shipping_cfg: dict, offers: list[Offer], results: dict,
-               physical: dict | None, now: str, started: float, dry_run: bool) -> dict:
+               physical: dict | None, now: str, started: float, dry_run: bool, *,
+               carried: list[dict] | None = None, previous: dict | None = None, partial: bool = False) -> dict:
+    """Snapshot di questa esecuzione.
+
+    Con una scansione parziale (`partial`, es. --pharmacy) `carried` contiene le offerte dello
+    snapshot precedente delle farmacie ACTIVE non scansionate: entrano in carrelli e migliori
+    prezzi (con la loro data di rilevazione) ma MAI nello storico di oggi.
+    """
     products = config["products"]
     fmt = {p["id"]: p["format"]["label"] for p in products}
     names = {p["id"]: p.get("name", p["id"]) for p in registry.get("pharmacies", [])}
@@ -191,41 +205,38 @@ def build_data(config: dict, registry: dict, shipping_cfg: dict, offers: list[Of
             d = o.to_dict()
             d.update({"format": fmt.get(o.product_id), "pharmacy_name": names.get(o.pharmacy_id, o.pharmacy_id),
                       "pharmacy_status": status_of.get(o.pharmacy_id), "reliability": CANDIDATE_RELIABILITY,
-                      "usable": False, "source": "esecuzione"})
+                      "usable": False, "availability_uncertain": False, "source": "esecuzione"})
             run_candidates.append(d)
     offers = [o for o in offers if status_of.get(o.pharmacy_id) == "ACTIVE"]
     seen = {(c["pharmacy_id"], c["product_id"]) for c in run_candidates}
     candidate_offers = run_candidates + [c for c in candidate_offers_from_registry(registry)
                                          if (c["pharmacy_id"], c["product_id"]) not in seen]
-    offer_dicts = []
+    run_dicts = []
     for o in offers:
         d = o.to_dict()
         d["format"] = fmt.get(o.product_id)  # formato cercato in QUESTA esecuzione
         d["pharmacy_name"] = names.get(o.pharmacy_id, o.pharmacy_id)
-        if o.usable:
-            q = quote(shipping_cfg, o.pharmacy_id, o.price)
-            d["single_item_shipping"] = q.cost
-            d["single_item_total"] = None if q.cost is None else round(o.price + q.cost, 2)
-        offer_dicts.append(d)
-    best_prices = {}
-    for p in products:
-        cands = [d for d in offer_dicts if d["product_id"] == p["id"] and d["usable"]]
-        if cands:
-            b = min(cands, key=lambda d: d["price"])
-            best_prices[p["id"]] = {k: b.get(k) for k in ("pharmacy_id", "pharmacy_name", "price", "url", "availability",
-                                                          "match_level", "single_item_shipping", "single_item_total")}
-        else:
-            best_prices[p["id"]] = None
+        run_dicts.append(d)
+    offer_dicts = [c for c in carried or [] if status_of.get(c.get("pharmacy_id")) == "ACTIVE"] + run_dicts
+    refresh_single_item_shipping(offer_dicts, shipping_cfg)
     carts = optimize(products, offer_dicts, shipping_cfg, physical, names)
-    counts = Counter(o.status for o in offers)
     errors = [{"pharmacy_id": o.pharmacy_id, "product_id": o.product_id, "status": o.status,
                "message": "; ".join(n for n in o.notes if n)[:300]}
               for o in offers if o.status not in (STATUS_OK,)]
-    usable = sum(1 for o in offers if o.usable)
+    usable_run = sum(1 for o in offers if o.usable)
     active_results = {pid: r for pid, r in results.items() if status_of.get(pid) == "ACTIVE"}
     attempted = len(active_results)
     ok_pharmacies = sum(1 for _, (offs, _) in active_results.items() if any(o.status == STATUS_OK for o in offs))
-    status = "OK" if usable and ok_pharmacies == attempted else ("PARZIALE" if usable else "ERRORE")
+    status = "OK" if usable_run and ok_pharmacies == attempted else ("PARZIALE" if usable_run else "ERRORE")
+    carried_ids = sorted({c["pharmacy_id"] for c in offer_dicts if c.get("carried_from")})
+    prev_scope = (previous or {}).get("scope") or {}
+    scope = {
+        "type": "parziale" if partial else "completa",
+        "pharmacies_scanned": sorted(active_results),
+        "pharmacies_carried": carried_ids,
+        "carried_from": (previous or {}).get("generated_at") if partial else None,
+        "last_full_run_at": (prev_scope.get("last_full_run_at") or (previous or {}).get("generated_at")) if partial else now,
+    }
     ph_view = {}
     for p in registry.get("pharmacies", []):
         info = results.get(p["id"], (None, {}))[1]
@@ -234,46 +245,41 @@ def build_data(config: dict, registry: dict, shipping_cfg: dict, offers: list[Of
                                                    "products_with_verified_price", "errors", "notes", "last_verified")}
         ph_view[p["id"]]["run"] = info or None
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "generated_at": now,
         "generated_at_rome": datetime.now(ROME).strftime("%d/%m/%Y %H:%M"),
         "status": status,
+        "scope": scope,
         "disclaimer": config["app"]["disclaimer"],
         "run": {"duration_s": round(time.monotonic() - started, 1), "pharmacies_attempted": attempted,
-                "pharmacies_with_offers": ok_pharmacies, "dry_run": dry_run},
-        "products": [{k: p.get(k) for k in ("id", "brand", "name", "format", "ean", "minsan", "format_history")} for p in products],
+                "pharmacies_with_offers": ok_pharmacies, "dry_run": dry_run, "offers_valid_this_run": usable_run},
+        "products": product_view(products),
         "offers": offer_dicts,
         "candidate_offers": candidate_offers,
-        "best_prices": best_prices,
+        "best_prices": best_prices(offer_dicts, products),
         "shipping": shipping_summary(shipping_cfg),
         "pharmacies": ph_view,
         "market": market_summary(registry),
         "carts": carts,
         "physical": physical,
-        "stats": {
-            "offers_total": len(offers),
-            "offers_valid": usable,
-            "ok": counts.get(STATUS_OK, 0),
-            "not_found": counts.get(STATUS_NOT_FOUND, 0),
-            "price_unverified": counts.get(STATUS_PRICE_UNVERIFIED, 0),
-            "match_unreliable": counts.get(STATUS_MATCH_UNRELIABLE, 0),
-            "blocked": counts.get(STATUS_BLOCKED, 0),
-            "rate_limited": counts.get(STATUS_RATE_LIMITED, 0),
-            "robots": counts.get(STATUS_ROBOTS, 0),
-            "errors": counts.get(STATUS_ERROR, 0),
-            "candidate_offers": len(candidate_offers),
-            "shipping_unverified": sorted(pid for pid in results
-                                          if (shipping_cfg.get("pharmacies", {}).get(pid) or {}).get("standard_cost_eur") is None),
-        },
+        "stats": offer_stats(offer_dicts, candidate_offers, shipping_cfg, set(results) | set(carried_ids)),
         "errors": errors,
         "last_attempt": {"at": now, "status": status},
     }
 
 
 def history_entries(offer_dicts: list[dict], today: str) -> list[dict]:
+    """Voci di storico di OGGI: solo prezzi verificati in EUR rilevati in questa esecuzione.
+
+    Le offerte riportate da uno snapshot precedente (scansione parziale) non entrano mai: il loro
+    prezzo non è stato rilevato oggi. Si registrano anche i prezzi con disponibilità da
+    verificare (il prezzo è verificato; la disponibilità resta annotata nella voce).
+    """
     out = []
     for d in offer_dicts:
-        if not d.get("usable"):
+        if d.get("carried_from") or not (d.get("usable") or d.get("availability_uncertain")):
+            continue
+        if not valid_price(d.get("price")) or str(d.get("currency") or "EUR").upper() != "EUR":
             continue
         out.append(history_entry(today, d["product_id"], d["pharmacy_id"], d["price"], d.get("single_item_shipping"),
                                  d.get("single_item_total"), d.get("availability"), d.get("match_level"),
@@ -326,7 +332,9 @@ def run_probes(entries: list[dict], registry: dict, session: PoliteSession, conf
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="Scraping prezzi dermocosmetici (farmacie ACTIVE)")
-    ap.add_argument("--pharmacy", action="append", help="limita a una o più farmacie (anche non ACTIVE)")
+    ap.add_argument("--pharmacy", action="append",
+                    help="limita a una o più farmacie (anche non ACTIVE). Senza --dry-run è una scansione PARZIALE: "
+                         "le offerte delle altre farmacie ACTIVE restano quelle della scansione precedente")
     ap.add_argument("--product", action="append",
                     help="limita a uno o più prodotti (es. P003). Solo con --dry-run: data.json resta completo")
     ap.add_argument("--dry-run", action="store_true", help="non scrive data.json né price_history.json")
@@ -342,6 +350,7 @@ def main(argv: list[str] | None = None) -> int:
     log_path = setup_logging(args.verbose)
     started = time.monotonic()
     now = now_utc_iso()
+    run_id = "run-" + now.replace("-", "").replace(":", "")  # identificativo comune dei file scritti
 
     config = read_json(PATHS["config"], required=True)
     registry = read_json(PATHS["pharmacies"], required=True)
@@ -396,7 +405,19 @@ def main(argv: list[str] | None = None) -> int:
     if activated:
         log.info("Farmacie attivate: %s", activated)
     physical = load_physical(config)
-    data = build_data(config, registry, shipping_cfg, offers, results, physical, now, started, args.dry_run)
+    active_ids = {p["id"] for p in registry.get("pharmacies", []) if p.get("status") == "ACTIVE"}
+    # Scansione parziale: alcune farmacie ACTIVE non sono state lette. Le loro offerte precedenti
+    # vengono conservate (merge), mai cancellate; lo storico riceve solo i prezzi letti oggi.
+    partial = bool(args.pharmacy) and not active_ids <= set(results)
+    previous, carried = None, []
+    if partial and not args.dry_run:
+        previous = read_json(PATHS["data"], default=None) or {}
+        carried = carried_offers(previous, active_ids - set(results), config["products"])
+        log.info("Scansione parziale: conservo %d offerte precedenti di %d farmacie non scansionate",
+                 len(carried), len({c["pharmacy_id"] for c in carried}))
+    data = build_data(config, registry, shipping_cfg, offers, results, physical, now, started, args.dry_run,
+                      carried=carried, previous=previous, partial=partial)
+    data["run_id"] = run_id
 
     for o in offers:
         if o.status == STATUS_OK:
@@ -412,33 +433,68 @@ def main(argv: list[str] | None = None) -> int:
     for note in carts.get("notes", []):
         log.info("Nota ottimizzatore: %s", note)
 
-    # Registro e cache URL sono metadati (stato dei siti), non prezzi: si salvano sempre.
-    write_json_atomic(PATHS["urls"], cache.data)
+    # Registro e cache URL sono metadati (stato dei siti), non prezzi: si salvano sempre,
+    # anche in --dry-run, nello stesso passaggio di pubblicazione dei dati.
+    registry["updated_by_run"] = run_id
+    cache.data["updated_by_run"] = run_id
+    metadata: dict[Path, dict] = {PATHS["urls"]: cache.data}
     if not args.product:
-        write_json_atomic(PATHS["pharmacies"], registry)
-    if args.dry_run:
-        log.info("--dry-run: data.json e price_history.json NON scritti (offerte valide: %d)", data["stats"]["offers_valid"])
-        return 0 if data["stats"]["offers_valid"] else 2
-
+        metadata[PATHS["pharmacies"]] = registry
+    valid_now = data["run"]["offers_valid_this_run"]
     try:
-        if data["stats"]["offers_valid"] == 0:
-            previous = read_json(PATHS["data"], default={}) or {}
-            if previous.get("offers"):
-                previous["last_attempt"] = {"at": now, "status": "ERRORE",
-                                            "message": "Nessuna offerta valida in questa esecuzione: dati precedenti conservati.",
-                                            "errors": data["errors"][:50]}
-                write_json_atomic(PATHS["data"], previous)
-            else:
-                write_json_atomic(PATHS["data"], data)
-            log.error("Nessuna offerta valida: storico NON aggiornato, dati precedenti conservati.")
+        if args.dry_run:
+            written = write_many_atomic(metadata)
+            log.info("--dry-run: data.json e price_history.json NON scritti (offerte valide: %d). Scritti: %s",
+                     valid_now, _names(written))
+            return 0 if valid_now else 2
+        if valid_now == 0:
+            metadata[PATHS["data"]] = _keep_previous(data, now, "Nessuna offerta valida in questa esecuzione: "
+                                                     "dati precedenti conservati.", data["errors"][:50])
+            written = write_many_atomic(metadata)
+            log.error("Nessuna offerta valida: storico NON aggiornato, dati precedenti conservati. Scritti: %s",
+                      _names(written))
             return 2
-        write_json_atomic(PATHS["data"], data)
-        n = update_history_file(PATHS["history"], history_entries(data["offers"], today_rome()), products=config["products"])
-        log.info("data.json scritto (%s). Storico: %d voci.", data["status"], n)
-    except StorageError as exc:
-        log.error("Errore di scrittura, nessun dato sovrascritto: %s", exc)
+        entries = history_entries(data["offers"], today_rome())
+        old_hist, new_hist = prepare_history(PATHS["history"], entries, products=config["products"])
+        problems = validate_data(data, active_ids=active_ids)
+        if new_hist is not None:
+            problems += history_problems(old_hist, new_hist)
+        if problems:
+            for p in problems[:20]:
+                log.error("Validazione: %s", p)
+            metadata[PATHS["data"]] = _keep_previous(data, now, "Validazione fallita: dati precedenti conservati.",
+                                                     [{"message": p} for p in problems[:20]])
+            written = write_many_atomic(metadata)
+            log.error("Dati NON pubblicati (validazione fallita). Scritti solo: %s", _names(written))
+            return 3
+        files: dict[Path, dict] = {}
+        if new_hist is not None:
+            files[PATHS["history"]] = new_hist
+        files[PATHS["data"]] = data
+        files.update(metadata)
+        written = write_many_atomic(files)
+        scope = data["scope"]
+        log.info("Esecuzione %s pubblicata: %s. data.json %s, scansione %s%s. Storico: %s.", run_id, _names(written),
+                 data["status"], scope["type"],
+                 f" (conservate le offerte di {', '.join(scope['pharmacies_carried'])})" if scope["pharmacies_carried"] else "",
+                 f"{len(new_hist['entries'])} voci (+{len(entries)} di oggi)" if new_hist else "invariato")
+    except (StorageError, ValueError, TypeError) as exc:
+        log.error("Errore di scrittura: %s", exc)
         return 3
     return 0
+
+
+def _names(paths) -> str:
+    return ", ".join(Path(p).name for p in paths) or "nessun file"
+
+
+def _keep_previous(data: dict, now: str, message: str, errors: list) -> dict:
+    """data.json precedente con l'esito dell'ultimo tentativo; se non esiste, il nuovo snapshot."""
+    previous = read_json(PATHS["data"], default={}) or {}
+    if not previous.get("offers"):
+        return data
+    previous["last_attempt"] = {"at": now, "status": "ERRORE", "message": message, "errors": errors}
+    return previous
 
 
 if __name__ == "__main__":

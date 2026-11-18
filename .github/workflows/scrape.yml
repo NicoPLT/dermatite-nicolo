@@ -1,5 +1,10 @@
 name: Scrape prezzi
 
+# Flusso: test offline -> scraping -> validazione JSON -> commit dei dati su main -> GitHub Pages.
+# Pubblicazione: GitHub Pages "Deploy from a branch" (main, cartella /). Il commit dei dati su
+# main fa ripartire automaticamente il deploy "pages build and deployment" di GitHub: questo
+# workflow non pubblica da sé, ma fallisce (e non committa) se test o validazione falliscono.
+#
 # Ogni giorno alle 08:00 Europe/Rome. I cron di GitHub sono in UTC: due slot
 # (06:00 UTC = 08:00 ora legale, 07:00 UTC = 08:00 ora solare) e uno step iniziale
 # che lascia proseguire solo quello giusto. Nessuna modifica al cambio dell'ora.
@@ -163,29 +168,44 @@ jobs:
           echo "code=$CODE" >> "$GITHUB_OUTPUT"
           echo "Codice di uscita scraper: $CODE"
 
-      - name: Validazione JSON
+      - name: Validazione JSON (contratto dati e storico mai accorciato)
         if: steps.gate.outputs.run == 'true' && steps.once.outputs.skip != 'true'
+        id: validate
+        run: python validation.py --against-git
+
+      - name: Segnala snapshot parziale
+        if: steps.gate.outputs.run == 'true' && steps.once.outputs.skip != 'true'
+        shell: bash
         run: |
           python - <<'EOF'
-          import json, sys
-          files = ["data.json", "price_history.json", "pharmacies.json", "shipping_config.json", "config.json", "product_urls.json"]
-          for f in files:
-              try:
-                  json.load(open(f, encoding="utf-8"))
-              except FileNotFoundError:
-                  pass
-              except Exception as e:
-                  print(f"JSON non valido: {f}: {e}"); sys.exit(1)
-          print("JSON validi")
+          import json
+          d = json.load(open("data.json", encoding="utf-8"))
+          scope = (d.get("scope") or {}).get("type")
+          carts = d.get("carts") or {}
+          if d.get("status") != "OK":
+              print(f"::warning::Snapshot {d.get('status')}: non tutte le farmacie attive hanno prodotto offerte valide.")
+          if scope == "parziale":
+              print("::warning::Scansione parziale: alcune offerte provengono dalla scansione precedente.")
+          if carts.get("complete_possible") is False:
+              print("::warning::Carrello parziale: senza offerta verificata " + ", ".join(carts.get("products_without_offers") or []))
+          la = d.get("last_attempt") or {}
+          if la.get("at") and la.get("at") != d.get("generated_at"):
+              print(f"::warning::Ultimo tentativo non pubblicato ({la.get('status')}): {la.get('message')}")
           EOF
 
       - name: Commit e push (solo se ci sono modifiche)
         if: steps.gate.outputs.run == 'true' && steps.once.outputs.skip != 'true'
         shell: bash
+        env:
+          LOCATION_CHANGED: ${{ inputs.location != '' || inputs.postcode != '' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data.json price_history.json pharmacies.json product_urls.json shipping_config.json config.json physical_pharmacies.json .github/last_scheduled_run 2>/dev/null || true
+          FILES=(data.json price_history.json pharmacies.json product_urls.json shipping_config.json physical_pharmacies.json .github/last_scheduled_run)
+          # config.json si committa SOLO se l'utente ha chiesto un cambio di località da questo workflow:
+          # così una modifica manuale fatta nel frattempo su GitHub non viene mai sovrascritta.
+          if [ "$LOCATION_CHANGED" = "true" ]; then FILES+=(config.json); fi
+          git add "${FILES[@]}" 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "Nessuna modifica da salvare."
             exit 0
@@ -193,9 +213,13 @@ jobs:
           git commit -m "Aggiornamento prezzi $(TZ=Europe/Rome date '+%Y-%m-%d %H:%M')"
           for i in 1 2 3; do
             git push && exit 0
-            echo "Push rifiutato, riallineo e riprovo ($i/3)"
-            # In un rebase "theirs" = il nostro commit appena creato: i dati nuovi prevalgono.
-            git pull --rebase --strategy-option=theirs || git rebase --abort
+            echo "Push rifiutato: riallineo con un rebase SENZA risoluzione automatica dei conflitti ($i/3)"
+            if ! git pull --rebase --autostash; then
+              git rebase --abort || true
+              echo "::error::Conflitto con modifiche arrivate su main durante l'esecuzione: nessun dato pubblicato. I file generati sono nell'artifact 'dati-${{ github.run_id }}'."
+              exit 1
+            fi
+            python validation.py || { echo "::error::Dati non validi dopo il riallineamento: push annullato."; exit 1; }
             sleep 5
           done
           echo "::error::push non riuscito"; exit 1
@@ -209,11 +233,25 @@ jobs:
           retention-days: 14
           if-no-files-found: ignore
 
+      - name: Dati generati come artifact (solo in caso di errore)
+        if: failure() && steps.gate.outputs.run == 'true' && steps.once.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dati-${{ github.run_id }}
+          path: |
+            data.json
+            price_history.json
+            pharmacies.json
+            product_urls.json
+          retention-days: 14
+          if-no-files-found: ignore
+
       - name: Esito
         if: steps.gate.outputs.run == 'true' && steps.once.outputs.skip != 'true'
         shell: bash
         run: |
           CODE="${{ steps.scrape.outputs.code }}"
-          if [ "$CODE" = "0" ]; then echo "Scraping completato."; exit 0; fi
+          if [ "$CODE" = "0" ]; then echo "Scraping completato. GitHub Pages si aggiorna dal commit su main."; exit 0; fi
           if [ "$CODE" = "2" ]; then echo "::error::Nessuna offerta valida: dati precedenti conservati (vedi log)."; exit 1; fi
+          if [ "$CODE" = "3" ]; then echo "::error::Validazione o scrittura fallita: dati precedenti conservati (vedi log)."; exit 1; fi
           echo "::error::Scraper terminato con codice $CODE"; exit 1

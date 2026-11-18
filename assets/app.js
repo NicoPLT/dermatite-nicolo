@@ -32,7 +32,17 @@ function renderFreshness() {
   $('freshness').innerHTML=`<span class="fresh-label"><span class="fresh-prefix">Ultimo aggiornamento</span><strong><time datetime="${esc(d.generated_at)}">${fmtDate(d.generated_at)}</time></strong></span>${pill(tone,relative)}`;
   let alerts=hours>=36?note('Dati da aggiornare. Prezzi e disponibilità risalgono a '+fmtDate(d.generated_at)+'.',tone):'';
   if (d.last_attempt?.at && d.last_attempt.at!==d.generated_at) alerts+=note(`Ultimo tentativo del ${fmtDate(d.last_attempt.at)}. ${d.last_attempt.message || d.last_attempt.status || 'Scansione non riuscita.'} Sono mostrati i dati precedenti.`,'error');
+  const scope=d.scope;
+  if (scope?.type==='parziale') {
+    const carried=(scope.pharmacies_carried || []).map(pharmacyName).join(', ');
+    alerts+=note(`Scansione parziale: aggiornate solo ${(scope.pharmacies_scanned || []).map(pharmacyName).join(', ') || 'alcune farmacie'}.`+
+      (carried?` Le offerte di ${carried} risalgono alla scansione del ${fmtDate(scope.carried_from)}.`:'')+
+      ` Ultima scansione completa: ${fmtDate(scope.last_full_run_at)}.`,'warning');
+  }
   $('alerts').innerHTML=alerts;
+}
+function uncertainList(c) {
+  return (c.uncertain_alternatives || []).map(a=>`<strong>${esc(a.pharmacies?.map(pharmacyName).join(', '))}</strong> · ${money(a.total)} · ${num(a.products_covered)} prodotti ${pill('warning','Disponibilità da verificare')}<small>Alternativa potenziale, non vincitrice certa: verifica sul sito la disponibilità di ${esc((a.uncertain_products || []).map(productName).join(', '))}.${a.covers_more_products?' Copre più prodotti del carrello verificato.':''}</small>`);
 }
 function cartDetails(c) {
   const best=c.best_overall;
@@ -45,7 +55,9 @@ function cartDetails(c) {
     return `<h3>${label}</h3>`+(rows.length?itemList(rows.map(cart=>choice(cart.pharmacies.map(pharmacyName).join(', '),cart))):'<p class="muted">Nessuna combinazione calcolata.</p>');
   }).join('');
   const incomplete=(c.incomplete_alternatives || []).map(a=>`${esc(a.pharmacies?.map(pharmacyName).join(', '))} · Costo noto ≥ ${money(a.known_cost)} · ${esc(a.missing?.join('. ') || 'Costi da verificare')}`);
+  const uncertain=uncertainList(c);
   return details('Ordini, classifiche e alternative',itemList([...orders,...trips,...alternatives])+ranks+
+    (uncertain.length?'<h3>Alternative potenziali · disponibilità da verificare</h3>'+itemList(uncertain):'')+
     (incomplete.length?'<h3>Alternative con costi incompleti</h3>'+itemList(incomplete):'')+
     `<p>${num(c.evaluated_combinations)} combinazioni valutate.</p>`+itemList([...(c.notes || []),...(best?.warnings || []),...(best?.missing || [])].map(esc)));
 }
@@ -64,7 +76,9 @@ function heroItems(best,c) {
 function renderHero() {
   const c=state.data?.carts, best=c?.best_overall;
   if (!best) {
-    $('hero').innerHTML=empty('Nessun carrello disponibile','Servono offerte acquistabili con costi verificati. Controlla dopo la prossima scansione.')+(c?cartDetails(c):'');
+    const n=c?.uncertain_alternatives?.length || 0;
+    const potential=n?note(`Nessun carrello verificato, ma ${n===1?'1 alternativa potenziale usa':num(n)+' alternative potenziali usano'} offerte con disponibilità da verificare. Le trovi nei dettagli qui sotto.`,'warning'):'';
+    $('hero').innerHTML=empty('Nessun carrello verificato','Servono offerte con disponibilità confermata e costi verificati. Controlla dopo la prossima scansione.')+potential+(c?cartDetails(c):'');
     return;
   }
   const uncertain=c.complete_possible!==true || !best.complete || best.reliability!=='alta' || (c.incomplete_alternatives || []).some(a=>Number.isFinite(a.known_cost) && a.known_cost<best.total);
@@ -73,6 +87,8 @@ function renderHero() {
   const reason=[];
   if (!c.complete_possible && c.products_without_offers?.length) reason.push('Senza offerta acquistabile: '+c.products_without_offers.map(productName).join(', ')+'.');
   if (uncertain) reason.push('Il risultato copre solo i prodotti e i costi verificabili.');
+  const potential=c.uncertain_alternatives?.length || 0;
+  if (potential) reason.push((potential===1?'1 alternativa potenziale ha':`${num(potential)} alternative potenziali hanno`)+' disponibilità da verificare: vedi i dettagli.');
   const savingsText=saving?.amount===0?'Il miglior totale coincide con l’acquisto in un solo punto.':
     `Risparmio rispetto a un solo punto: <b>${money(saving?.amount)}</b>${saving?.single_pharmacy?' ('+esc(pharmacyName(saving.single_pharmacy))+', '+money(saving.single_total)+')':''}.`;
   const price=money(best.total).replace(/\s*€$/, ' <span class="currency">€</span>');
@@ -92,11 +108,15 @@ function renderProducts() {
     const best=d.best_prices?.[p.id];
     const currentBest=best && isCurrentFormat(best,p) || best && offers.some(o=>o.usable && o.pharmacy_id===best.pharmacy_id && o.price===best.price);
     const b=currentBest?best:null;
+    const onlyUncertain=!b && offers.some(o=>o.availability_uncertain);
     rows.push([`<strong>${esc(p.name)}</strong><small>${esc(p.id)} · ${esc(p.format?.label || 'Formato n.d.')}</small>`,
       `<b class="best-price">${money(b?.price)}</b>`, b?link(b.url,b.pharmacy_name):'n.d.',money(b?.single_item_shipping),money(b?.single_item_total),
-      b?formatAvailability(b.availability):pill('neutral','Nessuna offerta')]);
+      b?formatAvailability(b.availability)+(b.scraped_at && d.scope?.type==='parziale'?`<small>Rilevato ${fmtDate(b.scraped_at)}</small>`:''):
+        onlyUncertain?pill('warning','Disponibilità da verificare'):pill('neutral','Nessuna offerta')]);
+    const verdict=o=>o.availability_uncertain?pill('warning','Disponibilità da verificare')+'<small>Alternativa potenziale, esclusa dal carrello verificato</small>':
+      o.status==='OK'?formatAvailability(o.availability):pill('warning',o.status || 'Non verificato');
     const diagnostics=offers.sort((a,b)=>Number(Boolean(b.usable))-Number(Boolean(a.usable)) || (a.price??Infinity)-(b.price??Infinity)).map(o=>[link(o.url,o.pharmacy_name || pharmacyName(o.pharmacy_id)),
-      money(o.price),money(o.single_item_shipping),money(o.single_item_total),o.status==='OK'?formatAvailability(o.availability):pill('warning',o.status || 'Non verificato')]);
+      money(o.price),money(o.single_item_shipping),money(o.single_item_total),verdict(o)]);
     const changed=formatChangeNote(p.id);
     all.push(details(p.id+' · '+p.name,`<p>EAN ${esc(p.ean || 'n.d.')} · Minsan ${esc(p.minsan || 'n.d.')}</p>`+(changed?note(changed):'')+
       (diagnostics.length?table('Offerte per '+p.name,['Farmacia','Prezzo','Spedizione','Totale','Esito'],diagnostics):empty('Nessuna offerta','Controlla dopo la prossima scansione.'))));
@@ -138,7 +158,10 @@ function localComparison(ph,c) {
   });
   const pickup=(ph.pickup_points || []).map(p=>`<strong>${esc(p.name || pharmacyName(p.pharmacy_id))}</strong> · ${esc([p.address,p.city].filter(Boolean).join(', '))} · ${km(p.distance_km)} · Ritiro ${money(p.pickup_cost_eur)} · ${esc(p.distance_km==null?'Distanza n.d.':p.within_max_distance?'Prenotabile':'Oltre la distanza della scansione')}`);
   const modified=mode!==ph.travel?.mode || radius!==ph.travel?.max_distance_km;
-  return summary+details('Farmacie vicine, disponibilità e ritiro', (modified?note('Anteprima locale per mezzo e distanza selezionati. I totali dei carrelli usano i parametri dell’ultima scansione.'):'')+
+  const excluded=ph.store_prices_excluded || [];
+  const excludedNote=excluded.length?note(`${num(excluded.length)} prezzi rilevati in negozio esclusi dal calcolo: `+
+    [...new Set(excluded.map(x=>x.excluded_reason))].slice(0,3).join('; ')+'.','warning'):'';
+  return summary+excludedNote+details('Farmacie vicine, disponibilità e ritiro', (modified?note('Anteprima locale per mezzo e distanza selezionati, salvati solo in questo browser. I totali dei carrelli e le farmacie elencate restano quelli dell’ultima scansione pubblicata.'):'')+
     `<p>Distanze in linea d’aria dal centro di ${esc(ph.location?.label || 'località n.d.')}. Fattore strada ${num(ph.travel?.road_factor)}.</p>`+
     (rows.length?table('Farmacie vicine',['Farmacia','Indirizzo','Distanza','Viaggio (stima)','Disponibilità'],rows):'')+
     (pickup.length?'<h3>Punti di ritiro degli ordini online</h3>'+itemList(pickup):'')+

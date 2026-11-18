@@ -124,6 +124,7 @@ def test_maintenance_format_change(tmp_path, monkeypatch):
     write_json_atomic(paths["shipping"], {"pharmacies": {"A": {"standard_cost_eur": 5.0, "reliability": "alta"}}})
     write_json_atomic(paths["history"], {"schema_version": 1, "entries": [legacy("2026-11-18", "P003"), legacy("2026-11-18", "P004")]})
     off = lambda pid, price: {"product_id": pid, "pharmacy_id": "A", "price": price, "usable": True, "status": "OK",  # noqa: E731
+                              "verified": True, "currency": "EUR",
                               "match_level": "ID", "availability": "DISPONIBILE", "url": "https://a.it/" + pid}
     write_json_atomic(paths["data"], {"offers": [off("P003", 11.28), off("P004", 11.79)], "pharmacies": {},
                                       "best_prices": {"P003": {"price": 11.28}}, "errors": [{"product_id": "P003"}]})

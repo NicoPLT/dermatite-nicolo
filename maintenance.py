@@ -8,9 +8,10 @@ il formato precedente con la data `until`. Esegue, in modo idempotente e con scr
   1. migrazione dello storico: le voci senza formato ricevono quello valido nella loro data
      (nessuna voce viene cancellata o modificata nel prezzo);
   2. data.json: scarta le offerte del prodotto che non sono del formato corrente, azzera il suo
-     miglior prezzo e ricalcola i carrelli (le offerte nuove arriveranno al prossimo run);
-  3. product_urls.json: azzera candidati e URL confermati del prodotto, così il prossimo run
-     li ricerca da capo per il nuovo formato.
+     miglior prezzo e ricalcola SEMPRE carrelli e statistiche, anche se non resta nessuna offerta
+     (le offerte nuove arriveranno al prossimo run); registra formato precedente, nuovo e data;
+  3. product_urls.json: azzera candidati e URL confermati SOLO di quel prodotto, così il prossimo
+     run li ricerca da capo per il nuovo formato.
 """
 from __future__ import annotations
 
@@ -25,6 +26,7 @@ PATHS = {
     "history": ROOT / "price_history.json",
     "urls": ROOT / "product_urls.json",
     "shipping": ROOT / "shipping_config.json",
+    "pharmacies": ROOT / "pharmacies.json",
 }
 
 
@@ -43,41 +45,34 @@ def do_migrate_history(products: list[dict]) -> dict:
 
 
 def purge_offers(data: dict, product: dict, config: dict) -> dict:
-    """Scarta da data.json le offerte del prodotto non del formato corrente e ricalcola i carrelli."""
-    from optimizer import offer_matches_current_format, optimize
+    """Scarta da data.json le offerte del prodotto non del formato corrente e ricalcola tutto.
+
+    Idempotente: se il cambio formato è già registrato e non c'è nulla da rimuovere, non modifica nulla.
+    """
+    from optimizer import offer_matches_current_format
+    from physical_pharmacies import load_physical
+    from snapshot import recompute
 
     pid = product["id"]
     products = config["products"]
-    offers = data.get("offers") or []
-    kept, removed = [], []
-    for o in offers:
-        (removed if o.get("product_id") == pid and not offer_matches_current_format(o, products) else kept).append(o)
-    if not removed and data.get("format_changes"):
+    removed = [o for o in data.get("offers") or []
+               if o.get("product_id") == pid and not offer_matches_current_format(o, products)]
+    new_label = product["format"]["label"]
+    already = any(fc.get("product_id") == pid and fc.get("to") == new_label for fc in data.get("format_changes") or [])
+    if not removed and already:
         return {"removed_offers": 0}
-    data["offers"] = kept
-    data["products"] = [{k: p.get(k) for k in ("id", "brand", "name", "format", "ean", "minsan", "format_history")}
-                        for p in products]
-    if (data.get("best_prices") or {}).get(pid) is not None and removed:
-        data["best_prices"][pid] = None
     data["errors"] = [e for e in data.get("errors") or [] if e.get("product_id") != pid]
     old = (product.get("format_history") or [{}])[-1]
-    data.setdefault("format_changes", []).append({
-        "product_id": pid, "from": old.get("label"), "to": product["format"]["label"], "at": now_utc_iso(),
-        "removed_offers": len(removed),
-        "note": f"Offerte {pid} del formato {old.get('label')} scartate: le offerte {product['format']['label']} "
-                "verranno generate dal prossimo run.",
-    })
-    stats = data.setdefault("stats", {})
-    stats["offers_total"] = len(kept)
-    stats["offers_valid"] = sum(1 for o in kept if o.get("usable"))
-    stats["ok"] = sum(1 for o in kept if o.get("status") == "OK")
-    if data.get("offers"):
-        from physical_pharmacies import load_physical
-        names = {k: v.get("name", k) for k, v in (data.get("pharmacies") or {}).items()}
-        shipping_cfg = read_json(PATHS["shipping"], default={})
-        physical = load_physical(config)
-        data["carts"] = optimize(products, kept, shipping_cfg, physical, names)
-        data["physical"] = physical
+    if not already:
+        data.setdefault("format_changes", []).append({
+            "product_id": pid, "from": old.get("label"), "to": new_label, "at": now_utc_iso(),
+            "removed_offers": len(removed),
+            "note": f"Offerte {pid} del formato {old.get('label')} scartate: le offerte {new_label} "
+                    "verranno generate dal prossimo run.",
+        })
+    recompute(data, config=config, registry=read_json(PATHS["pharmacies"], default=None),
+              shipping_cfg=read_json(PATHS["shipping"], default={}), physical=load_physical(config),
+              now=now_utc_iso(), reason=f"cambio formato {pid}: {old.get('label')} -> {new_label}")
     return {"removed_offers": len(removed)}
 
 

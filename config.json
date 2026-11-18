@@ -60,6 +60,10 @@
     "walk_bike_cost_eur": 0.0,
     "note": "Parametri dell'utente, non prezzi rilevati: modificali qui. Il costo del viaggio è sempre una STIMA (distanza in linea d'aria x road_factor)."
   },
+  "physical": {
+    "store_price_max_age_days": 30,
+    "note": "Le rilevazioni di store_prices.json più vecchie di questo limite restano nel file ma sono escluse dal calcolo."
+  },
   "products": [
     {
       "id": "P001",

@@ -10,11 +10,16 @@ Garanzie:
   tentativo di aggiramento;
 - TLS sempre verificato. Se un server non invia il certificato intermedio, la catena
   viene completata scaricando gli intermedi dall'URL AIA e verificandone la firma fino
-  a una radice di `certifi` (mai verify=False).
+  a una radice di `certifi` (mai verify=False);
+- redirect seguiti a mano (al massimo `max_redirects`): ogni passaggio deve restare sullo
+  stesso sito (stesso dominio registrabile), in http/https, e mai verso loopback, IP locali
+  o reti private; i passaggi sono registrati in FetchResult.redirects;
+- corpo della risposta letto a blocchi fino a `max_response_bytes`; i contenuti gzip
+  vengono decompressi con un tetto (difesa da "zip bomb").
 """
 from __future__ import annotations
 
-import gzip
+import ipaddress
 import logging
 import random
 import re
@@ -22,11 +27,12 @@ import socket
 import ssl
 import threading
 import time
+import zlib
 from dataclasses import dataclass, field
 from email.utils import parsedate_to_datetime
 from pathlib import Path
-from typing import Any
-from urllib.parse import urlsplit
+from typing import Any, Callable, Iterable
+from urllib.parse import urljoin, urlsplit
 
 import requests
 
@@ -35,6 +41,9 @@ from .robots import RobotsPolicy, policy_from_response
 log = logging.getLogger("tracker.http")
 
 RETRY_STATUSES = {500, 502, 503, 504}
+REDIRECT_STATUSES = {301, 302, 303, 307, 308}
+DEFAULT_MAX_RESPONSE_BYTES = 30 * 1024 * 1024
+MAX_DECOMPRESSED_BYTES = 120 * 1024 * 1024
 CHALLENGE_MARKERS = (
     "cf-browser-verification", "challenge-platform", "cf_chl_opt", "just a moment...",
     "attention required! | cloudflare", "access denied</title>", "errors.edgesuite.net",
@@ -63,6 +72,26 @@ class DomainRateLimited(FetchError):
     pass
 
 
+class UnsafeTarget(FetchError):
+    """Destinazione non autorizzata: altro sito, schema non http(s), rete privata o loopback."""
+
+
+class ResponseTooLarge(FetchError):
+    pass
+
+
+def safe_gunzip(raw: bytes, limit: int = MAX_DECOMPRESSED_BYTES) -> bytes:
+    """Decompressione gzip con un tetto sulla dimensione del risultato."""
+    d = zlib.decompressobj(16 + zlib.MAX_WBITS)
+    try:
+        out = d.decompress(raw, limit + 1)
+    except zlib.error as exc:
+        raise FetchError(f"contenuto gzip non valido: {exc}") from exc
+    if len(out) > limit or d.unconsumed_tail:
+        raise ResponseTooLarge(f"contenuto compresso oltre {limit // (1024 * 1024)} MB una volta decompresso")
+    return out
+
+
 @dataclass
 class FetchResult:
     url: str
@@ -71,12 +100,13 @@ class FetchResult:
     content: bytes
     headers: dict[str, str]
     elapsed: float
+    redirects: list[str] = field(default_factory=list)
 
     @property
     def text(self) -> str:
         raw = self.content
         if raw[:2] == b"\x1f\x8b":
-            raw = gzip.decompress(raw)
+            raw = safe_gunzip(raw)
         ctype = self.headers.get("content-type", "")
         m = re.search(r"charset=([\w-]+)", ctype, re.I)
         enc = m.group(1) if m else "utf-8"
@@ -107,9 +137,41 @@ def domain_key(host_or_url: str) -> str:
     return host[4:] if host.startswith("www.") else host
 
 
+def site_key(host_or_url: str) -> str:
+    """Dominio registrabile approssimato (ultime due etichette): 'shop.farmacia.it' -> 'farmacia.it'."""
+    host = domain_key(host_or_url).rstrip(".")
+    try:
+        ipaddress.ip_address(host.strip("[]"))
+        return host
+    except ValueError:
+        pass
+    return ".".join(host.split(".")[-2:])
+
+
+def same_site(url: str, other: str) -> bool:
+    return bool(site_key(url)) and site_key(url) == site_key(other)
+
+
+def _unsafe_ip(ip: str) -> bool:
+    try:
+        addr = ipaddress.ip_address(ip.split("%")[0])
+    except ValueError:
+        return False
+    return (addr.is_private or addr.is_loopback or addr.is_link_local or addr.is_reserved
+            or addr.is_multicast or addr.is_unspecified)
+
+
+def _system_resolver(host: str) -> Iterable[str]:
+    try:
+        return {ai[4][0] for ai in socket.getaddrinfo(host, None)}
+    except (socket.gaierror, UnicodeError):
+        return ()  # host irrisolvibile: la richiesta fallirà da sé
+
+
 class PoliteSession:
     def __init__(self, http_cfg: dict, *, cache_dir: str | Path | None = None,
-                 sleep=time.sleep, clock=time.monotonic, session: requests.Session | None = None):
+                 sleep=time.sleep, clock=time.monotonic, session: requests.Session | None = None,
+                 resolver: Callable[[str], Iterable[str]] | None = None):
         self.cfg = http_cfg
         self.user_agent = http_cfg["user_agent"]
         self.robots_token = http_cfg.get("robots_token", "DermoPriceTracker")
@@ -120,6 +182,11 @@ class PoliteSession:
         self.backoff = float(http_cfg.get("backoff_base_seconds", 4))
         self.max_retry_after = float(http_cfg.get("max_retry_after_seconds", 90))
         self.tls_aia = bool(http_cfg.get("tls_aia_fetch", True))
+        self.max_redirects = int(http_cfg.get("max_redirects", 5))
+        self.max_bytes = int(http_cfg.get("max_response_bytes", DEFAULT_MAX_RESPONSE_BYTES))
+        self.block_private = bool(http_cfg.get("block_private_networks", True))
+        self._resolver = resolver or _system_resolver
+        self._resolved: dict[str, bool] = {}
         self.cache_dir = Path(cache_dir) if cache_dir else Path(__file__).resolve().parent.parent / ".cache"
         self._sleep = sleep
         self._clock = clock
@@ -216,13 +283,14 @@ class PoliteSession:
                 self._wait_turn(st)
                 started = self._clock()
                 try:
-                    resp = self._send(url, headers, timeout, post_data)
+                    resp, body, hops = self._send(url, headers, timeout, post_data, st, check_robots=check_robots)
                 except requests.exceptions.SSLError as exc:
                     st.last_request = self._clock()
                     if self._try_aia(url, exc):
                         continue  # ritenta con la catena completata
                     raise FetchError(f"Errore TLS: {exc}") from exc
-                except (requests.exceptions.ConnectionError, requests.exceptions.Timeout) as exc:
+                except (requests.exceptions.ConnectionError, requests.exceptions.Timeout,
+                        requests.exceptions.ChunkedEncodingError, requests.exceptions.ContentDecodingError) as exc:
                     st.last_request = self._clock()
                     st.requests += 1
                     last_exc = exc
@@ -232,9 +300,11 @@ class PoliteSession:
                     continue
                 st.last_request = self._clock()
                 st.requests += 1
-                result = FetchResult(url=url, final_url=resp.url, status=resp.status_code, content=resp.content,
-                                     headers={k.lower(): v for k, v in resp.headers.items()},
-                                     elapsed=self._clock() - started)
+                result = FetchResult(url=url, final_url=resp.url or url, status=resp.status_code, content=body,
+                                     headers={k.lower(): v for k, v in (resp.headers or {}).items()},
+                                     elapsed=self._clock() - started, redirects=hops)
+                if hops:
+                    log.info("Redirect %s -> dominio finale %s: %s", url, domain_key(result.final_url), " | ".join(hops))
                 status = resp.status_code
                 if status == 429:
                     wait = self._retry_after(result.headers.get("retry-after"))
@@ -264,13 +334,97 @@ class PoliteSession:
                 return result
         raise FetchError(f"Rete non raggiungibile dopo {attempts} tentativi: {url} ({last_exc})")
 
-    def _send(self, url: str, headers: dict | None, timeout: float | None = None,
-              post_data: dict | None = None) -> requests.Response:
-        verify = self._verify.get(urlsplit(url).netloc.lower(), True)
+    # ------------------------------------------------------------------ destinazioni e corpo
+    def check_target(self, url: str, *, origin: str | None = None) -> None:
+        """Solleva UnsafeTarget se l'URL non è una destinazione consentita."""
+        parts = urlsplit(url)
+        if parts.scheme not in ("http", "https"):
+            raise UnsafeTarget(f"schema non consentito: {url}")
+        host = (parts.hostname or "").lower()
+        if not host:
+            raise UnsafeTarget(f"URL senza host: {url}")
+        if origin is not None and not same_site(url, origin):
+            raise UnsafeTarget(f"redirect verso un dominio non autorizzato: {domain_key(origin)} -> {domain_key(url)}")
+        if self.block_private and self._is_private_host(host):
+            raise UnsafeTarget(f"destinazione in rete locale o privata: {host}")
+
+    def _is_private_host(self, host: str) -> bool:
+        h = host.strip("[]").rstrip(".")
+        if h == "localhost" or h.endswith(".localhost"):
+            return True
+        try:
+            ipaddress.ip_address(h.split("%")[0])
+            return _unsafe_ip(h)
+        except ValueError:
+            pass
+        if h not in self._resolved:
+            self._resolved[h] = any(_unsafe_ip(ip) for ip in self._resolver(h))
+        return self._resolved[h]
+
+    def _read_body(self, resp) -> bytes:
+        headers = {k.lower(): v for k, v in (resp.headers or {}).items()}
+        length = str(headers.get("content-length") or "").strip()
+        limit_mb = self.max_bytes / (1024 * 1024)
+        if length.isdigit() and int(length) > self.max_bytes:
+            _close(resp)
+            raise ResponseTooLarge(f"risposta di {int(length)} byte oltre il limite di {limit_mb:.0f} MB: {resp.url}")
+        iter_content = getattr(resp, "iter_content", None)
+        if iter_content is None:
+            body = resp.content or b""
+        else:
+            buf = bytearray()
+            for chunk in iter_content(chunk_size=65536):
+                buf += chunk
+                if len(buf) > self.max_bytes:
+                    _close(resp)
+                    break
+            body = bytes(buf)
+        if len(body) > self.max_bytes:
+            raise ResponseTooLarge(f"risposta oltre il limite di {limit_mb:.0f} MB: {resp.url}")
+        return body
+
+    def _send(self, url: str, headers: dict | None, timeout: float | None, post_data: dict | None,
+              st: DomainState, *, check_robots: bool = True) -> tuple[Any, bytes, list[str]]:
+        """Invia la richiesta seguendo a mano i redirect consentiti. -> (risposta, corpo, passaggi)."""
         to = (self.timeout[0], timeout) if timeout else self.timeout
         if post_data is not None:
-            return self._s.post(url, data=post_data, headers=headers, timeout=to, verify=verify)
-        return self._s.get(url, headers=headers, timeout=to, allow_redirects=True, verify=verify)
+            self.check_target(url)
+            verify = self._verify.get(urlsplit(url).netloc.lower(), True)
+            resp = self._s.post(url, data=post_data, headers=headers, timeout=to, verify=verify, allow_redirects=False)
+            resp.url = getattr(resp, "url", None) or url
+            return resp, self._read_body(resp), []
+        hops: list[str] = []
+        current = url
+        while True:
+            self.check_target(current, origin=url)
+            verify = self._verify.get(urlsplit(current).netloc.lower(), True)
+            resp = self._s.get(current, headers=headers, timeout=to, allow_redirects=False, verify=verify, stream=True)
+            location = {k.lower(): v for k, v in (resp.headers or {}).items()}.get("location")
+            if resp.status_code in REDIRECT_STATUSES and location:
+                target = urljoin(current, location)
+                hops.append(f"{resp.status_code} {current} -> {target}")
+                _close(resp)
+                if len(hops) > self.max_redirects:
+                    raise FetchError(f"troppi redirect (oltre {self.max_redirects}) a partire da {url}")
+                if check_robots:
+                    self._check_cached_robots(target)
+                st.requests += 1
+                st.last_request = self._clock()
+                self._wait_turn(st)
+                current = target
+                continue
+            final = getattr(resp, "url", None) or current
+            if final != current:  # client che segue i redirect da sé: si controlla comunque la destinazione
+                self.check_target(final, origin=url)
+            resp.url = final
+            return resp, self._read_body(resp), hops
+
+    def _check_cached_robots(self, url: str) -> None:
+        """robots.txt della destinazione di un redirect, se già noto (mai una nuova richiesta sotto lock)."""
+        parts = urlsplit(url)
+        pol = self._robots.get(f"{parts.scheme}://{parts.netloc}")
+        if pol is not None and not pol.is_allowed(url, self.robots_token):
+            raise RobotsDisallowed(f"Vietato da robots.txt (destinazione del redirect): {url}")
 
     @staticmethod
     def _retry_after(value: str | None) -> float | None:
@@ -374,6 +528,15 @@ def build_aia_bundle(host: str, cache_dir: Path, *, user_agent: str, port: int =
     pem += "\n" + "".join(c.public_bytes(Encoding.PEM).decode("ascii") for c in intermediates)
     path.write_text(pem, encoding="ascii")
     return path
+
+
+def _close(resp) -> None:
+    close = getattr(resp, "close", None)
+    if callable(close):
+        try:
+            close()
+        except Exception:  # noqa: BLE001
+            pass
 
 
 def _issued_by(child, parent) -> bool:

@@ -45,9 +45,17 @@ function coverage(data) {
     if (sh?.free_threshold_verified && sh.free_threshold_eur != null) {
       shipping += `<small>Gratuita ${sh.free_threshold_inclusive ? "da" : "oltre"} ${money(sh.free_threshold_eur)}</small>`;
     }
+    if (sh?.status && sh.status !== "verificata" && sh.standard_cost_eur != null) {
+      shipping += labelled(shippingLabels, sh.status) + `<small>${esc(sh.status_reason || "")}</small>`;
+    }
     return [plain(pharmacyName(id)), `${num(r.count)} / ${num(catalogue.size)}`, money(r.count ? r.sum : null), shipping];
   }));
 }
+
+const shippingLabels = {
+  verificata: ["success", "Verificata"], scaduta: ["warning", "Verifica scaduta"],
+  discordante: ["error", "Tariffa cambiata"], sconosciuta: ["warning", "Da verificare"],
+};
 
 function candidateOffers(data) {
   const all = data.candidate_offers;
@@ -145,7 +153,8 @@ export function renderSystem() {
   const unchecked = Number.isFinite(s.price_unverified) && Number.isFinite(s.match_unreliable)
     ? s.price_unverified + s.match_unreliable : null;
   const summary = stats([
-    tile("Offerte acquistabili", `${num(s.offers_valid)} / ${num(s.offers_total)}`),
+    tile("Offerte acquistabili", `${num(s.offers_valid)} / ${num(s.offers_total)}`,
+      s.offers_uncertain ? `${num(s.offers_uncertain)} con disponibilità da verificare` : ""),
     tile("Prezzi da verificare", num(unchecked)),
     tile("Spedizioni da verificare", num(s.shipping_unverified?.length)),
   ]);
@@ -156,12 +165,18 @@ export function renderSystem() {
     `${num(p.products_with_verified_price?.length)} / ${num(data.products?.length)}`, fmtDate(p.last_success),
     plain(p.errors?.slice(0, 2).join(" · ") || null),
   ])) : unavailable();
+  const scope = data.scope?.type === "parziale" ? "Scansione parziale" : data.scope?.type === "completa" ? "Scansione completa" : "";
   const diagnostics = stats([
-    tile("Ultima scansione", fmtDate(data.generated_at), ({ OK: "Completata", PARZIALE: "Parziale", ERRORE: "Errore" })[data.status] || "n.d."),
+    tile("Ultima scansione", fmtDate(data.generated_at),
+      [({ OK: "Completata", PARZIALE: "Parziale", ERRORE: "Errore" })[data.status] || "n.d.", scope].filter(Boolean).join(" · ")),
     tile("Durata", data.run?.duration_s == null ? "n.d." : `${num(Math.round(data.run.duration_s))} s`),
     tile("Prodotti non trovati", num(s.not_found)),
   ]);
-  const shipping = s.shipping_unverified?.length ? `<p>Tariffe di spedizione da verificare presso ${esc(s.shipping_unverified.map(pharmacyName).join(", "))}.</p>` : "";
+  const reasons = (s.shipping_unverified || []).map(id => {
+    const sh = data.shipping?.[id];
+    return `${esc(pharmacyName(id))}${sh?.status_reason ? ` (${esc(sh.status_reason)})` : ""}`;
+  });
+  const shipping = reasons.length ? `<p>Tariffe di spedizione da verificare, escluse dal carrello verificato: ${reasons.join("; ")}.</p>` : "";
   const problems = data.errors?.filter(e => e.status !== "NON TROVATO") || [];
   const incidents = problems.length ? details(`Dettaglio problemi · ${num(problems.length)}`, list(problems, e =>
     `${pill("warning", e.status || "Da verificare")} <strong>${plain(e.product_id)} · ${plain(pharmacyName(e.pharmacy_id))}</strong><small>${plain(e.message)}</small>`)) : "";

@@ -3,10 +3,14 @@
 Le sitemap sono il metodo di scoperta preferito: sono pubblicate apposta per i crawler e,
 su molti siti, la ricerca interna è vietata da robots.txt. Sono però grandi: vanno lette
 al massimo una volta ogni `sitemap_refresh_days` giorni, e gli URL utili vanno in cache.
+
+Sicurezza: l'XML è letto con un'espressione regolare sui soli tag <loc> (nessun parser XML,
+quindi nessuna espansione di entità o DTD esterni); il gzip è decompresso con un tetto;
+indici annidati sono seguiti fino a `max_depth` livelli e `max_children` sitemap figlie,
+senza mai rileggere la stessa sitemap (difesa dai cicli).
 """
 from __future__ import annotations
 
-import gzip
 import html
 import logging
 import re
@@ -14,6 +18,7 @@ from typing import Callable, Iterable
 from urllib.parse import unquote, urlsplit
 
 from .extract import ids_from_url
+from .http import safe_gunzip
 
 log = logging.getLogger("tracker.sitemap")
 
@@ -25,7 +30,7 @@ def parse_sitemap(body: bytes | str) -> tuple[bool, list[str]]:
     """Restituisce (è_indice, lista_loc)."""
     if isinstance(body, bytes):
         if body[:2] == b"\x1f\x8b":
-            body = gzip.decompress(body)
+            body = safe_gunzip(body)
         body = body.decode("utf-8", errors="replace")
     is_index = bool(re.search(r"<sitemapindex[\s>]", body, re.I))
     locs = [html.unescape(m.strip()) for m in _LOC_RX.findall(body)]
@@ -37,19 +42,19 @@ PRODUCT_CHILD = re.compile(r"product|prodott|articol|item|catalog", re.I)
 
 def fetch_sitemap_urls(get: Callable[[str], bytes], roots: Iterable[str], *, skip_child: re.Pattern | None = DEFAULT_SKIP_CHILD,
                        max_children: int = 250, prefilter: Callable[[str], bool] | None = None,
-                       prioritize: re.Pattern | None = None) -> tuple[list[str], list[str]]:
+                       prioritize: re.Pattern | None = None, max_depth: int = 3) -> tuple[list[str], list[str]]:
     """Scarica le sitemap partendo dalle radici. `get(url) -> bytes` deve essere educato.
 
     Restituisce (url_prodotto_filtrati, errori). Con `prefilter` si tengono in memoria solo
     gli URL potenzialmente utili (le sitemap possono superare 200.000 voci).
     """
-    queue = list(roots)
+    queue: list[tuple[str, int]] = [(r, 0) for r in roots]
     seen: set[str] = set()
     urls: list[str] = []
     errors: list[str] = []
     children = 0
     while queue:
-        sm = queue.pop(0)
+        sm, depth = queue.pop(0)
         if sm in seen:
             continue
         seen.add(sm)
@@ -60,16 +65,19 @@ def fetch_sitemap_urls(get: Callable[[str], bytes], roots: Iterable[str], *, ski
             log.warning("Sitemap non leggibile %s: %s", sm, exc)
             continue
         if is_index:
+            if depth >= max_depth:
+                errors.append(f"{sm}: indice annidato oltre {max_depth} livelli, ignorato")
+                continue
             if prioritize is not None:  # con un tetto di richieste, prima le sitemap "prodotti"
                 locs = sorted(locs, key=lambda u: 0 if prioritize.search(urlsplit(u).path) else 1)
             for child in locs:
-                if skip_child is not None and skip_child.search(urlsplit(child).path):
+                if child in seen or (skip_child is not None and skip_child.search(urlsplit(child).path)):
                     continue
                 if children >= max_children:
                     errors.append(f"limite di {max_children} sitemap figlie raggiunto")
                     break
                 children += 1
-                queue.append(child)
+                queue.append((child, depth + 1))
         else:
             urls.extend(u for u in locs if prefilter is None or prefilter(u))
     return list(dict.fromkeys(urls)), errors

@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git commit -m 'Initial commit: dashboard and scraper infrastructure *)"
+      "Bash(git commit -m 'Initial commit: dashboard and scraper infrastructure *)",
+      "Bash(python -m pytest -q --tb=short)",
+      "Bash(python -m py_compile *.py scrapers/*.py tests/*.py)",
+      "Bash(python scraper.py --dry-run)",
+      "Bash(git commit *)",
+      "Bash(gh --version)",
+      "Bash(git remote *)"
     ]
   }
 }

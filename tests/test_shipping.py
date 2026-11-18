@@ -1,22 +1,26 @@
 """Test di spedizioni e soglie. Configurazioni SIMULATE (non i valori reali delle farmacie)."""
 import json
+from datetime import date, timedelta
 
 import pytest
 
-from shipping import extract_from_text, pickup_info, quote
+from shipping import (STATUS_DISCORDANT, STATUS_EXPIRED, STATUS_UNKNOWN, STATUS_VERIFIED, check,
+                      extract_from_text, pickup_info, quote, shipping_status)
 
+TODAY = date.today().isoformat()
 CFG = {"pharmacies": {
     "incl": {"standard_cost_eur": 3.99, "free_threshold_eur": 18.99, "free_threshold_inclusive": True,
-             "free_threshold_verified": True, "cod_cost_eur": 3.95, "reliability": "alta"},
+             "free_threshold_verified": True, "cod_cost_eur": 3.95, "reliability": "alta", "verified_at": TODAY},
     "excl": {"standard_cost_eur": 5.0, "free_threshold_eur": 69.0, "free_threshold_inclusive": False,
-             "free_threshold_verified": True, "reliability": "alta"},
+             "free_threshold_verified": True, "reliability": "alta", "verified_at": TODAY},
     "unverified_thr": {"standard_cost_eur": 5.9, "free_threshold_eur": 29.9, "free_threshold_verified": False},
     "unknown": {"standard_cost_eur": None, "free_threshold_eur": None, "reliability": "sconosciuta"},
     "unknown_thr_ok": {"standard_cost_eur": None, "free_threshold_eur": 50.0, "free_threshold_inclusive": True,
-                       "free_threshold_verified": True},
+                       "free_threshold_verified": True, "verified_at": TODAY},
     "extras": {"standard_cost_eur": 4.0, "extra_costs": [{"label": "imballo", "amount_eur": 1.5}],
-               "free_threshold_eur": None},
-    "extras_unknown": {"standard_cost_eur": 4.0, "extra_costs": [{"label": "supplemento", "amount_eur": None}]},
+               "free_threshold_eur": None, "verified_at": TODAY},
+    "extras_unknown": {"standard_cost_eur": 4.0, "extra_costs": [{"label": "supplemento", "amount_eur": None}],
+                       "verified_at": TODAY},
     "pickup": {"standard_cost_eur": 4.99, "pickup_available": True, "pickup_cost_eur": 0.0,
                "pickup_locations": [{"city": "Alagna Valsesia"}]},
 }}
@@ -99,5 +103,96 @@ def test_real_shipping_config_is_consistent():
 @pytest.mark.parametrize("subtotal,expected", [(29.89, 5.0), (29.9, 5.0), (29.91, 0.0)])
 def test_threshold_table(subtotal, expected):
     cfg = {"pharmacies": {"v": {"standard_cost_eur": 5.0, "free_threshold_eur": 29.9, "free_threshold_inclusive": False,
-                                "free_threshold_verified": True}}}
-    assert quote(cfg, "v", subtotal).cost == expected
+                                "free_threshold_verified": True, "verified_at": TODAY}}}
+    q = quote(cfg, "v", subtotal)
+    assert q.cost == expected and q.complete and q.status == STATUS_VERIFIED
+
+
+# --------------------------------------------------------------------------- stato della tariffa
+def _ph(**kw):
+    base = {"standard_cost_eur": 5.0, "free_threshold_eur": 50.0, "free_threshold_inclusive": True,
+            "free_threshold_verified": True, "reliability": "alta", "verified_at": TODAY}
+    return {**base, **kw}
+
+
+def test_missing_verification_date_is_unknown_and_not_complete():
+    ph = _ph(verified_at=None)
+    assert shipping_status(ph)[0] == STATUS_UNKNOWN
+    q = quote({"pharmacies": {"x": ph}}, "x", 10)
+    assert q.cost == 5.0 and not q.complete  # costo noto ma non attendibile: mai vincitore certo
+
+
+def test_expired_verification():
+    old = (date.today() - timedelta(days=61)).isoformat()
+    status, reason = shipping_status(_ph(verified_at=old), max_age=60)
+    assert status == STATUS_EXPIRED and old in reason
+    q = quote({"max_age_days": 60, "pharmacies": {"x": _ph(verified_at=old)}}, "x", 10)
+    assert not q.complete and any("scaduta" in n for n in q.notes)
+    assert quote({"max_age_days": 90, "pharmacies": {"x": _ph(verified_at=old)}}, "x", 10).complete
+
+
+def test_changed_rate_on_official_page_invalidates_previous_value():
+    last = {"at": TODAY + "T06:00:00Z", "differences": ["standard_cost_eur: configurato 5.0 / pagina 6.9"]}
+    ph = _ph(auto_check={"last_check": last})
+    status, reason = shipping_status(ph)
+    assert status == STATUS_DISCORDANT and "6.9" in reason
+    q = quote({"pharmacies": {"x": ph}}, "x", 10)
+    assert q.cost == 5.0 and not q.complete  # la tariffa precedente non resta implicitamente affidabile
+    # una verifica manuale successiva al controllo la riconferma
+    tomorrow = (date.today() + timedelta(days=1)).isoformat()
+    assert shipping_status(_ph(verified_at=tomorrow, auto_check={"last_check": last}))[0] == STATUS_VERIFIED
+
+
+def test_unknown_extra_cost_keeps_cart_incomplete_even_if_verified():
+    q = quote({"pharmacies": {"x": _ph(extra_costs=[{"label": "imballo", "amount_eur": None}])}}, "x", 10)
+    assert q.status == STATUS_VERIFIED and not q.complete
+
+
+class _Page:
+    def __init__(self, html):
+        self.ok, self.text, self.status = True, html, 200
+
+
+class _Session:
+    def __init__(self, html):
+        self.html = html
+
+    def is_allowed(self, url):
+        return True
+
+    def get(self, url):
+        return _Page(self.html)
+
+
+def _auto(ph_values):
+    patterns = {"standard_cost_eur": r"spedizione\s*€\s*(\d+,\d{2})"}
+    return {"pharmacies": {"x": _ph(**ph_values, auto_check={"url": "https://x.it/spedizioni", "patterns": patterns})}}
+
+
+def test_check_detects_changed_rate_and_marks_discordant():
+    cfg = _auto({"verified_at": "2026-01-01"})
+    report = check(cfg, _Session("<p>spedizione € 6,90</p>"))
+    assert report[0]["differences"] and cfg["pharmacies"]["x"]["standard_cost_eur"] == 5.0
+    assert shipping_status(cfg["pharmacies"]["x"])[0] == STATUS_DISCORDANT
+
+
+def test_check_ambiguous_value_invalidates():
+    cfg = _auto({})
+    check(cfg, _Session("<p>spedizione € 5,00</p><p>spedizione € 7,90</p>"))
+    status, reason = shipping_status(cfg["pharmacies"]["x"])
+    assert status == STATUS_DISCORDANT and "ambiguo" in reason
+
+
+def test_check_apply_updates_value_and_confirms():
+    cfg = _auto({})
+    report = check(cfg, _Session("<p>spedizione € 6,90</p>"), apply=True)
+    ph = cfg["pharmacies"]["x"]
+    assert ph["standard_cost_eur"] == 6.9 and report[0]["applied"] and not report[0]["differences"]
+    assert shipping_status(ph)[0] == STATUS_VERIFIED
+
+
+def test_check_matching_page_confirms_rate():
+    cfg = _auto({"verified_at": "2026-01-01"})
+    check(cfg, _Session("<p>spedizione € 5,00</p>"))
+    assert cfg["pharmacies"]["x"]["verified_at"] != "2026-01-01"
+    assert shipping_status(cfg["pharmacies"]["x"])[0] == STATUS_VERIFIED
