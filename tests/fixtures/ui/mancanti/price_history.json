@@ -1,0 +1,50 @@
+{
+  "schema_version": 2,
+  "updated_at": "2026-11-12T07:00:00Z",
+  "entries": [
+    {
+      "date": "2026-11-12",
+      "product_id": "P001",
+      "pharmacy_id": "aurora",
+      "price": 19.8,
+      "shipping": 3.5,
+      "total": 23.3,
+      "availability": "DISPONIBILE",
+      "match": "ID",
+      "format": "1000 ml"
+    },
+    {
+      "date": "2026-11-12",
+      "product_id": "P001",
+      "pharmacy_id": "cedro",
+      "price": 8.3,
+      "shipping": null,
+      "total": null,
+      "availability": "DISPONIBILE",
+      "match": "ID",
+      "format": "1000 ml"
+    },
+    {
+      "date": "2026-11-12",
+      "product_id": "P002",
+      "pharmacy_id": "aurora",
+      "price": 17.6,
+      "shipping": 3.5,
+      "total": 21.1,
+      "availability": "DISPONIBILE",
+      "match": "ID",
+      "format": "400 ml"
+    },
+    {
+      "date": "2026-11-12",
+      "product_id": "P002",
+      "pharmacy_id": "cedro",
+      "price": 15.5,
+      "shipping": null,
+      "total": null,
+      "availability": "DISPONIBILE",
+      "match": "ID",
+      "format": "400 ml"
+    }
+  ]
+}

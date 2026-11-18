@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12386a">
+  <meta name="description" content="Confronta i prezzi dei cinque dermocosmetici monitorati, le spedizioni e le stime di viaggio per scegliere il carrello più conveniente.">
+  <title>Dermocosmetic Price Tracker · Confronto prezzi</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <link rel="stylesheet" href="./assets/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750;800&display=swap">
+  <script defer src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!window.tailwind) return;
+      const token = name => 'var(--' + name + ')';
+      const scale = name => Object.fromEntries([50,100,200,300,400,500,600,700,800,900].map(n => [n, token(name + '-' + n)]));
+      const semantic = Object.fromEntries(['success','warning','error','info'].map(name => [
+        name, {light: token(name + '-bg'), dark: token(name + '-text')}
+      ]));
+      tailwind.config = {
+        corePlugins: {preflight: false},
+        theme: {extend: {
+          colors: {blue: scale('blue'), neutral: scale('neutral'), ...semantic},
+          fontFamily: {sans: ['Inter','system-ui','sans-serif']},
+          spacing: Object.fromEntries([1,2,3,4,5,6,7,8,10,12].map(n => [n, token('s' + n)])),
+          fontSize: Object.fromEntries(['display','h1','h2','h3','body','small','caption'].map(k => [k, token(k)])),
+          borderRadius: {sm: token('r1'), lg: token('r2'), full: token('round')},
+          boxShadow: Object.fromEntries([1,2,3].map(n => [n, token('shadow-' + n)]))
+        }}
+      };
+    });
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script type="module" src="./assets/app.js"></script>
+</head>
+<body data-source="./data.json" data-history="./price_history.json" data-registry="./pharmacies.json">
+<a class="skip" href="#carrello">Vai al contenuto</a>
+<header class="mast">
+  <div id="fixture-banner" hidden>DATI DI TEST, NON REALI</div>
+  <div class="frame masthead">
+    <a class="brand" href="#panoramica" aria-label="Dermocosmetic Price Tracker, panoramica">
+      <img src="./assets/favicon.svg" alt="" width="40" height="40">
+      <span>Dermocosmetic <span class="brand-light">Price Tracker</span></span>
+    </a>
+    <div id="freshness" aria-live="polite">Aggiornamento in corso…</div>
+  </div>
+  <nav class="frame" aria-label="Sezioni della dashboard"><div class="nav-strip">
+    <a href="#carrello" aria-current="location">Carrello</a><a href="#online-o-farmacia">Modalità di acquisto</a><a href="#confronto">Prodotti</a><a href="#storico">Storico prezzi</a><a href="#mercato">Mercato</a><a href="#sistema">Sistema</a><a href="#localita">Impostazioni</a>
+  </div></nav>
+</header>
+<main class="frame" id="panoramica">
+  <div id="alerts" aria-live="polite"></div>
+  <section id="carrello" aria-labelledby="cart-heading">
+    <div class="section-heading"><div><h1 id="cart-heading">Miglior carrello</h1><p>Miglior prezzo trovato tra le farmacie monitorate</p></div><a class="section-link" href="#confronto">Confronta i prodotti <span aria-hidden="true">↓</span></a></div>
+    <div id="hero" class="loading hero-load" aria-busy="true"><span class="sr-only">Caricamento carrello…</span></div>
+  </section>
+  <section id="online-o-farmacia" aria-labelledby="modes-heading">
+    <div class="section-heading"><h2 id="modes-heading">Conviene online o in farmacia?</h2></div>
+    <div id="physical" class="loading" aria-busy="true"><span class="sr-only">Caricamento modalità…</span></div>
+  </section>
+  <section id="confronto" aria-labelledby="products-heading">
+    <div class="section-heading"><h2 id="products-heading">Confronto dei 5 prodotti</h2></div>
+    <div id="products" class="loading" aria-busy="true"><span class="sr-only">Caricamento prodotti…</span></div>
+  </section>
+  <section id="storico" aria-labelledby="history-heading">
+    <div class="section-heading"><h2 id="history-heading">Storico prezzi</h2></div>
+    <div id="history" class="panel loading" aria-busy="true"><span class="sr-only">Caricamento storico…</span></div>
+  </section>
+  <div class="lower-grid"><div>
+    <section id="mercato" aria-labelledby="market-heading">
+      <div class="section-heading"><h2 id="market-heading">Mercato italiano</h2></div><div id="market" class="panel loading" aria-busy="true"><span class="sr-only">Caricamento mercato…</span></div>
+    </section>
+    <section id="sistema" aria-labelledby="system-heading">
+      <div class="section-heading"><h2 id="system-heading">Stato del sistema</h2></div><div id="system" class="panel loading" aria-busy="true"><span class="sr-only">Caricamento stato…</span></div>
+    </section>
+  </div>
+  <aside id="localita" aria-labelledby="location-heading">
+    <div class="section-heading"><h2 id="location-heading">Località di ritiro</h2></div>
+    <div class="panel settings"><p>Salva città o CAP e mezzo di trasporto in questo browser.</p>
+      <form id="loc-form">
+        <div class="fields"><label>Città<input name="city" maxlength="60" autocomplete="address-level2"></label>
+        <label>CAP<input name="postcode" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code"></label></div>
+        <fieldset><legend>Mezzo di trasporto</legend><div id="travel-modes" class="segment"></div></fieldset>
+        <label>Distanza massima (km)<input name="max_km" type="number" min="0.2" max="50" step="0.1" inputmode="decimal"></label>
+        <div class="actions"><button class="btn primary" type="submit">Salva preferenze</button><button class="btn" type="button" id="reset">Ripristina</button></div>
+        <p id="saved" role="status"></p>
+      </form><div id="loc-info" class="muted"></div>
+    </div>
+  </aside></div>
+</main>
+<footer><div class="frame"><strong>Dermocosmetic Price Tracker</strong><p>Verifica prezzo e disponibilità sul sito della farmacia prima dell’acquisto. I costi di viaggio sono stime. Farmacie fisiche © OpenStreetMap contributors (ODbL).</p></div></footer>
+</body>
+</html>

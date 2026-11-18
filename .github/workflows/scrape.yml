@@ -1,0 +1,219 @@
+name: Scrape prezzi
+
+# Ogni giorno alle 08:00 Europe/Rome. I cron di GitHub sono in UTC: due slot
+# (06:00 UTC = 08:00 ora legale, 07:00 UTC = 08:00 ora solare) e uno step iniziale
+# che lascia proseguire solo quello giusto. Nessuna modifica al cambio dell'ora.
+on:
+  schedule:
+    - cron: "0 6 * * *"
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+    inputs:
+      location:
+        description: "Nuova località (solo città, es. Milano). Vuoto = invariata"
+        required: false
+        default: ""
+      postcode:
+        description: "Nuovo CAP (5 cifre). Vuoto = invariato"
+        required: false
+        default: ""
+      refresh_candidates:
+        description: "Rileggi sitemap/ricerche per gli URL prodotto"
+        type: boolean
+        default: false
+      weekly_tasks:
+        description: "Esegui anche scoperta farmacie e verifica spedizioni"
+        type: boolean
+        default: false
+      activate_pharmacies:
+        description: "Prova ad attivare queste farmacie (id separati da spazio, es. 'farmafides farmacievigorito'): diventano ACTIVE solo con un'offerta autentica"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape-prezzi
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PYTHONIOENCODING: utf-8
+      TZ: Europe/Rome
+    steps:
+      - name: Controllo orario (08:00 Europe/Rome)
+        id: gate
+        shell: bash
+        run: |
+          NOW_HOUR=$(TZ=Europe/Rome date +%H)
+          OFFSET=$(TZ=Europe/Rome date +%z)
+          echo "Ora attuale a Roma: $(TZ=Europe/Rome date '+%Y-%m-%d %H:%M %Z') (offset $OFFSET)"
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "Avvio manuale: si procede."
+            echo "run=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          SLOT="${{ github.event.schedule }}"
+          # Lo slot è quello delle 08:00 di Roma per l'offset di oggi? (robusto ai ritardi delle code di GitHub)
+          SLOT_OK=false
+          if { [ "$OFFSET" = "+0200" ] && [ "$SLOT" = "0 6 * * *" ]; } || { [ "$OFFSET" = "+0100" ] && [ "$SLOT" = "0 7 * * *" ]; }; then SLOT_OK=true; fi
+          if [ "$NOW_HOUR" = "08" ] || [ "$SLOT_OK" = "true" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Non sono le 08 a Roma e lo slot '$SLOT' non è quello delle 08: esco senza errori."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/checkout@v4
+
+      - name: Evita doppia esecuzione pianificata nello stesso giorno
+        if: steps.gate.outputs.run == 'true' && github.event_name == 'schedule'
+        id: once
+        shell: bash
+        run: |
+          TODAY=$(TZ=Europe/Rome date +%F)
+          if [ -f .github/last_scheduled_run ] && [ "$(cat .github/last_scheduled_run)" = "$TODAY" ]; then
+            echo "Esecuzione pianificata di oggi già fatta: esco senza errori."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "$TODAY" > .github/last_scheduled_run
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Python
+        if: steps.gate.outputs.run == 'true' && steps.once.outputs.skip != 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Dipendenze
+        if: steps.gate.outputs.run == 'true' && steps.once.outputs.skip != 'true'
+        run: pip install -r requirements.txt
+
+      - name: Serve Playwright?
+        if: steps.gate.outputs.run == 'true' && steps.once.outputs.skip != 'true'
+        id: js
+        run: |
+          python -c "from scrapers import REGISTRY; print('needs_js=' + str(any(c.requires_js for c in REGISTRY.values())).lower())" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
+
+      - name: Playwright (solo se uno scraper richiede JavaScript)
+        if: steps.js.outputs.needs_js == 'true'
+        run: |
+          pip install playwright
+          playwright install --with-deps chromium
+
+      - name: Test (offline) prima di toccare i dati
+        if: steps.gate.outputs.run == 'true' && steps.once.outputs.skip != 'true'
+        run: python -m pytest -q
+
+      - name: Cambio località (input manuale)
+        if: steps.gate.outputs.run == 'true' && (inputs.location != '' || inputs.postcode != '')
+        env:
+          LOC: ${{ inputs.location }}
+          CAP: ${{ inputs.postcode }}
+        run: |
+          ARGS=(--force)
+          [ -n "$LOC" ] && ARGS+=(--city "$LOC")
+          [ -n "$CAP" ] && ARGS+=(--postcode "$CAP")
+          python physical_pharmacies.py "${ARGS[@]}"
+
+      - name: Attività settimanali (lunedì o su richiesta)
+        if: steps.gate.outputs.run == 'true' && steps.once.outputs.skip != 'true'
+        continue-on-error: true
+        shell: bash
+        run: |
+          if [ "$(TZ=Europe/Rome date +%u)" = "1" ] || [ "${{ inputs.weekly_tasks }}" = "true" ]; then
+            python pharmacy_discovery.py || echo "::warning::scoperta farmacie non riuscita"
+            python shipping.py --check || echo "::warning::verifica spedizioni non riuscita"
+          fi
+          # Farmacie fisiche: usa una cache settimanale, quindi di solito non fa richieste.
+          python physical_pharmacies.py || echo "::warning::aggiornamento farmacie fisiche non riuscito"
+
+      - name: Tentativo di attivazione (input manuale)
+        if: steps.gate.outputs.run == 'true' && inputs.activate_pharmacies != ''
+        continue-on-error: true
+        env:
+          IDS: ${{ inputs.activate_pharmacies }}
+        shell: bash
+        run: |
+          ARGS=(--dry-run --activate)
+          for id in $IDS; do
+            [[ "$id" =~ ^[a-z0-9_]+$ ]] || { echo "::error::id non valido: $id"; exit 1; }
+            ARGS+=(--pharmacy "$id")
+          done
+          python scraper.py "${ARGS[@]}" || true
+
+      - name: Scraping
+        if: steps.gate.outputs.run == 'true' && steps.once.outputs.skip != 'true'
+        id: scrape
+        shell: bash
+        run: |
+          set +e
+          ARGS=()
+          [ "${{ inputs.refresh_candidates }}" = "true" ] && ARGS+=(--refresh-candidates)
+          python scraper.py "${ARGS[@]}"
+          CODE=$?
+          echo "code=$CODE" >> "$GITHUB_OUTPUT"
+          echo "Codice di uscita scraper: $CODE"
+
+      - name: Validazione JSON
+        if: steps.gate.outputs.run == 'true' && steps.once.outputs.skip != 'true'
+        run: |
+          python - <<'EOF'
+          import json, sys
+          files = ["data.json", "price_history.json", "pharmacies.json", "shipping_config.json", "config.json", "product_urls.json"]
+          for f in files:
+              try:
+                  json.load(open(f, encoding="utf-8"))
+              except FileNotFoundError:
+                  pass
+              except Exception as e:
+                  print(f"JSON non valido: {f}: {e}"); sys.exit(1)
+          print("JSON validi")
+          EOF
+
+      - name: Commit e push (solo se ci sono modifiche)
+        if: steps.gate.outputs.run == 'true' && steps.once.outputs.skip != 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.json price_history.json pharmacies.json product_urls.json shipping_config.json config.json physical_pharmacies.json .github/last_scheduled_run 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "Nessuna modifica da salvare."
+            exit 0
+          fi
+          git commit -m "Aggiornamento prezzi $(TZ=Europe/Rome date '+%Y-%m-%d %H:%M')"
+          for i in 1 2 3; do
+            git push && exit 0
+            echo "Push rifiutato, riallineo e riprovo ($i/3)"
+            # In un rebase "theirs" = il nostro commit appena creato: i dati nuovi prevalgono.
+            git pull --rebase --strategy-option=theirs || git rebase --abort
+            sleep 5
+          done
+          echo "::error::push non riuscito"; exit 1
+
+      - name: Log come artifact
+        if: always() && steps.gate.outputs.run == 'true' && steps.once.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs-${{ github.run_id }}
+          path: logs/*.log
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Esito
+        if: steps.gate.outputs.run == 'true' && steps.once.outputs.skip != 'true'
+        shell: bash
+        run: |
+          CODE="${{ steps.scrape.outputs.code }}"
+          if [ "$CODE" = "0" ]; then echo "Scraping completato."; exit 0; fi
+          if [ "$CODE" = "2" ]; then echo "::error::Nessuna offerta valida: dati precedenti conservati (vedi log)."; exit 1; fi
+          echo "::error::Scraper terminato con codice $CODE"; exit 1

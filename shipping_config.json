@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-11-18T08:19:58Z",
+  "zone": "Italia continentale (Milano). Isole, Livigno, Venezia e zone disagiate hanno tariffe diverse non considerate.",
+  "reliability_levels": {
+    "alta": "letto sulla pagina ufficiale della farmacia (spedizioni/FAQ/condizioni) nella data indicata",
+    "media": "dichiarato solo in banner/homepage, senza tabella tariffe",
+    "bassa": "informazione indiretta o parziale",
+    "sconosciuta": "nessun dato verificato: il costo è null e il carrello risulta incompleto",
+    "NON_VERIFICATA": "voce creata alla promozione manuale di un sito con scraper generico: costi null finché non vengono verificati sul sito (mai gratis)"
+  },
+  "pharmacies": {
+    "redcare": {
+      "standard_cost_eur": 3.99,
+      "free_threshold_eur": 18.99,
+      "free_threshold_inclusive": true,
+      "free_threshold_verified": true,
+      "extra_costs": [],
+      "cod_available": true,
+      "cod_cost_eur": 3.95,
+      "pickup_available": false,
+      "pickup_cost_eur": null,
+      "pickup_locations": [],
+      "source_url": "https://www.redcare.it/faq/",
+      "source_quote": "Le spese di spedizione sono gratuite per ordini di importo uguale o superiore a € 18,99 [...] le spese di spedizioni ammontano a € 3,99. [...] Contrassegno con supplemento di 3,95€",
+      "verified_at": "2026-11-18",
+      "reliability": "alta",
+      "auto_check": {
+        "url": "https://www.redcare.it/faq/",
+        "patterns": {
+          "standard_cost_eur": "spedizioni ammontano a\\s*€\\s*(\\d+[.,]\\d{2})",
+          "free_threshold_eur": "uguale o superiore a\\s*€\\s*(\\d+[.,]\\d{2})"
+        },
+        "last_check": {
+          "at": "2026-11-18T08:19:23Z",
+          "found": {
+            "standard_cost_eur": 3.99,
+            "free_threshold_eur": 18.99
+          },
+          "differences": [],
+          "error": null
+        }
+      },
+      "notes": ""
+    },
+    "farmasave": {
+      "standard_cost_eur": 5.0,
+      "free_threshold_eur": 69.0,
+      "free_threshold_inclusive": false,
+      "free_threshold_verified": true,
+      "extra_costs": [],
+      "cod_available": true,
+      "cod_cost_eur": 6.0,
+      "pickup_available": null,
+      "pickup_cost_eur": null,
+      "pickup_locations": [],
+      "source_url": "https://www.farmasave.it/informazioni/condizioni-di-vendita.html",
+      "source_quote": "In tutta Italia, ad eccezione di Livigno, Sicilia, Sardegna ed Isole Minori, i costi di spedizioni sono di euro 5,00 per ordini inferiori ad euro 69,00. Per ordini superiori ad euro 69,00 la spedizione è gratis. [...] contrassegno prevede un supplemento di 6,00 €",
+      "verified_at": "2026-11-18",
+      "reliability": "alta",
+      "auto_check": {
+        "url": "https://www.farmasave.it/informazioni/condizioni-di-vendita.html",
+        "patterns": {
+          "standard_cost_eur": "costi di spedizioni sono di euro\\s*(\\d+[.,]\\d{2})",
+          "free_threshold_eur": "Per ordini superiori ad euro\\s*(\\d+[.,]\\d{2})\\s*la spedizione è gratis"
+        },
+        "last_check": {
+          "at": "2026-11-18T08:19:27Z",
+          "found": {
+            "standard_cost_eur": 5.0,
+            "free_threshold_eur": 69.0
+          },
+          "differences": [],
+          "error": null
+        }
+      },
+      "notes": "Soglia trattata come esclusiva ('superiori a'): a 69,00 € esatti si paga la spedizione (interpretazione prudente). La pagina spedizioni (widget CMS) è esclusa da robots.txt."
+    },
+    "verafarma": {
+      "standard_cost_eur": 5.0,
+      "free_threshold_eur": 29.9,
+      "free_threshold_inclusive": false,
+      "free_threshold_verified": true,
+      "extra_costs": [],
+      "cod_available": true,
+      "cod_cost_eur": null,
+      "pickup_available": null,
+      "pickup_cost_eur": null,
+      "pickup_locations": [],
+      "source_url": "https://verafarma.it/condizioni-di-vendita",
+      "source_quote": "i costi di spedizioni sono di euro 5,00 per ordini inferiori ad euro 29,90. Per ordini superiori ad euro 29,90 la spedizione è gratis.",
+      "verified_at": "2026-11-18",
+      "reliability": "alta",
+      "auto_check": {
+        "url": "https://verafarma.it/condizioni-di-vendita",
+        "patterns": {
+          "standard_cost_eur": "costi di spedizioni sono di euro\\s*(\\d+[.,]\\d{2})",
+          "free_threshold_eur": "Per ordini superiori ad euro\\s*(\\d+[.,]\\d{2})\\s*la spedizione è gratis"
+        },
+        "last_check": {
+          "at": "2026-11-18T08:19:30Z",
+          "found": {
+            "standard_cost_eur": 5.0,
+            "free_threshold_eur": 29.9
+          },
+          "differences": [],
+          "error": null
+        }
+      },
+      "notes": "Importo del supplemento contrassegno non leggibile nel testo estratto: lasciato null."
+    },
+    "farmastrike": {
+      "standard_cost_eur": 5.99,
+      "free_threshold_eur": null,
+      "free_threshold_inclusive": null,
+      "free_threshold_verified": false,
+      "extra_costs": [],
+      "cod_available": true,
+      "cod_cost_eur": 3.5,
+      "pickup_available": null,
+      "pickup_cost_eur": null,
+      "pickup_locations": [],
+      "source_url": "https://farmastrike.it/info-spedizioni",
+      "source_quote": "SPEDIZIONE CLASSICA per tutti gli ordini a 5,99€ [...] contrassegno [...] pari a 3,50€",
+      "verified_at": "2026-11-18",
+      "reliability": "alta",
+      "auto_check": {
+        "url": "https://farmastrike.it/info-spedizioni",
+        "patterns": {
+          "standard_cost_eur": "SPEDIZIONE CLASSICA per tutti gli ordini a\\s*(\\d+[.,]\\d{2})"
+        },
+        "last_check": {
+          "at": "2026-11-18T08:19:34Z",
+          "found": {
+            "standard_cost_eur": 5.99
+          },
+          "differences": [],
+          "error": null
+        }
+      },
+      "notes": "Nessuna soglia di spedizione gratuita dichiarata nella pagina ufficiale."
+    },
+    "meafarma": {
+      "standard_cost_eur": 5.9,
+      "free_threshold_eur": 79.9,
+      "free_threshold_inclusive": false,
+      "free_threshold_verified": true,
+      "extra_costs": [],
+      "cod_available": true,
+      "cod_cost_eur": 5.0,
+      "pickup_available": null,
+      "pickup_cost_eur": null,
+      "pickup_locations": [],
+      "source_url": "https://meafarma.it/informazioni-di-spedizione",
+      "source_quote": "Per ordini superiori a 79,90€, la spedizione è GRATUITA [...] Ordini inferiori a 79,90€ (escluse Sardegna, Venezia, Isole minori): €5,90 [...] Contrassegno [...] €5,00",
+      "verified_at": "2026-11-18",
+      "reliability": "alta",
+      "auto_check": {
+        "url": "https://meafarma.it/informazioni-di-spedizione",
+        "patterns": {
+          "free_threshold_eur": "Per ordini\\s*superiori a\\s*(\\d+[.,]\\d{2})"
+        },
+        "last_check": {
+          "at": "2026-11-18T08:19:38Z",
+          "found": {
+            "free_threshold_eur": 79.9
+          },
+          "differences": [],
+          "error": null
+        }
+      },
+      "notes": "Il percorso '/informazioni-di-spedizione/' (con barra finale) è escluso da robots.txt; '/informazioni-di-spedizione' (senza barra) è consentito ed è il link del sito. Possibili supplementi per prodotti pesanti/voluminosi."
+    },
+    "farmavillage": {
+      "standard_cost_eur": 5.9,
+      "free_threshold_eur": 79.9,
+      "free_threshold_inclusive": true,
+      "free_threshold_verified": true,
+      "extra_costs": [],
+      "cod_available": null,
+      "cod_cost_eur": null,
+      "pickup_available": null,
+      "pickup_cost_eur": null,
+      "pickup_locations": [],
+      "source_url": "https://farmavillage.it/info-spedizioni",
+      "source_quote": "Spedizione gratuita a partire da € 79,90 in tutta Italia [...] Spediamo in tutta Italia con Corriere Espresso a soli 5.90€",
+      "verified_at": "2026-11-18",
+      "reliability": "alta",
+      "auto_check": {
+        "url": "https://farmavillage.it/info-spedizioni",
+        "patterns": {
+          "standard_cost_eur": "Corriere Espresso a soli\\s*(\\d+[.,]\\d{2})",
+          "free_threshold_eur": "gratuita a partire da\\s*€\\s*(\\d+[.,]\\d{2})"
+        },
+        "last_check": {
+          "at": "2026-11-18T08:19:43Z",
+          "found": {
+            "standard_cost_eur": 5.9,
+            "free_threshold_eur": 79.9
+          },
+          "differences": [],
+          "error": null
+        }
+      },
+      "notes": ""
+    },
+    "alpifarma": {
+      "standard_cost_eur": 4.99,
+      "free_threshold_eur": 59.0,
+      "free_threshold_inclusive": false,
+      "free_threshold_verified": true,
+      "extra_costs": [],
+      "cod_available": null,
+      "cod_cost_eur": null,
+      "pickup_available": true,
+      "pickup_cost_eur": 0.0,
+      "pickup_locations": [
+        {
+          "name": "Farmacia Alta Valsesia - Alpifarma",
+          "address": "Piazza degli Alberghi, 1",
+          "postcode": "13021",
+          "city": "Alagna Valsesia",
+          "province": "VC",
+          "lat": null,
+          "lon": null,
+          "availability": "ritiro prenotabile"
+        }
+      ],
+      "source_url": "https://www.alpifarma.it/content/8-spedizioni",
+      "source_quote": "Corriere espresso a domicilio: € 4,99 [...] Ritiro presso il nostro punto vendita: GRATUITO [...] Per ordini di importo superiore a € 59,00, la spedizione con corriere espresso o Fermopoint è GRATUITA.",
+      "verified_at": "2026-11-18",
+      "reliability": "alta",
+      "auto_check": {
+        "url": "https://www.alpifarma.it/content/8-spedizioni",
+        "patterns": {
+          "standard_cost_eur": "Corriere espresso a domicilio:\\s*€\\s*(\\d+[.,]\\d{2})",
+          "free_threshold_eur": "superiore a\\s*€\\s*(\\d+[.,]\\d{2})"
+        },
+        "last_check": {
+          "at": "2026-11-18T08:19:51Z",
+          "found": {
+            "standard_cost_eur": 4.99,
+            "free_threshold_eur": 59.0
+          },
+          "differences": [],
+          "error": null
+        }
+      },
+      "notes": "Disponibile anche Fermopoint (punto di ritiro) a 3,90 €: non modellato."
+    },
+    "clubfarma": {
+      "standard_cost_eur": 5.99,
+      "free_threshold_eur": 59.9,
+      "free_threshold_inclusive": true,
+      "free_threshold_verified": true,
+      "extra_costs": [],
+      "cod_available": null,
+      "cod_cost_eur": null,
+      "pickup_available": true,
+      "pickup_cost_eur": 0.0,
+      "pickup_locations": [
+        {
+          "name": "Farmacia Formica Magro (punto vendita Clubfarma)",
+          "address": null,
+          "postcode": null,
+          "city": null,
+          "province": null,
+          "lat": null,
+          "lon": null,
+          "availability": "ritiro prenotabile"
+        }
+      ],
+      "source_url": "https://www.clubfarma.it/content/102-spedizione-su-clubfarma",
+      "source_quote": "Le spese di spedizione sono di 5,99€ al di sotto di 59,90€ (sempre gratuite per ritiro in punto vendita fisico), mentre sono gratuite al di sopra di questo importo.",
+      "verified_at": "2026-11-18",
+      "reliability": "alta",
+      "auto_check": {
+        "url": "https://www.clubfarma.it/content/102-spedizione-su-clubfarma",
+        "patterns": {
+          "standard_cost_eur": "spese di spedizione sono di\\s*(\\d+[.,]\\d{2})",
+          "free_threshold_eur": "al di sotto di\\s*(\\d+[.,]\\d{2})"
+        },
+        "last_check": {
+          "at": "2026-11-18T08:19:55Z",
+          "found": {
+            "standard_cost_eur": 5.99,
+            "free_threshold_eur": 59.9
+          },
+          "differences": [],
+          "error": null
+        }
+      },
+      "notes": "Indirizzo del punto vendita fisico non verificato: il ritiro non viene proposto finché la località non è nota. Disponibile anche InPost Locker (3,99 €): non modellato."
+    },
+    "farmaciairisdiana": {
+      "standard_cost_eur": null,
+      "free_threshold_eur": null,
+      "free_threshold_inclusive": null,
+      "free_threshold_verified": false,
+      "extra_costs": [],
+      "cod_available": null,
+      "cod_cost_eur": null,
+      "pickup_available": null,
+      "pickup_cost_eur": null,
+      "pickup_locations": [],
+      "source_url": "https://farmaciairisdiana.it/content/1-spedizioni-consegna",
+      "source_quote": "Le tariffe delle spedizioni vengono calcolate al momento dell'ordine in base al peso e al volume della confezione.",
+      "verified_at": "2026-11-18",
+      "reliability": "sconosciuta",
+      "auto_check": null,
+      "notes": "Costo calcolato al checkout in base a peso/volume: non determinabile senza carrello. Il carrello che include questa farmacia risulta incompleto."
+    },
+    "efarma": {
+      "standard_cost_eur": null,
+      "free_threshold_eur": null,
+      "free_threshold_inclusive": null,
+      "free_threshold_verified": false,
+      "extra_costs": [],
+      "cod_available": null,
+      "cod_cost_eur": null,
+      "pickup_available": null,
+      "pickup_cost_eur": null,
+      "pickup_locations": [],
+      "source_url": "https://www.efarma.com/termini-e-condizioni",
+      "source_quote": null,
+      "verified_at": null,
+      "reliability": "sconosciuta",
+      "auto_check": {
+        "url": "https://www.efarma.com/termini-e-condizioni",
+        "patterns": {}
+      },
+      "notes": "Il 18/11/2026 il sito ha iniziato a rispondere 403 'Verifying Device' prima che le condizioni di spedizione potessero essere lette."
+    },
+    "farmafides": {
+      "standard_cost_eur": null,
+      "free_threshold_eur": null,
+      "free_threshold_inclusive": null,
+      "free_threshold_verified": false,
+      "extra_costs": [],
+      "cod_available": null,
+      "cod_cost_eur": null,
+      "pickup_available": null,
+      "pickup_cost_eur": null,
+      "pickup_locations": [],
+      "source_url": null,
+      "source_quote": null,
+      "verified_at": null,
+      "reliability": "sconosciuta",
+      "auto_check": null,
+      "notes": "Non ancora verificato (rate limit 429 durante l'analisi)."
+    },
+    "farmacievigorito": {
+      "standard_cost_eur": null,
+      "free_threshold_eur": null,
+      "free_threshold_inclusive": null,
+      "free_threshold_verified": false,
+      "extra_costs": [],
+      "cod_available": null,
+      "cod_cost_eur": null,
+      "pickup_available": null,
+      "pickup_cost_eur": null,
+      "pickup_locations": [],
+      "source_url": null,
+      "source_quote": null,
+      "verified_at": null,
+      "reliability": "sconosciuta",
+      "auto_check": null,
+      "notes": "Non ancora verificato (rate limit 429 durante l'analisi). La pagina dei termini è esclusa da robots.txt."
+    },
+    "topfarmacia": {
+      "standard_cost_eur": null,
+      "free_threshold_eur": null,
+      "free_threshold_inclusive": null,
+      "free_threshold_verified": false,
+      "extra_costs": [],
+      "cod_available": null,
+      "cod_cost_eur": null,
+      "pickup_available": null,
+      "pickup_cost_eur": null,
+      "pickup_locations": [],
+      "source_url": null,
+      "source_quote": null,
+      "verified_at": null,
+      "reliability": "sconosciuta",
+      "auto_check": null,
+      "notes": "Sito bloccato (403 Akamai)."
+    }
+  }
+}

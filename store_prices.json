@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "description": "Prezzi rilevati DI PERSONA in farmacie fisiche (non sono pubblicati online). Lasciare vuoto se non rilevati: nessun valore viene mai stimato.",
+  "how_to": "Aggiungi una voce per prodotto: store_id = id della farmacia in physical_pharmacies.json (es. 'osm:node/123456'), product_id = P001..P005, price in euro, available true/false, observed_at = data AAAA-MM-GG, source = 'rilevato di persona' o 'scontrino'. I prezzi più vecchi di 30 giorni vanno ricontrollati.",
+  "entries": []
+}

@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-18T07:00:00Z",
+  "generated_at_rome": "18/11/2026 08:00",
+  "status": "ERRORE",
+  "disclaimer": "Miglior prezzo trovato tra le farmacie monitorate",
+  "run": {
+    "duration_s": 6.4,
+    "pharmacies_attempted": 1,
+    "pharmacies_with_offers": 0,
+    "dry_run": false
+  },
+  "products": [
+    {
+      "id": "P001",
+      "brand": "Uriage",
+      "name": "Uriage Xémose Olio Detergente",
+      "format": {
+        "quantity": 1000,
+        "unit": "ml",
+        "label": "1000 ml"
+      },
+      "ean": "3661434003370",
+      "minsan": "927291005",
+      "format_history": null
+    },
+    {
+      "id": "P002",
+      "brand": "La Roche-Posay",
+      "name": "La Roche-Posay Lipikar Baume AP+M",
+      "format": {
+        "quantity": 400,
+        "unit": "ml",
+        "label": "400 ml"
+      },
+      "ean": "3337875696548",
+      "minsan": "979265434",
+      "format_history": null
+    },
+    {
+      "id": "P003",
+      "brand": "Ceramol",
+      "name": "Ceramol 311 Lipocrema",
+      "format": {
+        "quantity": 100,
+        "unit": "ml",
+        "label": "100 ml"
+      },
+      "ean": "8029408107014",
+      "minsan": "980512762",
+      "format_history": [
+        {
+          "label": "50 ml",
+          "quantity": 50,
+          "until": "2026-11-18",
+          "changed_at": "2026-11-18T10:30:00Z",
+          "previous_identifiers_not_active": {
+            "ean": "8029408107021",
+            "minsan": "980512750"
+          },
+          "note": "Formato monitorato fino al 18/11/2026. Le rilevazioni storiche restano in price_history.json con format='50 ml' ma sono escluse da grafico e ottimizzatore. Questi codici NON sono più usati dal matcher."
+        }
+      ]
+    },
+    {
+      "id": "P004",
+      "brand": "Ceramol",
+      "name": "Ceramol Crema Mani 311",
+      "format": {
+        "quantity": 100,
+        "unit": "ml",
+        "label": "100 ml"
+      },
+      "ean": "8029408093058",
+      "minsan": "977658020",
+      "format_history": null
+    },
+    {
+      "id": "P005",
+      "brand": "La Roche-Posay",
+      "name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+      "format": {
+        "quantity": 50,
+        "unit": "ml",
+        "label": "50 ml"
+      },
+      "ean": "3337875797597",
+      "minsan": "982981666",
+      "format_history": null
+    }
+  ],
+  "offers": [],
+  "candidate_offers": [],
+  "best_prices": {
+    "P001": null,
+    "P002": null,
+    "P003": null,
+    "P004": null,
+    "P005": null
+  },
+  "shipping": {
+    "aurora": {
+      "standard_cost_eur": 3.5,
+      "free_threshold_eur": 70,
+      "free_threshold_inclusive": true,
+      "free_threshold_verified": true,
+      "cod_cost_eur": null,
+      "pickup_available": false,
+      "pickup_cost_eur": null,
+      "source_url": null,
+      "verified_at": null,
+      "reliability": "alta",
+      "notes": null
+    }
+  },
+  "pharmacies": {
+    "aurora": {
+      "name": "Farmacia Aurora",
+      "domain": "aurora.example",
+      "base_url": "https://aurora.example",
+      "status": "ACTIVE",
+      "scraper_status": "OK",
+      "platform": null,
+      "collection_method": null,
+      "last_run": "2026-11-18T07:00:00Z",
+      "last_success": null,
+      "products_found": [],
+      "products_with_verified_price": [],
+      "errors": [],
+      "notes": null,
+      "last_verified": null,
+      "run": {
+        "duration_s": 3.0,
+        "requests": 5
+      }
+    }
+  },
+  "market": {
+    "total": 1,
+    "discovered": 0,
+    "under_review": 0,
+    "verified": 1,
+    "active": 1,
+    "blocked": 0,
+    "inactive": 0,
+    "unreachable": 0,
+    "new_last_7_days": 1
+  },
+  "carts": {
+    "complete_possible": false,
+    "products_without_offers": [
+      "P001",
+      "P002",
+      "P003",
+      "P004",
+      "P005"
+    ],
+    "products_considered": [],
+    "options_per_product": {
+      "P001": 0,
+      "P002": 0,
+      "P003": 0,
+      "P004": 0,
+      "P005": 0
+    },
+    "evaluated_combinations": 0,
+    "notes": [
+      "Nessun prezzo rilevato in farmacia fisica: i prezzi in negozio non sono pubblicati online, quindi l'acquisto in negozio (modalità C) non è calcolabile. Puoi inserirli in store_prices.json.",
+      "Impossibile comprare tutti e 5 i prodotti: nessuna offerta verificata e disponibile per P001, P002, P003, P004, P005. I carrelli sotto sono PARZIALI."
+    ],
+    "best_overall": null,
+    "best_single_pharmacy": null,
+    "best_max_two_pharmacies": null,
+    "best_any_number": null,
+    "by_mode": {},
+    "rankings": {
+      "domicilio": [],
+      "ritiro_fisico": [],
+      "misto": []
+    },
+    "incomplete_alternatives": [],
+    "savings_vs_single": null,
+    "channel_comparison": {},
+    "travel_previews": {}
+  },
+  "physical": null,
+  "stats": {
+    "offers_total": 0,
+    "offers_valid": 0,
+    "ok": 0,
+    "not_found": 0,
+    "price_unverified": 0,
+    "match_unreliable": 0,
+    "blocked": 0,
+    "rate_limited": 0,
+    "robots": 0,
+    "errors": 0,
+    "candidate_offers": 0,
+    "shipping_unverified": []
+  },
+  "errors": [],
+  "last_attempt": {
+    "at": "2026-11-18T07:00:00Z",
+    "status": "ERRORE"
+  },
+  "format_changes": []
+}

@@ -1,0 +1,626 @@
+{
+  "schema_version": 1,
+  "app": {
+    "name": "Dermocosmetic Price Tracker Italia",
+    "disclaimer": "Miglior prezzo trovato tra le farmacie monitorate",
+    "timezone": "Europe/Rome",
+    "currency": "EUR"
+  },
+  "http": {
+    "user_agent": "DermoPriceTracker/1.0 (+personal non-commercial price monitoring; see README of the GitHub repository)",
+    "robots_token": "DermoPriceTracker",
+    "min_delay_seconds": 2.5,
+    "jitter_seconds": 0.7,
+    "timeout_connect_seconds": 10,
+    "timeout_read_seconds": 30,
+    "max_attempts": 3,
+    "backoff_base_seconds": 4,
+    "max_retry_after_seconds": 90
+  },
+  "scraping": {
+    "max_candidates_per_product": 3,
+    "candidate_refresh_days": 7,
+    "sitemap_refresh_days": 7,
+    "price_tolerance_eur": 0.01,
+    "min_plausible_price_eur": 0.5,
+    "max_plausible_price_eur": 300
+  },
+  "generic_jsonld": {
+    "max_requests_per_domain": 25,
+    "max_candidates_per_product": 5,
+    "max_sitemap_children": 4,
+    "probe_max_age_days": 7,
+    "probe_per_discovery_run": 5,
+    "search_patterns": [
+      "/search?q={q}",
+      "/?s={q}",
+      "/catalogsearch/result/?q={q}",
+      "/ricerca?q={q}",
+      "/search?search={q}",
+      "/index.php?route=product/search&search={q}",
+      "/ricerca?controller=search&s={q}"
+    ],
+    "note": "Scraper generico per siti senza scraper dedicato: solo dati strutturati, tetto di richieste per dominio e per esecuzione. I siti non ACTIVE non entrano mai nel carrello."
+  },
+  "location": {
+    "label": "Milano",
+    "city": "Milano",
+    "postcode": null,
+    "country_code": "it",
+    "note": "Solo città o CAP: mai un indirizzo preciso. Le distanze partono dal centro della località."
+  },
+  "travel": {
+    "mode": "mezzi_pubblici",
+    "max_distance_km": 3,
+    "max_physical_pharmacies": 25,
+    "road_factor": 1.3,
+    "car_cost_per_km_eur": 0.35,
+    "car_parking_eur": 2.0,
+    "public_transport_round_trip_eur": 4.4,
+    "walk_bike_cost_eur": 0.0,
+    "note": "Parametri dell'utente, non prezzi rilevati: modificali qui. Il costo del viaggio è sempre una STIMA (distanza in linea d'aria x road_factor)."
+  },
+  "products": [
+    {
+      "id": "P001",
+      "brand": "Uriage",
+      "name": "Uriage Xémose Olio Detergente",
+      "format": {
+        "quantity": 1000,
+        "unit": "ml",
+        "label": "1000 ml"
+      },
+      "ean": "3661434003370",
+      "minsan": "927291005",
+      "identifiers_verification": {
+        "verified": true,
+        "verified_at": "2026-11-18",
+        "method": "gtin13 e sku/Minsan letti dal JSON-LD di almeno due farmacie indipendenti",
+        "sources": [
+          "https://www.clubfarma.it/p/23164-uriage-xemose-olio-detergente-lenitivo-1l",
+          "https://www.redcare.it/cosmetici-igiene/IT927291005/uriage-xemose-olio-lavante-lenitivo-1l.htm",
+          "https://www.efarma.com/uriage-xemose-olio-lavante-lenitivo-doccia-e-bagno-1-l.html"
+        ]
+      },
+      "search_queries": [
+        "xemose olio detergente 1l",
+        "xemose olio"
+      ],
+      "url_filter": {
+        "all": [
+          "xemose"
+        ],
+        "any": [
+          "olio",
+          "huile",
+          "oil",
+          "lavante",
+          "det"
+        ],
+        "exclude": [
+          "balsamo",
+          "baume",
+          "balm",
+          "syndet",
+          "crema",
+          "creme",
+          "cerato",
+          "contorno",
+          "spray",
+          "omaggio",
+          "set-da",
+          "duo",
+          "50ml",
+          "200ml",
+          "200-ml",
+          "400ml",
+          "500ml",
+          "500-ml"
+        ],
+        "format_hints": [
+          "1l",
+          "1-l",
+          "1lt",
+          "1-lt",
+          "1-litro",
+          "1000",
+          "litro"
+        ],
+        "prefer": [
+          "olio-det",
+          "olio-lavante",
+          "huile-lavante",
+          "detergente"
+        ]
+      },
+      "match": {
+        "brand_aliases": [
+          "uriage"
+        ],
+        "required_all": [
+          "xemose"
+        ],
+        "required_any": [
+          [
+            "olio",
+            "huile",
+            "oil"
+          ],
+          [
+            "detergente",
+            "lavante",
+            "lavant",
+            "doccia",
+            "cleansing",
+            "bagno"
+          ]
+        ],
+        "excluded_terms": [
+          "balsamo",
+          "baume",
+          "balm",
+          "syndet",
+          "cerato",
+          "contorno"
+        ],
+        "excluded_terms_name_only": [
+          "crema",
+          "creme",
+          "spray",
+          "stick",
+          "latte",
+          "siero"
+        ],
+        "accepted_variants": [
+          "Huile Lavante Apaisante",
+          "Olio Lavante Lenitivo",
+          "C8+ Olio Doccia Lavante"
+        ],
+        "notes": "Il nome commerciale recente è 'Xémose C8+ olio doccia lavante': stesso EAN 3661434003370."
+      }
+    },
+    {
+      "id": "P002",
+      "brand": "La Roche-Posay",
+      "name": "La Roche-Posay Lipikar Baume AP+M",
+      "format": {
+        "quantity": 400,
+        "unit": "ml",
+        "label": "400 ml"
+      },
+      "ean": "3337875696548",
+      "minsan": "979265434",
+      "identifiers_verification": {
+        "verified": true,
+        "verified_at": "2026-11-18",
+        "method": "gtin13+sku nel JSON-LD di clubfarma, sku/Minsan nel JSON-LD di meafarma, EAN nell'URL di alpifarma e farmaciairisdiana",
+        "sources": [
+          "https://www.clubfarma.it/p/40010-lipikar-baume-ap-m-balsamo-riparatore-per-pelle-secca-o-atopica-400ml",
+          "https://meafarma.it/lipikar-baume-ap-m-400ml",
+          "https://www.alpifarma.it/idratanti-ed-emolienti/24426-la-roche-posay-lipikar-baume-apm-400ml-3337875696548.html"
+        ]
+      },
+      "search_queries": [
+        "lipikar baume ap+m 400",
+        "lipikar baume"
+      ],
+      "url_filter": {
+        "all": [
+          "lipikar"
+        ],
+        "any": [
+          "baume",
+          "balsamo",
+          "crema-corpo",
+          "riparatore"
+        ],
+        "exclude": [
+          "light",
+          "leggero",
+          "max",
+          "paper",
+          "eco",
+          "15ml",
+          "75-ml",
+          "200",
+          "set-da",
+          "duo",
+          "omaggio",
+          "refill"
+        ],
+        "format_hints": [
+          "400"
+        ],
+        "prefer": [
+          "apm",
+          "ap-m",
+          "ap-piu-m",
+          "ap+m"
+        ]
+      },
+      "match": {
+        "brand_aliases": [
+          "la roche posay",
+          "laroche posay",
+          "la roche",
+          "l oreal",
+          "loreal",
+          "cosmetique active"
+        ],
+        "required_all": [
+          "lipikar",
+          "apm"
+        ],
+        "required_any": [
+          [
+            "baume",
+            "balsamo"
+          ]
+        ],
+        "excluded_terms": [
+          "light",
+          "leggero",
+          "leggera",
+          "apmax",
+          "max",
+          "paper",
+          "ecologica",
+          "refill",
+          "ricarica",
+          "syndet",
+          "urea",
+          "eczema med"
+        ],
+        "excluded_terms_name_only": [
+          "gel",
+          "olio",
+          "fluido",
+          "huile"
+        ],
+        "accepted_variants": [
+          "Baume AP+M",
+          "Balsamo AP+M"
+        ],
+        "notes": "ATTENZIONE: il Minsan 981401019 è il formato 200 ml. Pagine senza 'AP+M' nel titolo si accettano solo con EAN/Minsan."
+      }
+    },
+    {
+      "id": "P003",
+      "brand": "Ceramol",
+      "name": "Ceramol 311 Lipocrema",
+      "format": {
+        "quantity": 100,
+        "unit": "ml",
+        "label": "100 ml"
+      },
+      "ean": "8029408107014",
+      "minsan": "980512762",
+      "identifiers_verification": {
+        "verified": true,
+        "verified_at": "2026-11-18",
+        "method": "gtin13 + sku/Minsan letti dal JSON-LD di tre farmacie indipendenti (pagina del formato 100 ml)",
+        "sources": [
+          "https://www.clubfarma.it/p/50757-ceramol-lipocrema-311-100ml",
+          "https://www.redcare.it/cosmetici-igiene/IT980512762/ceramol-lipocrema-311.htm",
+          "https://www.alpifarma.it/prodotti-dermatologici/33488-ceramol-lipocrema-311-100-ml-8029408107014.html"
+        ]
+      },
+      "search_queries": [
+        "ceramol lipocrema 311 100 ml",
+        "ceramol lipocrema 311"
+      ],
+      "url_filter": {
+        "all": [
+          "ceramol"
+        ],
+        "any": [
+          "lipocrema",
+          "lipo-crema"
+        ],
+        "exclude": [
+          "gel",
+          "duo",
+          "set-da",
+          "50ml",
+          "50-ml",
+          "-50-",
+          "30ml",
+          "30-ml",
+          "mani",
+          "viso",
+          "cremabase",
+          "base-detersiva"
+        ],
+        "format_hints": [
+          "100"
+        ],
+        "prefer": [
+          "lipocrema-311-100",
+          "lipocrema"
+        ]
+      },
+      "match": {
+        "brand_aliases": [
+          "ceramol",
+          "unifarco"
+        ],
+        "required_all": [
+          "ceramol",
+          "lipocrema"
+        ],
+        "required_any": [],
+        "excluded_terms": [
+          "gel",
+          "cremabase",
+          "viso",
+          "mani",
+          "detersiva",
+          "piedi"
+        ],
+        "excluded_terms_name_only": [
+          "base",
+          "detergente"
+        ],
+        "accepted_variants": [
+          "Lipocrema 311 100 ml",
+          "311 Lipocrema 100 ml"
+        ],
+        "excluded_variants": [
+          "Lipocrema 50 ml (ex formato monitorato)",
+          "Lipocrema gel 30 ml",
+          "duo pack / set da 2",
+          "qualsiasi formato diverso da 100 ml",
+          "Ceramol 311 Crema Mani 100 ml (è P004)"
+        ],
+        "notes": "Confusione possibile con P004 (Ceramol Crema Mani 311, 100 ml): stesso marchio, linea e formato. P003 richiede 'lipocrema' ed esclude 'mani'; P004 richiede 'mani' ed esclude 'lipocrema'. Esiste una seconda 'Lipocrema 100 ml' con Minsan 977658107 (verafarma, senza EAN, non disponibile): conflitto di identificativo, esclusa."
+      },
+      "format_history": [
+        {
+          "label": "50 ml",
+          "quantity": 50,
+          "until": "2026-11-18",
+          "changed_at": "2026-11-18T10:30:00Z",
+          "previous_identifiers_not_active": {
+            "ean": "8029408107021",
+            "minsan": "980512750"
+          },
+          "note": "Formato monitorato fino al 18/11/2026. Le rilevazioni storiche restano in price_history.json con format='50 ml' ma sono escluse da grafico e ottimizzatore. Questi codici NON sono più usati dal matcher."
+        }
+      ]
+    },
+    {
+      "id": "P004",
+      "brand": "Ceramol",
+      "name": "Ceramol Crema Mani 311",
+      "format": {
+        "quantity": 100,
+        "unit": "ml",
+        "label": "100 ml"
+      },
+      "ean": "8029408093058",
+      "minsan": "977658020",
+      "identifiers_verification": {
+        "verified": true,
+        "verified_at": "2026-11-18",
+        "method": "gtin13 e sku/Minsan letti dal JSON-LD di almeno due farmacie indipendenti",
+        "sources": [
+          "https://www.alpifarma.it/creme-idratanti/26683-ceramol-crema-mani-100ml-8029408093058.html",
+          "https://www.clubfarma.it/p/41784-ceramol-crema-311-mani-100ml",
+          "https://www.efarma.com/ceramol-crema-mani-100-ml.html",
+          "https://www.redcare.it/cosmetici-igiene/IT977658020/ceramol-311-crema-mani.htm"
+        ]
+      },
+      "search_queries": [
+        "ceramol crema mani 311",
+        "ceramol mani"
+      ],
+      "url_filter": {
+        "all": [
+          "ceramol"
+        ],
+        "any": [
+          "mani"
+        ],
+        "exclude": [
+          "duo",
+          "set-da",
+          "lipocrema"
+        ],
+        "format_hints": [
+          "100"
+        ],
+        "prefer": [
+          "crema-mani",
+          "mani"
+        ]
+      },
+      "match": {
+        "brand_aliases": [
+          "ceramol",
+          "unifarco"
+        ],
+        "required_all": [
+          "ceramol",
+          "mani"
+        ],
+        "required_any": [
+          [
+            "crema",
+            "cream"
+          ]
+        ],
+        "excluded_terms": [
+          "lipocrema",
+          "viso",
+          "cremabase",
+          "piedi"
+        ],
+        "excluded_terms_name_only": [
+          "gel",
+          "detergente"
+        ],
+        "accepted_variants": [
+          "Crema Mani 311",
+          "311 Crema Mani"
+        ],
+        "notes": "",
+        "excluded_variants": [
+          "Ceramol 311 Lipocrema 100 ml (è P003)",
+          "duo pack / set da 2"
+        ]
+      }
+    },
+    {
+      "id": "P005",
+      "brand": "La Roche-Posay",
+      "name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+      "format": {
+        "quantity": 50,
+        "unit": "ml",
+        "label": "50 ml"
+      },
+      "ean": "3337875797597",
+      "minsan": "982981666",
+      "identifiers_verification": {
+        "verified": true,
+        "verified_at": "2026-11-18",
+        "method": "gtin13+sku nel JSON-LD di redcare e clubfarma; meafarma (stesso Minsan) lo indica come 'Senza Profumo'",
+        "sources": [
+          "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
+          "https://www.clubfarma.it/p/55771-anthelios-uvm-fluido-inv-spf50",
+          "https://meafarma.it/anthelios-uvm-fluido-invisibile-50-sp"
+        ]
+      },
+      "search_queries": [
+        "anthelios uvmune fluido invisibile",
+        "uvmune fluido"
+      ],
+      "url_filter": {
+        "all": [],
+        "any": [
+          "uvmune",
+          "uvm",
+          "inv-fluid"
+        ],
+        "exclude": [
+          "colorat",
+          "tinted",
+          "-tt",
+          "oil",
+          "pediatr",
+          "bambin",
+          "-bb",
+          "-dp",
+          "limitata",
+          "limited",
+          "sport",
+          "mela",
+          "hyalu",
+          "spray",
+          "latte",
+          "crema",
+          "gel",
+          "duo",
+          "set-da",
+          "anti-macchie",
+          "antimacchie",
+          "pelli-grasse",
+          "antipig",
+          "15ml",
+          "idrat",
+          "macch",
+          "-cr-"
+        ],
+        "format_hints": [
+          "50"
+        ],
+        "prefer": [
+          "fluido-inv",
+          "fluido-invisibile",
+          "flinv",
+          "fluido-spf50-senza",
+          "invisibile"
+        ]
+      },
+      "match": {
+        "brand_aliases": [
+          "la roche posay",
+          "laroche posay",
+          "la roche",
+          "l oreal",
+          "loreal",
+          "cosmetique active"
+        ],
+        "required_all": [
+          "anthelios",
+          "uvmune"
+        ],
+        "required_any": [
+          [
+            "fluido"
+          ],
+          [
+            "invisibile"
+          ]
+        ],
+        "excluded_terms": [
+          "colorato",
+          "colorata",
+          "tinted",
+          "teinte",
+          "tt",
+          "oil",
+          "control",
+          "pediatrics",
+          "dp",
+          "bambino",
+          "bambini",
+          "kids",
+          "limitata",
+          "limited",
+          "sport",
+          "mela",
+          "hyalu",
+          "spray",
+          "latte",
+          "antimacchie",
+          "macchie",
+          "grasse",
+          "conprofumo"
+        ],
+        "excluded_terms_name_only": [
+          "crema",
+          "gel"
+        ],
+        "accepted_variants": [
+          "Fluido Invisibile SPF50+ (senza profumo)",
+          "Invisible Fluid SPF50+"
+        ],
+        "notes": "Il 'Fluido Invisibile' venduto in Italia è la versione senza profumo (EAN 3337875797597). Escluse: colorata, oil control, Dermo-Pediatrics, edizione limitata (EAN 3337875925853), Pro Sport, bundle."
+      }
+    }
+  ],
+  "global_exclusions": {
+    "bundle_terms": [
+      "set da",
+      "duo pack",
+      "duopack",
+      "bipack",
+      "tripack",
+      "kit",
+      "cofanetto",
+      "confezione doppia",
+      "2 pezzi",
+      "2x",
+      "x2",
+      "omaggio",
+      "campione",
+      "sample",
+      "travel size",
+      "mini size",
+      "refill",
+      "ricarica"
+    ],
+    "notes": "Valgono per tutti i prodotti: multipack, omaggi e ricariche non sono mai il prodotto da monitorare."
+  }
+}

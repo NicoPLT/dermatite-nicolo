@@ -1,0 +1,14 @@
+<!doctype html>
+<!-- DATI SIMULATI PER TEST: JSON-LD con @graph, offerte multiple con prezzi diversi (ambiguo). -->
+<html lang="it"><head><title>Test</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"WebSite","name":"Test"},
+ {"@type":"Product","name":"Ceramol Lipocrema 311 50 ml","gtin13":"8029408107021",
+  "offers":[{"@type":"Offer","price":"11.99","priceCurrency":"EUR","availability":"https://schema.org/InStock"},
+            {"@type":"Offer","price":"21.50","priceCurrency":"EUR","availability":"https://schema.org/InStock"}]}
+]}
+</script>
+<!-- JSON-LD rotto: deve essere ignorato senza errori -->
+<script type="application/ld+json">{ "@type": "Product", "name": </script>
+</head><body><h1>Ceramol Lipocrema 311 50 ml</h1></body></html>

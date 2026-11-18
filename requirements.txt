@@ -1,0 +1,16 @@
+# Dipendenze di runtime (tutte gratuite / open source)
+requests>=2.31,<3
+beautifulsoup4>=4.11,<5
+lxml>=4.9
+certifi>=2023.7.22
+# Usato solo per completare catene TLS incomplete via AIA (farmavillage.it).
+cryptography>=41
+# Database dei fusi orari per zoneinfo (necessario su Windows).
+tzdata>=2023.3
+
+# Test
+pytest>=7.2
+
+# Playwright NON è necessario: tutti i siti attivi servono HTML lato server.
+# Se un giorno uno scraper imposta requires_js = True:
+#   pip install playwright && playwright install --with-deps chromium

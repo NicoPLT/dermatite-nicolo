@@ -1,0 +1,3 @@
+<?xml version="1.0"?>
+<!-- DATI SIMULATI PER TEST -->
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"><ShortName>Test</ShortName><Url type="text/html" template="https://www.farmatest.it/cerca?lang={language?}&amp;testo={searchTerms}&amp;pagina={startPage?}"/></OpenSearchDescription>

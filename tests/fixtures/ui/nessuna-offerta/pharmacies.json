@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-11-18T07:00:00Z",
+  "pharmacies": [
+    {
+      "id": "aurora",
+      "name": "Farmacia Aurora",
+      "domain": "aurora.example",
+      "base_url": "https://aurora.example",
+      "source": "Fixture UI",
+      "status": "ACTIVE",
+      "scraper_status": "OK",
+      "discovered_at": "2026-11-18T07:00:00Z",
+      "last_run": "2026-11-18T07:00:00Z",
+      "last_success": null,
+      "products_with_verified_price": [],
+      "products_found": [],
+      "errors": []
+    }
+  ],
+  "last_discovery": null
+}

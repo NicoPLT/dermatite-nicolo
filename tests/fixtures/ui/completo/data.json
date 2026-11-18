@@ -1,0 +1,2868 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-18T07:00:00Z",
+  "generated_at_rome": "18/11/2026 08:00",
+  "status": "OK",
+  "disclaimer": "Miglior prezzo trovato tra le farmacie monitorate",
+  "run": {
+    "duration_s": 6.4,
+    "pharmacies_attempted": 2,
+    "pharmacies_with_offers": 2,
+    "dry_run": false
+  },
+  "products": [
+    {
+      "id": "P001",
+      "brand": "Uriage",
+      "name": "Uriage Xémose Olio Detergente",
+      "format": {
+        "quantity": 1000,
+        "unit": "ml",
+        "label": "1000 ml"
+      },
+      "ean": "3661434003370",
+      "minsan": "927291005",
+      "format_history": null
+    },
+    {
+      "id": "P002",
+      "brand": "La Roche-Posay",
+      "name": "La Roche-Posay Lipikar Baume AP+M",
+      "format": {
+        "quantity": 400,
+        "unit": "ml",
+        "label": "400 ml"
+      },
+      "ean": "3337875696548",
+      "minsan": "979265434",
+      "format_history": null
+    },
+    {
+      "id": "P003",
+      "brand": "Ceramol",
+      "name": "Ceramol 311 Lipocrema",
+      "format": {
+        "quantity": 100,
+        "unit": "ml",
+        "label": "100 ml"
+      },
+      "ean": "8029408107014",
+      "minsan": "980512762",
+      "format_history": [
+        {
+          "label": "50 ml",
+          "quantity": 50,
+          "until": "2026-11-18",
+          "changed_at": "2026-11-18T10:30:00Z",
+          "previous_identifiers_not_active": {
+            "ean": "8029408107021",
+            "minsan": "980512750"
+          },
+          "note": "Formato monitorato fino al 18/11/2026. Le rilevazioni storiche restano in price_history.json con format='50 ml' ma sono escluse da grafico e ottimizzatore. Questi codici NON sono più usati dal matcher."
+        }
+      ]
+    },
+    {
+      "id": "P004",
+      "brand": "Ceramol",
+      "name": "Ceramol Crema Mani 311",
+      "format": {
+        "quantity": 100,
+        "unit": "ml",
+        "label": "100 ml"
+      },
+      "ean": "8029408093058",
+      "minsan": "977658020",
+      "format_history": null
+    },
+    {
+      "id": "P005",
+      "brand": "La Roche-Posay",
+      "name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+      "format": {
+        "quantity": 50,
+        "unit": "ml",
+        "label": "50 ml"
+      },
+      "ean": "3337875797597",
+      "minsan": "982981666",
+      "format_history": null
+    }
+  ],
+  "offers": [
+    {
+      "product_id": "P001",
+      "pharmacy_id": "aurora",
+      "status": "OK",
+      "price": 19.8,
+      "currency": "EUR",
+      "availability": "DISPONIBILE",
+      "url": "https://aurora.example/P001",
+      "title": "Uriage Xémose Olio Detergente",
+      "match_level": "ID",
+      "match_reliability": "alta",
+      "match_reasons": [],
+      "ids_found": {},
+      "price_sources": {
+        "json_ld": 19.8,
+        "meta": 19.8
+      },
+      "price_method": "json_ld+meta",
+      "price_conflict": false,
+      "availability_sources": {},
+      "availability_method": null,
+      "scraped_at": "2026-11-18T07:00:00Z",
+      "verified": true,
+      "notes": [],
+      "rejected_candidates": [],
+      "shipping_jsonld": null,
+      "variant": null,
+      "usable": true,
+      "format": "1000 ml",
+      "pharmacy_name": "Farmacia Aurora",
+      "single_item_shipping": 3.5,
+      "single_item_total": 23.3
+    },
+    {
+      "product_id": "P001",
+      "pharmacy_id": "cedro",
+      "status": "OK",
+      "price": 14.3,
+      "currency": "EUR",
+      "availability": "DISPONIBILE",
+      "url": "https://cedro.example/P001",
+      "title": "Uriage Xémose Olio Detergente",
+      "match_level": "ID",
+      "match_reliability": "alta",
+      "match_reasons": [],
+      "ids_found": {},
+      "price_sources": {
+        "json_ld": 14.3,
+        "meta": 14.3
+      },
+      "price_method": "json_ld+meta",
+      "price_conflict": false,
+      "availability_sources": {},
+      "availability_method": null,
+      "scraped_at": "2026-11-18T07:00:00Z",
+      "verified": true,
+      "notes": [],
+      "rejected_candidates": [],
+      "shipping_jsonld": null,
+      "variant": null,
+      "usable": true,
+      "format": "1000 ml",
+      "pharmacy_name": "Farmacia del Cedro",
+      "single_item_shipping": 3.5,
+      "single_item_total": 17.8
+    },
+    {
+      "product_id": "P002",
+      "pharmacy_id": "aurora",
+      "status": "OK",
+      "price": 17.6,
+      "currency": "EUR",
+      "availability": "DISPONIBILE",
+      "url": "https://aurora.example/P002",
+      "title": "La Roche-Posay Lipikar Baume AP+M",
+      "match_level": "ID",
+      "match_reliability": "alta",
+      "match_reasons": [],
+      "ids_found": {},
+      "price_sources": {
+        "json_ld": 17.6,
+        "meta": 17.6
+      },
+      "price_method": "json_ld+meta",
+      "price_conflict": false,
+      "availability_sources": {},
+      "availability_method": null,
+      "scraped_at": "2026-11-18T07:00:00Z",
+      "verified": true,
+      "notes": [],
+      "rejected_candidates": [],
+      "shipping_jsonld": null,
+      "variant": null,
+      "usable": true,
+      "format": "400 ml",
+      "pharmacy_name": "Farmacia Aurora",
+      "single_item_shipping": 3.5,
+      "single_item_total": 21.1
+    },
+    {
+      "product_id": "P002",
+      "pharmacy_id": "cedro",
+      "status": "OK",
+      "price": 21.5,
+      "currency": "EUR",
+      "availability": "DISPONIBILE",
+      "url": "https://cedro.example/P002",
+      "title": "La Roche-Posay Lipikar Baume AP+M",
+      "match_level": "ID",
+      "match_reliability": "alta",
+      "match_reasons": [],
+      "ids_found": {},
+      "price_sources": {
+        "json_ld": 21.5,
+        "meta": 21.5
+      },
+      "price_method": "json_ld+meta",
+      "price_conflict": false,
+      "availability_sources": {},
+      "availability_method": null,
+      "scraped_at": "2026-11-18T07:00:00Z",
+      "verified": true,
+      "notes": [],
+      "rejected_candidates": [],
+      "shipping_jsonld": null,
+      "variant": null,
+      "usable": true,
+      "format": "400 ml",
+      "pharmacy_name": "Farmacia del Cedro",
+      "single_item_shipping": 3.5,
+      "single_item_total": 25.0
+    },
+    {
+      "product_id": "P003",
+      "pharmacy_id": "aurora",
+      "status": "OK",
+      "price": 16.4,
+      "currency": "EUR",
+      "availability": "DISPONIBILE",
+      "url": "https://aurora.example/P003",
+      "title": "Ceramol 311 Lipocrema",
+      "match_level": "ID",
+      "match_reliability": "alta",
+      "match_reasons": [],
+      "ids_found": {},
+      "price_sources": {
+        "json_ld": 16.4,
+        "meta": 16.4
+      },
+      "price_method": "json_ld+meta",
+      "price_conflict": false,
+      "availability_sources": {},
+      "availability_method": null,
+      "scraped_at": "2026-11-18T07:00:00Z",
+      "verified": true,
+      "notes": [],
+      "rejected_candidates": [],
+      "shipping_jsonld": null,
+      "variant": null,
+      "usable": true,
+      "format": "100 ml",
+      "pharmacy_name": "Farmacia Aurora",
+      "single_item_shipping": 3.5,
+      "single_item_total": 19.9
+    },
+    {
+      "product_id": "P003",
+      "pharmacy_id": "cedro",
+      "status": "OK",
+      "price": 17.4,
+      "currency": "EUR",
+      "availability": "DISPONIBILE",
+      "url": "https://cedro.example/P003",
+      "title": "Ceramol 311 Lipocrema",
+      "match_level": "ID",
+      "match_reliability": "alta",
+      "match_reasons": [],
+      "ids_found": {},
+      "price_sources": {
+        "json_ld": 17.4,
+        "meta": 17.4
+      },
+      "price_method": "json_ld+meta",
+      "price_conflict": false,
+      "availability_sources": {},
+      "availability_method": null,
+      "scraped_at": "2026-11-18T07:00:00Z",
+      "verified": true,
+      "notes": [],
+      "rejected_candidates": [],
+      "shipping_jsonld": null,
+      "variant": null,
+      "usable": true,
+      "format": "100 ml",
+      "pharmacy_name": "Farmacia del Cedro",
+      "single_item_shipping": 3.5,
+      "single_item_total": 20.9
+    },
+    {
+      "product_id": "P004",
+      "pharmacy_id": "aurora",
+      "status": "OK",
+      "price": 10.9,
+      "currency": "EUR",
+      "availability": "DISPONIBILE",
+      "url": "https://aurora.example/P004",
+      "title": "Ceramol Crema Mani 311",
+      "match_level": "ID",
+      "match_reliability": "alta",
+      "match_reasons": [],
+      "ids_found": {},
+      "price_sources": {
+        "json_ld": 10.9,
+        "meta": 10.9
+      },
+      "price_method": "json_ld+meta",
+      "price_conflict": false,
+      "availability_sources": {},
+      "availability_method": null,
+      "scraped_at": "2026-11-18T07:00:00Z",
+      "verified": true,
+      "notes": [],
+      "rejected_candidates": [],
+      "shipping_jsonld": null,
+      "variant": null,
+      "usable": true,
+      "format": "100 ml",
+      "pharmacy_name": "Farmacia Aurora",
+      "single_item_shipping": 3.5,
+      "single_item_total": 14.4
+    },
+    {
+      "product_id": "P004",
+      "pharmacy_id": "cedro",
+      "status": "OK",
+      "price": 8.8,
+      "currency": "EUR",
+      "availability": "DISPONIBILE",
+      "url": "https://cedro.example/P004",
+      "title": "Ceramol Crema Mani 311",
+      "match_level": "ID",
+      "match_reliability": "alta",
+      "match_reasons": [],
+      "ids_found": {},
+      "price_sources": {
+        "json_ld": 8.8,
+        "meta": 8.8
+      },
+      "price_method": "json_ld+meta",
+      "price_conflict": false,
+      "availability_sources": {},
+      "availability_method": null,
+      "scraped_at": "2026-11-18T07:00:00Z",
+      "verified": true,
+      "notes": [],
+      "rejected_candidates": [],
+      "shipping_jsonld": null,
+      "variant": null,
+      "usable": true,
+      "format": "100 ml",
+      "pharmacy_name": "Farmacia del Cedro",
+      "single_item_shipping": 3.5,
+      "single_item_total": 12.3
+    },
+    {
+      "product_id": "P005",
+      "pharmacy_id": "aurora",
+      "status": "OK",
+      "price": 15.2,
+      "currency": "EUR",
+      "availability": "DISPONIBILE",
+      "url": "https://aurora.example/P005",
+      "title": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+      "match_level": "ID",
+      "match_reliability": "alta",
+      "match_reasons": [],
+      "ids_found": {},
+      "price_sources": {
+        "json_ld": 15.2,
+        "meta": 15.2
+      },
+      "price_method": "json_ld+meta",
+      "price_conflict": false,
+      "availability_sources": {},
+      "availability_method": null,
+      "scraped_at": "2026-11-18T07:00:00Z",
+      "verified": true,
+      "notes": [],
+      "rejected_candidates": [],
+      "shipping_jsonld": null,
+      "variant": null,
+      "usable": true,
+      "format": "50 ml",
+      "pharmacy_name": "Farmacia Aurora",
+      "single_item_shipping": 3.5,
+      "single_item_total": 18.7
+    },
+    {
+      "product_id": "P005",
+      "pharmacy_id": "cedro",
+      "status": "OK",
+      "price": 16.9,
+      "currency": "EUR",
+      "availability": "DISPONIBILE",
+      "url": "https://cedro.example/P005",
+      "title": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+      "match_level": "ID",
+      "match_reliability": "alta",
+      "match_reasons": [],
+      "ids_found": {},
+      "price_sources": {
+        "json_ld": 16.9,
+        "meta": 16.9
+      },
+      "price_method": "json_ld+meta",
+      "price_conflict": false,
+      "availability_sources": {},
+      "availability_method": null,
+      "scraped_at": "2026-11-18T07:00:00Z",
+      "verified": true,
+      "notes": [],
+      "rejected_candidates": [],
+      "shipping_jsonld": null,
+      "variant": null,
+      "usable": true,
+      "format": "50 ml",
+      "pharmacy_name": "Farmacia del Cedro",
+      "single_item_shipping": 3.5,
+      "single_item_total": 20.4
+    }
+  ],
+  "candidate_offers": [
+    {
+      "product_id": "P001",
+      "url": "https://fonte.example/P001",
+      "price": 6.75,
+      "status": "OK",
+      "format": "1000 ml",
+      "match_level": "ID",
+      "availability": "SCONOSCIUTA",
+      "pharmacy_id": "fonte",
+      "pharmacy_name": "Farmacia della Fonte",
+      "domain": "fonte.example",
+      "pharmacy_status": "UNDER_REVIEW",
+      "jsonld_compatibility": "PARTIAL",
+      "reliability": "NON_VERIFICATO",
+      "source": "probe",
+      "usable": false
+    }
+  ],
+  "best_prices": {
+    "P001": {
+      "pharmacy_id": "cedro",
+      "pharmacy_name": "Farmacia del Cedro",
+      "price": 14.3,
+      "url": "https://cedro.example/P001",
+      "availability": "DISPONIBILE",
+      "match_level": "ID",
+      "single_item_shipping": 3.5,
+      "single_item_total": 17.8
+    },
+    "P002": {
+      "pharmacy_id": "aurora",
+      "pharmacy_name": "Farmacia Aurora",
+      "price": 17.6,
+      "url": "https://aurora.example/P002",
+      "availability": "DISPONIBILE",
+      "match_level": "ID",
+      "single_item_shipping": 3.5,
+      "single_item_total": 21.1
+    },
+    "P003": {
+      "pharmacy_id": "aurora",
+      "pharmacy_name": "Farmacia Aurora",
+      "price": 16.4,
+      "url": "https://aurora.example/P003",
+      "availability": "DISPONIBILE",
+      "match_level": "ID",
+      "single_item_shipping": 3.5,
+      "single_item_total": 19.9
+    },
+    "P004": {
+      "pharmacy_id": "cedro",
+      "pharmacy_name": "Farmacia del Cedro",
+      "price": 8.8,
+      "url": "https://cedro.example/P004",
+      "availability": "DISPONIBILE",
+      "match_level": "ID",
+      "single_item_shipping": 3.5,
+      "single_item_total": 12.3
+    },
+    "P005": {
+      "pharmacy_id": "aurora",
+      "pharmacy_name": "Farmacia Aurora",
+      "price": 15.2,
+      "url": "https://aurora.example/P005",
+      "availability": "DISPONIBILE",
+      "match_level": "ID",
+      "single_item_shipping": 3.5,
+      "single_item_total": 18.7
+    }
+  },
+  "shipping": {
+    "aurora": {
+      "standard_cost_eur": 3.5,
+      "free_threshold_eur": 70,
+      "free_threshold_inclusive": true,
+      "free_threshold_verified": true,
+      "cod_cost_eur": null,
+      "pickup_available": true,
+      "pickup_cost_eur": 0,
+      "source_url": null,
+      "verified_at": null,
+      "reliability": "alta",
+      "notes": null
+    },
+    "cedro": {
+      "standard_cost_eur": 3.5,
+      "free_threshold_eur": 70,
+      "free_threshold_inclusive": true,
+      "free_threshold_verified": true,
+      "cod_cost_eur": null,
+      "pickup_available": false,
+      "pickup_cost_eur": null,
+      "source_url": null,
+      "verified_at": null,
+      "reliability": "alta",
+      "notes": null
+    }
+  },
+  "pharmacies": {
+    "aurora": {
+      "name": "Farmacia Aurora",
+      "domain": "aurora.example",
+      "base_url": "https://aurora.example",
+      "status": "ACTIVE",
+      "scraper_status": "OK",
+      "platform": null,
+      "collection_method": null,
+      "last_run": "2026-11-18T07:00:00Z",
+      "last_success": "2026-11-18T07:00:00Z",
+      "products_found": [
+        "P001",
+        "P002",
+        "P003",
+        "P004",
+        "P005"
+      ],
+      "products_with_verified_price": [
+        "P001",
+        "P002",
+        "P003",
+        "P004",
+        "P005"
+      ],
+      "errors": [],
+      "notes": null,
+      "last_verified": null,
+      "run": {
+        "duration_s": 3.0,
+        "requests": 5
+      }
+    },
+    "cedro": {
+      "name": "Farmacia del Cedro",
+      "domain": "cedro.example",
+      "base_url": "https://cedro.example",
+      "status": "ACTIVE",
+      "scraper_status": "OK",
+      "platform": null,
+      "collection_method": null,
+      "last_run": "2026-11-18T07:00:00Z",
+      "last_success": "2026-11-18T07:00:00Z",
+      "products_found": [
+        "P001",
+        "P002",
+        "P003",
+        "P004",
+        "P005"
+      ],
+      "products_with_verified_price": [
+        "P001",
+        "P002",
+        "P003",
+        "P004",
+        "P005"
+      ],
+      "errors": [],
+      "notes": null,
+      "last_verified": null,
+      "run": {
+        "duration_s": 3.0,
+        "requests": 5
+      }
+    },
+    "fonte": {
+      "name": "Farmacia della Fonte",
+      "domain": "fonte.example",
+      "base_url": "https://fonte.example",
+      "status": "UNDER_REVIEW",
+      "scraper_status": "PROBE_PARTIAL",
+      "platform": null,
+      "collection_method": null,
+      "last_run": null,
+      "last_success": null,
+      "products_found": [],
+      "products_with_verified_price": [],
+      "errors": [],
+      "notes": null,
+      "last_verified": null,
+      "run": null
+    }
+  },
+  "market": {
+    "total": 3,
+    "discovered": 0,
+    "under_review": 1,
+    "verified": 2,
+    "active": 2,
+    "blocked": 0,
+    "inactive": 0,
+    "unreachable": 0,
+    "new_last_7_days": 3
+  },
+  "carts": {
+    "complete_possible": true,
+    "products_without_offers": [],
+    "products_considered": [
+      "P001",
+      "P002",
+      "P003",
+      "P004",
+      "P005"
+    ],
+    "options_per_product": {
+      "P001": 4,
+      "P002": 4,
+      "P003": 4,
+      "P004": 4,
+      "P005": 4
+    },
+    "evaluated_combinations": 454,
+    "notes": [],
+    "best_overall": {
+      "total": 76.4,
+      "known_cost": 76.4,
+      "complete": true,
+      "reliability": "media",
+      "mode": "D",
+      "mode_label": "Misto: domicilio + ritiro/negozio",
+      "n_pharmacies": 3,
+      "pharmacies": [
+        "aurora",
+        "cedro",
+        "negozio-demo"
+      ],
+      "products_cost": 66.9,
+      "shipping_cost": 3.5,
+      "pickup_cost": 0.0,
+      "travel_cost": 6.0,
+      "items": [
+        {
+          "product_id": "P001",
+          "product_name": "Uriage Xémose Olio Detergente",
+          "channel": "domicilio",
+          "seller": "cedro",
+          "seller_name": "Farmacia del Cedro",
+          "price": 14.3,
+          "url": "https://cedro.example/P001",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P002",
+          "product_name": "La Roche-Posay Lipikar Baume AP+M",
+          "channel": "ritiro",
+          "seller": "aurora",
+          "seller_name": "Farmacia Aurora",
+          "price": 17.6,
+          "url": "https://aurora.example/P002",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P003",
+          "product_name": "Ceramol 311 Lipocrema",
+          "channel": "negozio",
+          "seller": "negozio-demo",
+          "seller_name": "Farmacia dei Portici",
+          "price": 11.0,
+          "url": "https://portici.example",
+          "match_level": "RILEVAZIONE_MANUALE",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P004",
+          "product_name": "Ceramol Crema Mani 311",
+          "channel": "domicilio",
+          "seller": "cedro",
+          "seller_name": "Farmacia del Cedro",
+          "price": 8.8,
+          "url": "https://cedro.example/P004",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P005",
+          "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+          "channel": "ritiro",
+          "seller": "aurora",
+          "seller_name": "Farmacia Aurora",
+          "price": 15.2,
+          "url": "https://aurora.example/P005",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        }
+      ],
+      "orders": [
+        {
+          "channel": "domicilio",
+          "seller": "cedro",
+          "seller_name": "Farmacia del Cedro",
+          "subtotal": 23.1,
+          "products": [
+            "P001",
+            "P004"
+          ],
+          "shipping": 3.5,
+          "free_shipping": false,
+          "shipping_notes": [],
+          "shipping_reliability": "alta"
+        },
+        {
+          "channel": "ritiro",
+          "seller": "aurora",
+          "seller_name": "Farmacia Aurora",
+          "subtotal": 32.8,
+          "products": [
+            "P002",
+            "P005"
+          ],
+          "pickup_cost": 0.0
+        },
+        {
+          "channel": "negozio",
+          "seller": "negozio-demo",
+          "seller_name": "Farmacia dei Portici",
+          "subtotal": 11.0,
+          "products": [
+            "P003"
+          ],
+          "pickup_cost": 0.0
+        }
+      ],
+      "travel": [
+        {
+          "mode": "mezzi_pubblici",
+          "distance_km": 1.1,
+          "estimated": true,
+          "cost": 3.0,
+          "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+          "road_km_round_trip": 2.86,
+          "breakdown": "biglietti andata e ritorno 3.00 €",
+          "location_key": "pickup:aurora",
+          "name": "Farmacia Aurora"
+        },
+        {
+          "mode": "mezzi_pubblici",
+          "distance_km": 0.6,
+          "estimated": true,
+          "cost": 3.0,
+          "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+          "road_km_round_trip": 1.56,
+          "breakdown": "biglietti andata e ritorno 3.00 €",
+          "location_key": "store:negozio-demo",
+          "name": "Farmacia dei Portici"
+        }
+      ],
+      "missing": [],
+      "warnings": [
+        "P003: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+        "Il costo del viaggio è una STIMA (distanza in linea d'aria × fattore strada)."
+      ]
+    },
+    "best_single_pharmacy": {
+      "total": 78.9,
+      "known_cost": 78.9,
+      "complete": true,
+      "reliability": "alta",
+      "mode": "A",
+      "mode_label": "Tutto online a domicilio da una sola farmacia",
+      "n_pharmacies": 1,
+      "pharmacies": [
+        "cedro"
+      ],
+      "products_cost": 78.9,
+      "shipping_cost": 0.0,
+      "pickup_cost": 0.0,
+      "travel_cost": 0.0,
+      "items": [
+        {
+          "product_id": "P001",
+          "product_name": "Uriage Xémose Olio Detergente",
+          "channel": "domicilio",
+          "seller": "cedro",
+          "seller_name": "Farmacia del Cedro",
+          "price": 14.3,
+          "url": "https://cedro.example/P001",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P002",
+          "product_name": "La Roche-Posay Lipikar Baume AP+M",
+          "channel": "domicilio",
+          "seller": "cedro",
+          "seller_name": "Farmacia del Cedro",
+          "price": 21.5,
+          "url": "https://cedro.example/P002",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P003",
+          "product_name": "Ceramol 311 Lipocrema",
+          "channel": "domicilio",
+          "seller": "cedro",
+          "seller_name": "Farmacia del Cedro",
+          "price": 17.4,
+          "url": "https://cedro.example/P003",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P004",
+          "product_name": "Ceramol Crema Mani 311",
+          "channel": "domicilio",
+          "seller": "cedro",
+          "seller_name": "Farmacia del Cedro",
+          "price": 8.8,
+          "url": "https://cedro.example/P004",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P005",
+          "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+          "channel": "domicilio",
+          "seller": "cedro",
+          "seller_name": "Farmacia del Cedro",
+          "price": 16.9,
+          "url": "https://cedro.example/P005",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        }
+      ],
+      "orders": [
+        {
+          "channel": "domicilio",
+          "seller": "cedro",
+          "seller_name": "Farmacia del Cedro",
+          "subtotal": 78.9,
+          "products": [
+            "P001",
+            "P002",
+            "P003",
+            "P004",
+            "P005"
+          ],
+          "shipping": 0.0,
+          "free_shipping": true,
+          "shipping_notes": [
+            "spedizione gratuita (soglia ≥ 70.00 € verificata)"
+          ],
+          "shipping_reliability": "alta"
+        }
+      ],
+      "travel": [],
+      "missing": [],
+      "warnings": []
+    },
+    "best_max_two_pharmacies": {
+      "total": 78.7,
+      "known_cost": 78.7,
+      "complete": true,
+      "reliability": "media",
+      "mode": "BC",
+      "mode_label": "Ritiro e acquisto in farmacie fisiche",
+      "n_pharmacies": 2,
+      "pharmacies": [
+        "aurora",
+        "negozio-demo"
+      ],
+      "products_cost": 72.7,
+      "shipping_cost": 0.0,
+      "pickup_cost": 0.0,
+      "travel_cost": 6.0,
+      "items": [
+        {
+          "product_id": "P001",
+          "product_name": "Uriage Xémose Olio Detergente",
+          "channel": "negozio",
+          "seller": "negozio-demo",
+          "seller_name": "Farmacia dei Portici",
+          "price": 18.0,
+          "url": "https://portici.example",
+          "match_level": "RILEVAZIONE_MANUALE",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P002",
+          "product_name": "La Roche-Posay Lipikar Baume AP+M",
+          "channel": "ritiro",
+          "seller": "aurora",
+          "seller_name": "Farmacia Aurora",
+          "price": 17.6,
+          "url": "https://aurora.example/P002",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P003",
+          "product_name": "Ceramol 311 Lipocrema",
+          "channel": "negozio",
+          "seller": "negozio-demo",
+          "seller_name": "Farmacia dei Portici",
+          "price": 11.0,
+          "url": "https://portici.example",
+          "match_level": "RILEVAZIONE_MANUALE",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P004",
+          "product_name": "Ceramol Crema Mani 311",
+          "channel": "ritiro",
+          "seller": "aurora",
+          "seller_name": "Farmacia Aurora",
+          "price": 10.9,
+          "url": "https://aurora.example/P004",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P005",
+          "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+          "channel": "ritiro",
+          "seller": "aurora",
+          "seller_name": "Farmacia Aurora",
+          "price": 15.2,
+          "url": "https://aurora.example/P005",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        }
+      ],
+      "orders": [
+        {
+          "channel": "negozio",
+          "seller": "negozio-demo",
+          "seller_name": "Farmacia dei Portici",
+          "subtotal": 29.0,
+          "products": [
+            "P001",
+            "P003"
+          ],
+          "pickup_cost": 0.0
+        },
+        {
+          "channel": "ritiro",
+          "seller": "aurora",
+          "seller_name": "Farmacia Aurora",
+          "subtotal": 43.7,
+          "products": [
+            "P002",
+            "P004",
+            "P005"
+          ],
+          "pickup_cost": 0.0
+        }
+      ],
+      "travel": [
+        {
+          "mode": "mezzi_pubblici",
+          "distance_km": 0.6,
+          "estimated": true,
+          "cost": 3.0,
+          "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+          "road_km_round_trip": 1.56,
+          "breakdown": "biglietti andata e ritorno 3.00 €",
+          "location_key": "store:negozio-demo",
+          "name": "Farmacia dei Portici"
+        },
+        {
+          "mode": "mezzi_pubblici",
+          "distance_km": 1.1,
+          "estimated": true,
+          "cost": 3.0,
+          "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+          "road_km_round_trip": 2.86,
+          "breakdown": "biglietti andata e ritorno 3.00 €",
+          "location_key": "pickup:aurora",
+          "name": "Farmacia Aurora"
+        }
+      ],
+      "missing": [],
+      "warnings": [
+        "P001: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+        "P003: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+        "Il costo del viaggio è una STIMA (distanza in linea d'aria × fattore strada)."
+      ]
+    },
+    "best_any_number": {
+      "total": 76.4,
+      "known_cost": 76.4,
+      "complete": true,
+      "reliability": "media",
+      "mode": "D",
+      "mode_label": "Misto: domicilio + ritiro/negozio",
+      "n_pharmacies": 3,
+      "pharmacies": [
+        "aurora",
+        "cedro",
+        "negozio-demo"
+      ],
+      "products_cost": 66.9,
+      "shipping_cost": 3.5,
+      "pickup_cost": 0.0,
+      "travel_cost": 6.0,
+      "items": [
+        {
+          "product_id": "P001",
+          "product_name": "Uriage Xémose Olio Detergente",
+          "channel": "domicilio",
+          "seller": "cedro",
+          "seller_name": "Farmacia del Cedro",
+          "price": 14.3,
+          "url": "https://cedro.example/P001",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P002",
+          "product_name": "La Roche-Posay Lipikar Baume AP+M",
+          "channel": "ritiro",
+          "seller": "aurora",
+          "seller_name": "Farmacia Aurora",
+          "price": 17.6,
+          "url": "https://aurora.example/P002",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P003",
+          "product_name": "Ceramol 311 Lipocrema",
+          "channel": "negozio",
+          "seller": "negozio-demo",
+          "seller_name": "Farmacia dei Portici",
+          "price": 11.0,
+          "url": "https://portici.example",
+          "match_level": "RILEVAZIONE_MANUALE",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P004",
+          "product_name": "Ceramol Crema Mani 311",
+          "channel": "domicilio",
+          "seller": "cedro",
+          "seller_name": "Farmacia del Cedro",
+          "price": 8.8,
+          "url": "https://cedro.example/P004",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        },
+        {
+          "product_id": "P005",
+          "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+          "channel": "ritiro",
+          "seller": "aurora",
+          "seller_name": "Farmacia Aurora",
+          "price": 15.2,
+          "url": "https://aurora.example/P005",
+          "match_level": "ID",
+          "availability": "DISPONIBILE",
+          "scraped_at": "2026-11-18T07:00:00Z"
+        }
+      ],
+      "orders": [
+        {
+          "channel": "domicilio",
+          "seller": "cedro",
+          "seller_name": "Farmacia del Cedro",
+          "subtotal": 23.1,
+          "products": [
+            "P001",
+            "P004"
+          ],
+          "shipping": 3.5,
+          "free_shipping": false,
+          "shipping_notes": [],
+          "shipping_reliability": "alta"
+        },
+        {
+          "channel": "ritiro",
+          "seller": "aurora",
+          "seller_name": "Farmacia Aurora",
+          "subtotal": 32.8,
+          "products": [
+            "P002",
+            "P005"
+          ],
+          "pickup_cost": 0.0
+        },
+        {
+          "channel": "negozio",
+          "seller": "negozio-demo",
+          "seller_name": "Farmacia dei Portici",
+          "subtotal": 11.0,
+          "products": [
+            "P003"
+          ],
+          "pickup_cost": 0.0
+        }
+      ],
+      "travel": [
+        {
+          "mode": "mezzi_pubblici",
+          "distance_km": 1.1,
+          "estimated": true,
+          "cost": 3.0,
+          "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+          "road_km_round_trip": 2.86,
+          "breakdown": "biglietti andata e ritorno 3.00 €",
+          "location_key": "pickup:aurora",
+          "name": "Farmacia Aurora"
+        },
+        {
+          "mode": "mezzi_pubblici",
+          "distance_km": 0.6,
+          "estimated": true,
+          "cost": 3.0,
+          "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+          "road_km_round_trip": 1.56,
+          "breakdown": "biglietti andata e ritorno 3.00 €",
+          "location_key": "store:negozio-demo",
+          "name": "Farmacia dei Portici"
+        }
+      ],
+      "missing": [],
+      "warnings": [
+        "P003: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+        "Il costo del viaggio è una STIMA (distanza in linea d'aria × fattore strada)."
+      ]
+    },
+    "by_mode": {
+      "A": {
+        "total": 78.9,
+        "known_cost": 78.9,
+        "complete": true,
+        "reliability": "alta",
+        "mode": "A",
+        "mode_label": "Tutto online a domicilio da una sola farmacia",
+        "n_pharmacies": 1,
+        "pharmacies": [
+          "cedro"
+        ],
+        "products_cost": 78.9,
+        "shipping_cost": 0.0,
+        "pickup_cost": 0.0,
+        "travel_cost": 0.0,
+        "items": [
+          {
+            "product_id": "P001",
+            "product_name": "Uriage Xémose Olio Detergente",
+            "channel": "domicilio",
+            "seller": "cedro",
+            "seller_name": "Farmacia del Cedro",
+            "price": 14.3,
+            "url": "https://cedro.example/P001",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P002",
+            "product_name": "La Roche-Posay Lipikar Baume AP+M",
+            "channel": "domicilio",
+            "seller": "cedro",
+            "seller_name": "Farmacia del Cedro",
+            "price": 21.5,
+            "url": "https://cedro.example/P002",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P003",
+            "product_name": "Ceramol 311 Lipocrema",
+            "channel": "domicilio",
+            "seller": "cedro",
+            "seller_name": "Farmacia del Cedro",
+            "price": 17.4,
+            "url": "https://cedro.example/P003",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P004",
+            "product_name": "Ceramol Crema Mani 311",
+            "channel": "domicilio",
+            "seller": "cedro",
+            "seller_name": "Farmacia del Cedro",
+            "price": 8.8,
+            "url": "https://cedro.example/P004",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P005",
+            "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+            "channel": "domicilio",
+            "seller": "cedro",
+            "seller_name": "Farmacia del Cedro",
+            "price": 16.9,
+            "url": "https://cedro.example/P005",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          }
+        ],
+        "orders": [
+          {
+            "channel": "domicilio",
+            "seller": "cedro",
+            "seller_name": "Farmacia del Cedro",
+            "subtotal": 78.9,
+            "products": [
+              "P001",
+              "P002",
+              "P003",
+              "P004",
+              "P005"
+            ],
+            "shipping": 0.0,
+            "free_shipping": true,
+            "shipping_notes": [
+              "spedizione gratuita (soglia ≥ 70.00 € verificata)"
+            ],
+            "shipping_reliability": "alta"
+          }
+        ],
+        "travel": [],
+        "missing": [],
+        "warnings": []
+      },
+      "E": {
+        "total": 79.3,
+        "known_cost": 79.3,
+        "complete": true,
+        "reliability": "alta",
+        "mode": "E",
+        "mode_label": "Tutto online a domicilio da più farmacie",
+        "n_pharmacies": 2,
+        "pharmacies": [
+          "aurora",
+          "cedro"
+        ],
+        "products_cost": 72.3,
+        "shipping_cost": 7.0,
+        "pickup_cost": 0.0,
+        "travel_cost": 0.0,
+        "items": [
+          {
+            "product_id": "P001",
+            "product_name": "Uriage Xémose Olio Detergente",
+            "channel": "domicilio",
+            "seller": "cedro",
+            "seller_name": "Farmacia del Cedro",
+            "price": 14.3,
+            "url": "https://cedro.example/P001",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P002",
+            "product_name": "La Roche-Posay Lipikar Baume AP+M",
+            "channel": "domicilio",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "price": 17.6,
+            "url": "https://aurora.example/P002",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P003",
+            "product_name": "Ceramol 311 Lipocrema",
+            "channel": "domicilio",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "price": 16.4,
+            "url": "https://aurora.example/P003",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P004",
+            "product_name": "Ceramol Crema Mani 311",
+            "channel": "domicilio",
+            "seller": "cedro",
+            "seller_name": "Farmacia del Cedro",
+            "price": 8.8,
+            "url": "https://cedro.example/P004",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P005",
+            "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+            "channel": "domicilio",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "price": 15.2,
+            "url": "https://aurora.example/P005",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          }
+        ],
+        "orders": [
+          {
+            "channel": "domicilio",
+            "seller": "cedro",
+            "seller_name": "Farmacia del Cedro",
+            "subtotal": 23.1,
+            "products": [
+              "P001",
+              "P004"
+            ],
+            "shipping": 3.5,
+            "free_shipping": false,
+            "shipping_notes": [],
+            "shipping_reliability": "alta"
+          },
+          {
+            "channel": "domicilio",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "subtotal": 49.2,
+            "products": [
+              "P002",
+              "P003",
+              "P005"
+            ],
+            "shipping": 3.5,
+            "free_shipping": false,
+            "shipping_notes": [],
+            "shipping_reliability": "alta"
+          }
+        ],
+        "travel": [],
+        "missing": [],
+        "warnings": []
+      },
+      "B": {
+        "total": 82.9,
+        "known_cost": 82.9,
+        "complete": true,
+        "reliability": "media",
+        "mode": "B",
+        "mode_label": "Tutto online con ritiro in farmacia",
+        "n_pharmacies": 1,
+        "pharmacies": [
+          "aurora"
+        ],
+        "products_cost": 79.9,
+        "shipping_cost": 0.0,
+        "pickup_cost": 0.0,
+        "travel_cost": 3.0,
+        "items": [
+          {
+            "product_id": "P001",
+            "product_name": "Uriage Xémose Olio Detergente",
+            "channel": "ritiro",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "price": 19.8,
+            "url": "https://aurora.example/P001",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P002",
+            "product_name": "La Roche-Posay Lipikar Baume AP+M",
+            "channel": "ritiro",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "price": 17.6,
+            "url": "https://aurora.example/P002",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P003",
+            "product_name": "Ceramol 311 Lipocrema",
+            "channel": "ritiro",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "price": 16.4,
+            "url": "https://aurora.example/P003",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P004",
+            "product_name": "Ceramol Crema Mani 311",
+            "channel": "ritiro",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "price": 10.9,
+            "url": "https://aurora.example/P004",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P005",
+            "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+            "channel": "ritiro",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "price": 15.2,
+            "url": "https://aurora.example/P005",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          }
+        ],
+        "orders": [
+          {
+            "channel": "ritiro",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "subtotal": 79.9,
+            "products": [
+              "P001",
+              "P002",
+              "P003",
+              "P004",
+              "P005"
+            ],
+            "pickup_cost": 0.0
+          }
+        ],
+        "travel": [
+          {
+            "mode": "mezzi_pubblici",
+            "distance_km": 1.1,
+            "estimated": true,
+            "cost": 3.0,
+            "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+            "road_km_round_trip": 2.86,
+            "breakdown": "biglietti andata e ritorno 3.00 €",
+            "location_key": "pickup:aurora",
+            "name": "Farmacia Aurora"
+          }
+        ],
+        "missing": [],
+        "warnings": [
+          "Il costo del viaggio è una STIMA (distanza in linea d'aria × fattore strada)."
+        ]
+      },
+      "C": {
+        "total": 87.0,
+        "known_cost": 87.0,
+        "complete": true,
+        "reliability": "media",
+        "mode": "C",
+        "mode_label": "Tutto in farmacia fisica",
+        "n_pharmacies": 1,
+        "pharmacies": [
+          "negozio-demo"
+        ],
+        "products_cost": 84.0,
+        "shipping_cost": 0.0,
+        "pickup_cost": 0.0,
+        "travel_cost": 3.0,
+        "items": [
+          {
+            "product_id": "P001",
+            "product_name": "Uriage Xémose Olio Detergente",
+            "channel": "negozio",
+            "seller": "negozio-demo",
+            "seller_name": "Farmacia dei Portici",
+            "price": 18.0,
+            "url": "https://portici.example",
+            "match_level": "RILEVAZIONE_MANUALE",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P002",
+            "product_name": "La Roche-Posay Lipikar Baume AP+M",
+            "channel": "negozio",
+            "seller": "negozio-demo",
+            "seller_name": "Farmacia dei Portici",
+            "price": 23.0,
+            "url": "https://portici.example",
+            "match_level": "RILEVAZIONE_MANUALE",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P003",
+            "product_name": "Ceramol 311 Lipocrema",
+            "channel": "negozio",
+            "seller": "negozio-demo",
+            "seller_name": "Farmacia dei Portici",
+            "price": 11.0,
+            "url": "https://portici.example",
+            "match_level": "RILEVAZIONE_MANUALE",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P004",
+            "product_name": "Ceramol Crema Mani 311",
+            "channel": "negozio",
+            "seller": "negozio-demo",
+            "seller_name": "Farmacia dei Portici",
+            "price": 13.0,
+            "url": "https://portici.example",
+            "match_level": "RILEVAZIONE_MANUALE",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P005",
+            "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+            "channel": "negozio",
+            "seller": "negozio-demo",
+            "seller_name": "Farmacia dei Portici",
+            "price": 19.0,
+            "url": "https://portici.example",
+            "match_level": "RILEVAZIONE_MANUALE",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          }
+        ],
+        "orders": [
+          {
+            "channel": "negozio",
+            "seller": "negozio-demo",
+            "seller_name": "Farmacia dei Portici",
+            "subtotal": 84.0,
+            "products": [
+              "P001",
+              "P002",
+              "P003",
+              "P004",
+              "P005"
+            ],
+            "pickup_cost": 0.0
+          }
+        ],
+        "travel": [
+          {
+            "mode": "mezzi_pubblici",
+            "distance_km": 0.6,
+            "estimated": true,
+            "cost": 3.0,
+            "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+            "road_km_round_trip": 1.56,
+            "breakdown": "biglietti andata e ritorno 3.00 €",
+            "location_key": "store:negozio-demo",
+            "name": "Farmacia dei Portici"
+          }
+        ],
+        "missing": [],
+        "warnings": [
+          "P001: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+          "P002: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+          "P003: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+          "P004: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+          "P005: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+          "Il costo del viaggio è una STIMA (distanza in linea d'aria × fattore strada)."
+        ]
+      },
+      "D": {
+        "total": 76.4,
+        "known_cost": 76.4,
+        "complete": true,
+        "reliability": "media",
+        "mode": "D",
+        "mode_label": "Misto: domicilio + ritiro/negozio",
+        "n_pharmacies": 3,
+        "pharmacies": [
+          "aurora",
+          "cedro",
+          "negozio-demo"
+        ],
+        "products_cost": 66.9,
+        "shipping_cost": 3.5,
+        "pickup_cost": 0.0,
+        "travel_cost": 6.0,
+        "items": [
+          {
+            "product_id": "P001",
+            "product_name": "Uriage Xémose Olio Detergente",
+            "channel": "domicilio",
+            "seller": "cedro",
+            "seller_name": "Farmacia del Cedro",
+            "price": 14.3,
+            "url": "https://cedro.example/P001",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P002",
+            "product_name": "La Roche-Posay Lipikar Baume AP+M",
+            "channel": "ritiro",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "price": 17.6,
+            "url": "https://aurora.example/P002",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P003",
+            "product_name": "Ceramol 311 Lipocrema",
+            "channel": "negozio",
+            "seller": "negozio-demo",
+            "seller_name": "Farmacia dei Portici",
+            "price": 11.0,
+            "url": "https://portici.example",
+            "match_level": "RILEVAZIONE_MANUALE",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P004",
+            "product_name": "Ceramol Crema Mani 311",
+            "channel": "domicilio",
+            "seller": "cedro",
+            "seller_name": "Farmacia del Cedro",
+            "price": 8.8,
+            "url": "https://cedro.example/P004",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P005",
+            "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+            "channel": "ritiro",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "price": 15.2,
+            "url": "https://aurora.example/P005",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          }
+        ],
+        "orders": [
+          {
+            "channel": "domicilio",
+            "seller": "cedro",
+            "seller_name": "Farmacia del Cedro",
+            "subtotal": 23.1,
+            "products": [
+              "P001",
+              "P004"
+            ],
+            "shipping": 3.5,
+            "free_shipping": false,
+            "shipping_notes": [],
+            "shipping_reliability": "alta"
+          },
+          {
+            "channel": "ritiro",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "subtotal": 32.8,
+            "products": [
+              "P002",
+              "P005"
+            ],
+            "pickup_cost": 0.0
+          },
+          {
+            "channel": "negozio",
+            "seller": "negozio-demo",
+            "seller_name": "Farmacia dei Portici",
+            "subtotal": 11.0,
+            "products": [
+              "P003"
+            ],
+            "pickup_cost": 0.0
+          }
+        ],
+        "travel": [
+          {
+            "mode": "mezzi_pubblici",
+            "distance_km": 1.1,
+            "estimated": true,
+            "cost": 3.0,
+            "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+            "road_km_round_trip": 2.86,
+            "breakdown": "biglietti andata e ritorno 3.00 €",
+            "location_key": "pickup:aurora",
+            "name": "Farmacia Aurora"
+          },
+          {
+            "mode": "mezzi_pubblici",
+            "distance_km": 0.6,
+            "estimated": true,
+            "cost": 3.0,
+            "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+            "road_km_round_trip": 1.56,
+            "breakdown": "biglietti andata e ritorno 3.00 €",
+            "location_key": "store:negozio-demo",
+            "name": "Farmacia dei Portici"
+          }
+        ],
+        "missing": [],
+        "warnings": [
+          "P003: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+          "Il costo del viaggio è una STIMA (distanza in linea d'aria × fattore strada)."
+        ]
+      },
+      "BC": {
+        "total": 78.7,
+        "known_cost": 78.7,
+        "complete": true,
+        "reliability": "media",
+        "mode": "BC",
+        "mode_label": "Ritiro e acquisto in farmacie fisiche",
+        "n_pharmacies": 2,
+        "pharmacies": [
+          "aurora",
+          "negozio-demo"
+        ],
+        "products_cost": 72.7,
+        "shipping_cost": 0.0,
+        "pickup_cost": 0.0,
+        "travel_cost": 6.0,
+        "items": [
+          {
+            "product_id": "P001",
+            "product_name": "Uriage Xémose Olio Detergente",
+            "channel": "negozio",
+            "seller": "negozio-demo",
+            "seller_name": "Farmacia dei Portici",
+            "price": 18.0,
+            "url": "https://portici.example",
+            "match_level": "RILEVAZIONE_MANUALE",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P002",
+            "product_name": "La Roche-Posay Lipikar Baume AP+M",
+            "channel": "ritiro",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "price": 17.6,
+            "url": "https://aurora.example/P002",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P003",
+            "product_name": "Ceramol 311 Lipocrema",
+            "channel": "negozio",
+            "seller": "negozio-demo",
+            "seller_name": "Farmacia dei Portici",
+            "price": 11.0,
+            "url": "https://portici.example",
+            "match_level": "RILEVAZIONE_MANUALE",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P004",
+            "product_name": "Ceramol Crema Mani 311",
+            "channel": "ritiro",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "price": 10.9,
+            "url": "https://aurora.example/P004",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          },
+          {
+            "product_id": "P005",
+            "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+            "channel": "ritiro",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "price": 15.2,
+            "url": "https://aurora.example/P005",
+            "match_level": "ID",
+            "availability": "DISPONIBILE",
+            "scraped_at": "2026-11-18T07:00:00Z"
+          }
+        ],
+        "orders": [
+          {
+            "channel": "negozio",
+            "seller": "negozio-demo",
+            "seller_name": "Farmacia dei Portici",
+            "subtotal": 29.0,
+            "products": [
+              "P001",
+              "P003"
+            ],
+            "pickup_cost": 0.0
+          },
+          {
+            "channel": "ritiro",
+            "seller": "aurora",
+            "seller_name": "Farmacia Aurora",
+            "subtotal": 43.7,
+            "products": [
+              "P002",
+              "P004",
+              "P005"
+            ],
+            "pickup_cost": 0.0
+          }
+        ],
+        "travel": [
+          {
+            "mode": "mezzi_pubblici",
+            "distance_km": 0.6,
+            "estimated": true,
+            "cost": 3.0,
+            "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+            "road_km_round_trip": 1.56,
+            "breakdown": "biglietti andata e ritorno 3.00 €",
+            "location_key": "store:negozio-demo",
+            "name": "Farmacia dei Portici"
+          },
+          {
+            "mode": "mezzi_pubblici",
+            "distance_km": 1.1,
+            "estimated": true,
+            "cost": 3.0,
+            "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+            "road_km_round_trip": 2.86,
+            "breakdown": "biglietti andata e ritorno 3.00 €",
+            "location_key": "pickup:aurora",
+            "name": "Farmacia Aurora"
+          }
+        ],
+        "missing": [],
+        "warnings": [
+          "P001: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+          "P003: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+          "Il costo del viaggio è una STIMA (distanza in linea d'aria × fattore strada)."
+        ]
+      }
+    },
+    "rankings": {
+      "domicilio": [
+        {
+          "total": 78.9,
+          "known_cost": 78.9,
+          "complete": true,
+          "reliability": "alta",
+          "mode": "A",
+          "mode_label": "Tutto online a domicilio da una sola farmacia",
+          "n_pharmacies": 1,
+          "pharmacies": [
+            "cedro"
+          ],
+          "products_cost": 78.9,
+          "shipping_cost": 0.0,
+          "pickup_cost": 0.0,
+          "travel_cost": 0.0,
+          "items": [
+            {
+              "product_id": "P001",
+              "product_name": "Uriage Xémose Olio Detergente",
+              "channel": "domicilio",
+              "seller": "cedro",
+              "seller_name": "Farmacia del Cedro",
+              "price": 14.3,
+              "url": "https://cedro.example/P001",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P002",
+              "product_name": "La Roche-Posay Lipikar Baume AP+M",
+              "channel": "domicilio",
+              "seller": "cedro",
+              "seller_name": "Farmacia del Cedro",
+              "price": 21.5,
+              "url": "https://cedro.example/P002",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P003",
+              "product_name": "Ceramol 311 Lipocrema",
+              "channel": "domicilio",
+              "seller": "cedro",
+              "seller_name": "Farmacia del Cedro",
+              "price": 17.4,
+              "url": "https://cedro.example/P003",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P004",
+              "product_name": "Ceramol Crema Mani 311",
+              "channel": "domicilio",
+              "seller": "cedro",
+              "seller_name": "Farmacia del Cedro",
+              "price": 8.8,
+              "url": "https://cedro.example/P004",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P005",
+              "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+              "channel": "domicilio",
+              "seller": "cedro",
+              "seller_name": "Farmacia del Cedro",
+              "price": 16.9,
+              "url": "https://cedro.example/P005",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            }
+          ],
+          "orders": [
+            {
+              "channel": "domicilio",
+              "seller": "cedro",
+              "seller_name": "Farmacia del Cedro",
+              "subtotal": 78.9,
+              "products": [
+                "P001",
+                "P002",
+                "P003",
+                "P004",
+                "P005"
+              ],
+              "shipping": 0.0,
+              "free_shipping": true,
+              "shipping_notes": [
+                "spedizione gratuita (soglia ≥ 70.00 € verificata)"
+              ],
+              "shipping_reliability": "alta"
+            }
+          ],
+          "travel": [],
+          "missing": [],
+          "warnings": []
+        },
+        {
+          "total": 79.3,
+          "known_cost": 79.3,
+          "complete": true,
+          "reliability": "alta",
+          "mode": "E",
+          "mode_label": "Tutto online a domicilio da più farmacie",
+          "n_pharmacies": 2,
+          "pharmacies": [
+            "aurora",
+            "cedro"
+          ],
+          "products_cost": 72.3,
+          "shipping_cost": 7.0,
+          "pickup_cost": 0.0,
+          "travel_cost": 0.0,
+          "items": [
+            {
+              "product_id": "P001",
+              "product_name": "Uriage Xémose Olio Detergente",
+              "channel": "domicilio",
+              "seller": "cedro",
+              "seller_name": "Farmacia del Cedro",
+              "price": 14.3,
+              "url": "https://cedro.example/P001",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P002",
+              "product_name": "La Roche-Posay Lipikar Baume AP+M",
+              "channel": "domicilio",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "price": 17.6,
+              "url": "https://aurora.example/P002",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P003",
+              "product_name": "Ceramol 311 Lipocrema",
+              "channel": "domicilio",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "price": 16.4,
+              "url": "https://aurora.example/P003",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P004",
+              "product_name": "Ceramol Crema Mani 311",
+              "channel": "domicilio",
+              "seller": "cedro",
+              "seller_name": "Farmacia del Cedro",
+              "price": 8.8,
+              "url": "https://cedro.example/P004",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P005",
+              "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+              "channel": "domicilio",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "price": 15.2,
+              "url": "https://aurora.example/P005",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            }
+          ],
+          "orders": [
+            {
+              "channel": "domicilio",
+              "seller": "cedro",
+              "seller_name": "Farmacia del Cedro",
+              "subtotal": 23.1,
+              "products": [
+                "P001",
+                "P004"
+              ],
+              "shipping": 3.5,
+              "free_shipping": false,
+              "shipping_notes": [],
+              "shipping_reliability": "alta"
+            },
+            {
+              "channel": "domicilio",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "subtotal": 49.2,
+              "products": [
+                "P002",
+                "P003",
+                "P005"
+              ],
+              "shipping": 3.5,
+              "free_shipping": false,
+              "shipping_notes": [],
+              "shipping_reliability": "alta"
+            }
+          ],
+          "travel": [],
+          "missing": [],
+          "warnings": []
+        }
+      ],
+      "ritiro_fisico": [
+        {
+          "total": 78.7,
+          "known_cost": 78.7,
+          "complete": true,
+          "reliability": "media",
+          "mode": "BC",
+          "mode_label": "Ritiro e acquisto in farmacie fisiche",
+          "n_pharmacies": 2,
+          "pharmacies": [
+            "aurora",
+            "negozio-demo"
+          ],
+          "products_cost": 72.7,
+          "shipping_cost": 0.0,
+          "pickup_cost": 0.0,
+          "travel_cost": 6.0,
+          "items": [
+            {
+              "product_id": "P001",
+              "product_name": "Uriage Xémose Olio Detergente",
+              "channel": "negozio",
+              "seller": "negozio-demo",
+              "seller_name": "Farmacia dei Portici",
+              "price": 18.0,
+              "url": "https://portici.example",
+              "match_level": "RILEVAZIONE_MANUALE",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P002",
+              "product_name": "La Roche-Posay Lipikar Baume AP+M",
+              "channel": "ritiro",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "price": 17.6,
+              "url": "https://aurora.example/P002",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P003",
+              "product_name": "Ceramol 311 Lipocrema",
+              "channel": "negozio",
+              "seller": "negozio-demo",
+              "seller_name": "Farmacia dei Portici",
+              "price": 11.0,
+              "url": "https://portici.example",
+              "match_level": "RILEVAZIONE_MANUALE",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P004",
+              "product_name": "Ceramol Crema Mani 311",
+              "channel": "ritiro",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "price": 10.9,
+              "url": "https://aurora.example/P004",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P005",
+              "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+              "channel": "ritiro",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "price": 15.2,
+              "url": "https://aurora.example/P005",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            }
+          ],
+          "orders": [
+            {
+              "channel": "negozio",
+              "seller": "negozio-demo",
+              "seller_name": "Farmacia dei Portici",
+              "subtotal": 29.0,
+              "products": [
+                "P001",
+                "P003"
+              ],
+              "pickup_cost": 0.0
+            },
+            {
+              "channel": "ritiro",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "subtotal": 43.7,
+              "products": [
+                "P002",
+                "P004",
+                "P005"
+              ],
+              "pickup_cost": 0.0
+            }
+          ],
+          "travel": [
+            {
+              "mode": "mezzi_pubblici",
+              "distance_km": 0.6,
+              "estimated": true,
+              "cost": 3.0,
+              "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+              "road_km_round_trip": 1.56,
+              "breakdown": "biglietti andata e ritorno 3.00 €",
+              "location_key": "store:negozio-demo",
+              "name": "Farmacia dei Portici"
+            },
+            {
+              "mode": "mezzi_pubblici",
+              "distance_km": 1.1,
+              "estimated": true,
+              "cost": 3.0,
+              "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+              "road_km_round_trip": 2.86,
+              "breakdown": "biglietti andata e ritorno 3.00 €",
+              "location_key": "pickup:aurora",
+              "name": "Farmacia Aurora"
+            }
+          ],
+          "missing": [],
+          "warnings": [
+            "P001: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+            "P003: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+            "Il costo del viaggio è una STIMA (distanza in linea d'aria × fattore strada)."
+          ]
+        },
+        {
+          "total": 80.5,
+          "known_cost": 80.5,
+          "complete": true,
+          "reliability": "media",
+          "mode": "BC",
+          "mode_label": "Ritiro e acquisto in farmacie fisiche",
+          "n_pharmacies": 2,
+          "pharmacies": [
+            "aurora",
+            "negozio-demo"
+          ],
+          "products_cost": 74.5,
+          "shipping_cost": 0.0,
+          "pickup_cost": 0.0,
+          "travel_cost": 6.0,
+          "items": [
+            {
+              "product_id": "P001",
+              "product_name": "Uriage Xémose Olio Detergente",
+              "channel": "ritiro",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "price": 19.8,
+              "url": "https://aurora.example/P001",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P002",
+              "product_name": "La Roche-Posay Lipikar Baume AP+M",
+              "channel": "ritiro",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "price": 17.6,
+              "url": "https://aurora.example/P002",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P003",
+              "product_name": "Ceramol 311 Lipocrema",
+              "channel": "negozio",
+              "seller": "negozio-demo",
+              "seller_name": "Farmacia dei Portici",
+              "price": 11.0,
+              "url": "https://portici.example",
+              "match_level": "RILEVAZIONE_MANUALE",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P004",
+              "product_name": "Ceramol Crema Mani 311",
+              "channel": "ritiro",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "price": 10.9,
+              "url": "https://aurora.example/P004",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P005",
+              "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+              "channel": "ritiro",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "price": 15.2,
+              "url": "https://aurora.example/P005",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            }
+          ],
+          "orders": [
+            {
+              "channel": "ritiro",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "subtotal": 63.5,
+              "products": [
+                "P001",
+                "P002",
+                "P004",
+                "P005"
+              ],
+              "pickup_cost": 0.0
+            },
+            {
+              "channel": "negozio",
+              "seller": "negozio-demo",
+              "seller_name": "Farmacia dei Portici",
+              "subtotal": 11.0,
+              "products": [
+                "P003"
+              ],
+              "pickup_cost": 0.0
+            }
+          ],
+          "travel": [
+            {
+              "mode": "mezzi_pubblici",
+              "distance_km": 1.1,
+              "estimated": true,
+              "cost": 3.0,
+              "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+              "road_km_round_trip": 2.86,
+              "breakdown": "biglietti andata e ritorno 3.00 €",
+              "location_key": "pickup:aurora",
+              "name": "Farmacia Aurora"
+            },
+            {
+              "mode": "mezzi_pubblici",
+              "distance_km": 0.6,
+              "estimated": true,
+              "cost": 3.0,
+              "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+              "road_km_round_trip": 1.56,
+              "breakdown": "biglietti andata e ritorno 3.00 €",
+              "location_key": "store:negozio-demo",
+              "name": "Farmacia dei Portici"
+            }
+          ],
+          "missing": [],
+          "warnings": [
+            "P003: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+            "Il costo del viaggio è una STIMA (distanza in linea d'aria × fattore strada)."
+          ]
+        }
+      ],
+      "misto": [
+        {
+          "total": 76.4,
+          "known_cost": 76.4,
+          "complete": true,
+          "reliability": "media",
+          "mode": "D",
+          "mode_label": "Misto: domicilio + ritiro/negozio",
+          "n_pharmacies": 3,
+          "pharmacies": [
+            "aurora",
+            "cedro",
+            "negozio-demo"
+          ],
+          "products_cost": 66.9,
+          "shipping_cost": 3.5,
+          "pickup_cost": 0.0,
+          "travel_cost": 6.0,
+          "items": [
+            {
+              "product_id": "P001",
+              "product_name": "Uriage Xémose Olio Detergente",
+              "channel": "domicilio",
+              "seller": "cedro",
+              "seller_name": "Farmacia del Cedro",
+              "price": 14.3,
+              "url": "https://cedro.example/P001",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P002",
+              "product_name": "La Roche-Posay Lipikar Baume AP+M",
+              "channel": "ritiro",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "price": 17.6,
+              "url": "https://aurora.example/P002",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P003",
+              "product_name": "Ceramol 311 Lipocrema",
+              "channel": "negozio",
+              "seller": "negozio-demo",
+              "seller_name": "Farmacia dei Portici",
+              "price": 11.0,
+              "url": "https://portici.example",
+              "match_level": "RILEVAZIONE_MANUALE",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P004",
+              "product_name": "Ceramol Crema Mani 311",
+              "channel": "domicilio",
+              "seller": "cedro",
+              "seller_name": "Farmacia del Cedro",
+              "price": 8.8,
+              "url": "https://cedro.example/P004",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P005",
+              "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+              "channel": "ritiro",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "price": 15.2,
+              "url": "https://aurora.example/P005",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            }
+          ],
+          "orders": [
+            {
+              "channel": "domicilio",
+              "seller": "cedro",
+              "seller_name": "Farmacia del Cedro",
+              "subtotal": 23.1,
+              "products": [
+                "P001",
+                "P004"
+              ],
+              "shipping": 3.5,
+              "free_shipping": false,
+              "shipping_notes": [],
+              "shipping_reliability": "alta"
+            },
+            {
+              "channel": "ritiro",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "subtotal": 32.8,
+              "products": [
+                "P002",
+                "P005"
+              ],
+              "pickup_cost": 0.0
+            },
+            {
+              "channel": "negozio",
+              "seller": "negozio-demo",
+              "seller_name": "Farmacia dei Portici",
+              "subtotal": 11.0,
+              "products": [
+                "P003"
+              ],
+              "pickup_cost": 0.0
+            }
+          ],
+          "travel": [
+            {
+              "mode": "mezzi_pubblici",
+              "distance_km": 1.1,
+              "estimated": true,
+              "cost": 3.0,
+              "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+              "road_km_round_trip": 2.86,
+              "breakdown": "biglietti andata e ritorno 3.00 €",
+              "location_key": "pickup:aurora",
+              "name": "Farmacia Aurora"
+            },
+            {
+              "mode": "mezzi_pubblici",
+              "distance_km": 0.6,
+              "estimated": true,
+              "cost": 3.0,
+              "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+              "road_km_round_trip": 1.56,
+              "breakdown": "biglietti andata e ritorno 3.00 €",
+              "location_key": "store:negozio-demo",
+              "name": "Farmacia dei Portici"
+            }
+          ],
+          "missing": [],
+          "warnings": [
+            "P003: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+            "Il costo del viaggio è una STIMA (distanza in linea d'aria × fattore strada)."
+          ]
+        },
+        {
+          "total": 76.9,
+          "known_cost": 76.9,
+          "complete": true,
+          "reliability": "media",
+          "mode": "D",
+          "mode_label": "Misto: domicilio + ritiro/negozio",
+          "n_pharmacies": 3,
+          "pharmacies": [
+            "aurora",
+            "cedro",
+            "negozio-demo"
+          ],
+          "products_cost": 66.9,
+          "shipping_cost": 7.0,
+          "pickup_cost": 0.0,
+          "travel_cost": 3.0,
+          "items": [
+            {
+              "product_id": "P001",
+              "product_name": "Uriage Xémose Olio Detergente",
+              "channel": "domicilio",
+              "seller": "cedro",
+              "seller_name": "Farmacia del Cedro",
+              "price": 14.3,
+              "url": "https://cedro.example/P001",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P002",
+              "product_name": "La Roche-Posay Lipikar Baume AP+M",
+              "channel": "domicilio",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "price": 17.6,
+              "url": "https://aurora.example/P002",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P003",
+              "product_name": "Ceramol 311 Lipocrema",
+              "channel": "negozio",
+              "seller": "negozio-demo",
+              "seller_name": "Farmacia dei Portici",
+              "price": 11.0,
+              "url": "https://portici.example",
+              "match_level": "RILEVAZIONE_MANUALE",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P004",
+              "product_name": "Ceramol Crema Mani 311",
+              "channel": "domicilio",
+              "seller": "cedro",
+              "seller_name": "Farmacia del Cedro",
+              "price": 8.8,
+              "url": "https://cedro.example/P004",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            },
+            {
+              "product_id": "P005",
+              "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
+              "channel": "domicilio",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "price": 15.2,
+              "url": "https://aurora.example/P005",
+              "match_level": "ID",
+              "availability": "DISPONIBILE",
+              "scraped_at": "2026-11-18T07:00:00Z"
+            }
+          ],
+          "orders": [
+            {
+              "channel": "domicilio",
+              "seller": "cedro",
+              "seller_name": "Farmacia del Cedro",
+              "subtotal": 23.1,
+              "products": [
+                "P001",
+                "P004"
+              ],
+              "shipping": 3.5,
+              "free_shipping": false,
+              "shipping_notes": [],
+              "shipping_reliability": "alta"
+            },
+            {
+              "channel": "domicilio",
+              "seller": "aurora",
+              "seller_name": "Farmacia Aurora",
+              "subtotal": 32.8,
+              "products": [
+                "P002",
+                "P005"
+              ],
+              "shipping": 3.5,
+              "free_shipping": false,
+              "shipping_notes": [],
+              "shipping_reliability": "alta"
+            },
+            {
+              "channel": "negozio",
+              "seller": "negozio-demo",
+              "seller_name": "Farmacia dei Portici",
+              "subtotal": 11.0,
+              "products": [
+                "P003"
+              ],
+              "pickup_cost": 0.0
+            }
+          ],
+          "travel": [
+            {
+              "mode": "mezzi_pubblici",
+              "distance_km": 0.6,
+              "estimated": true,
+              "cost": 3.0,
+              "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+              "road_km_round_trip": 1.56,
+              "breakdown": "biglietti andata e ritorno 3.00 €",
+              "location_key": "store:negozio-demo",
+              "name": "Farmacia dei Portici"
+            }
+          ],
+          "missing": [],
+          "warnings": [
+            "P003: prodotto identificato per nome+formato (nessun EAN/Minsan in pagina)",
+            "Il costo del viaggio è una STIMA (distanza in linea d'aria × fattore strada)."
+          ]
+        }
+      ]
+    },
+    "incomplete_alternatives": [],
+    "savings_vs_single": {
+      "amount": 2.5,
+      "single_total": 78.9,
+      "best_total": 76.4,
+      "single_pharmacy": "cedro"
+    },
+    "physical_comparison": {
+      "available": true,
+      "nearest_store": {
+        "id": "negozio-demo",
+        "name": "Farmacia dei Portici",
+        "address": "Piazza dei Portici 2, Torino",
+        "distance_km": 0.6,
+        "website": "https://portici.example",
+        "source": "Fixture UI"
+      },
+      "travel_estimate": {
+        "mode": "mezzi_pubblici",
+        "distance_km": 0.6,
+        "estimated": true,
+        "cost": 3.0,
+        "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+        "road_km_round_trip": 1.56,
+        "breakdown": "biglietti andata e ritorno 3.00 €"
+      },
+      "online_best_total": 78.9,
+      "online_best_label": "Tutto online a domicilio da una sola farmacia",
+      "store_prices_known": true,
+      "physical_best_total": 78.7,
+      "products_count": 5,
+      "break_even_store_total": 75.9,
+      "explanation": "Andare alla farmacia più vicina (Farmacia dei Portici, 0,6 km) costa circa 3,00 € (stima). Conviene solo se i 5 prodotti in negozio costano in totale meno di 75,90 €, contro 78,90 € online a domicilio."
+    },
+    "channel_comparison": {
+      "home": {
+        "mode": "A",
+        "difference": 2.5
+      },
+      "pickup": {
+        "mode": "B",
+        "difference": 6.5
+      },
+      "store": {
+        "mode": "C",
+        "difference": 10.6
+      },
+      "mixed": {
+        "mode": "D",
+        "difference": 0.0
+      }
+    },
+    "travel_previews": {
+      "negozio-demo": {
+        "auto": {
+          "cost": 2.55,
+          "threshold": 76.35
+        },
+        "mezzi_pubblici": {
+          "cost": 3.0,
+          "threshold": 75.9
+        },
+        "piedi": {
+          "cost": 0.0,
+          "threshold": 78.9
+        },
+        "bici": {
+          "cost": 0.0,
+          "threshold": 78.9
+        }
+      }
+    }
+  },
+  "physical": {
+    "location": {
+      "city": "Torino",
+      "postcode": "10121",
+      "label": "Torino"
+    },
+    "fetched_at": "2026-11-18T07:00:00Z",
+    "attribution": "Fixture UI",
+    "travel": {
+      "mode": "mezzi_pubblici",
+      "max_distance_km": 3,
+      "max_physical_pharmacies": 25,
+      "road_factor": 1.3,
+      "car_cost_per_km_eur": 0.35,
+      "car_parking_eur": 2.0,
+      "public_transport_round_trip_eur": 3.0,
+      "walk_bike_cost_eur": 0.0,
+      "note": "Parametri dell'utente, non prezzi rilevati: modificali qui. Il costo del viaggio è sempre una STIMA (distanza in linea d'aria x road_factor)."
+    },
+    "pharmacies": [
+      {
+        "id": "negozio-demo",
+        "name": "Farmacia dei Portici",
+        "address": "Piazza dei Portici 2, Torino",
+        "kind": "farmacia",
+        "distance_km": 0.6,
+        "website": "https://portici.example",
+        "source": "Fixture UI",
+        "availability": {
+          "P001": "confermata",
+          "P002": "confermata",
+          "P003": "confermata",
+          "P004": "confermata",
+          "P005": "confermata"
+        },
+        "travel": {
+          "mode": "mezzi_pubblici",
+          "distance_km": 0.6,
+          "estimated": true,
+          "cost": 3.0,
+          "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+          "road_km_round_trip": 1.56,
+          "breakdown": "biglietti andata e ritorno 3.00 €"
+        }
+      }
+    ],
+    "pickup_points": [
+      {
+        "pharmacy_id": "aurora",
+        "name": "Farmacia Aurora",
+        "address": "Via del Tiglio 3",
+        "city": "Torino",
+        "postcode": "10121",
+        "availability": "ritiro prenotabile",
+        "within_max_distance": true,
+        "pickup_cost_eur": 0.0,
+        "distance_km": 1.1,
+        "location_key": "pickup:aurora",
+        "travel": {
+          "mode": "mezzi_pubblici",
+          "distance_km": 1.1,
+          "estimated": true,
+          "cost": 3.0,
+          "method": "stima: distanza in linea d'aria × fattore strada, andata e ritorno",
+          "road_km_round_trip": 2.86,
+          "breakdown": "biglietti andata e ritorno 3.00 €"
+        }
+      }
+    ],
+    "store_prices": [
+      {
+        "store_id": "negozio-demo",
+        "product_id": "P001",
+        "price": 18,
+        "available": true,
+        "observed_at": "2026-11-18T07:00:00Z",
+        "source": "Rilevazione simulata"
+      },
+      {
+        "store_id": "negozio-demo",
+        "product_id": "P002",
+        "price": 23,
+        "available": true,
+        "observed_at": "2026-11-18T07:00:00Z",
+        "source": "Rilevazione simulata"
+      },
+      {
+        "store_id": "negozio-demo",
+        "product_id": "P003",
+        "price": 11,
+        "available": true,
+        "observed_at": "2026-11-18T07:00:00Z",
+        "source": "Rilevazione simulata"
+      },
+      {
+        "store_id": "negozio-demo",
+        "product_id": "P004",
+        "price": 13,
+        "available": true,
+        "observed_at": "2026-11-18T07:00:00Z",
+        "source": "Rilevazione simulata"
+      },
+      {
+        "store_id": "negozio-demo",
+        "product_id": "P005",
+        "price": 19,
+        "available": true,
+        "observed_at": "2026-11-18T07:00:00Z",
+        "source": "Rilevazione simulata"
+      }
+    ],
+    "notes": []
+  },
+  "stats": {
+    "offers_total": 10,
+    "offers_valid": 10,
+    "ok": 10,
+    "not_found": 0,
+    "price_unverified": 0,
+    "match_unreliable": 0,
+    "blocked": 0,
+    "rate_limited": 0,
+    "robots": 0,
+    "errors": 0,
+    "candidate_offers": 1,
+    "shipping_unverified": []
+  },
+  "errors": [],
+  "last_attempt": {
+    "at": "2026-11-18T07:00:00Z",
+    "status": "OK"
+  },
+  "format_changes": []
+}

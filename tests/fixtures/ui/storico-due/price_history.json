@@ -1,0 +1,116 @@
+{
+  "schema_version": 2,
+  "updated_at": "2026-11-18T07:00:00Z",
+  "entries": [
+    {
+      "date": "2026-11-17",
+      "product_id": "P001",
+      "pharmacy_id": "aurora",
+      "price": 20.3,
+      "shipping": 3.5,
+      "total": 23.8,
+      "availability": "DISPONIBILE",
+      "match": "ID",
+      "format": "1000 ml"
+    },
+    {
+      "date": "2026-11-18",
+      "product_id": "P001",
+      "pharmacy_id": "aurora",
+      "price": 19.8,
+      "shipping": 3.5,
+      "total": 23.3,
+      "availability": "DISPONIBILE",
+      "match": "ID",
+      "format": "1000 ml"
+    },
+    {
+      "date": "2026-11-17",
+      "product_id": "P002",
+      "pharmacy_id": "aurora",
+      "price": 18.1,
+      "shipping": 3.5,
+      "total": 21.6,
+      "availability": "DISPONIBILE",
+      "match": "ID",
+      "format": "400 ml"
+    },
+    {
+      "date": "2026-11-18",
+      "product_id": "P002",
+      "pharmacy_id": "aurora",
+      "price": 17.6,
+      "shipping": 3.5,
+      "total": 21.1,
+      "availability": "DISPONIBILE",
+      "match": "ID",
+      "format": "400 ml"
+    },
+    {
+      "date": "2026-11-17",
+      "product_id": "P003",
+      "pharmacy_id": "aurora",
+      "price": 16.9,
+      "shipping": 3.5,
+      "total": 20.4,
+      "availability": "DISPONIBILE",
+      "match": "ID",
+      "format": "100 ml"
+    },
+    {
+      "date": "2026-11-18",
+      "product_id": "P003",
+      "pharmacy_id": "aurora",
+      "price": 16.4,
+      "shipping": 3.5,
+      "total": 19.9,
+      "availability": "DISPONIBILE",
+      "match": "ID",
+      "format": "100 ml"
+    },
+    {
+      "date": "2026-11-17",
+      "product_id": "P004",
+      "pharmacy_id": "aurora",
+      "price": 11.4,
+      "shipping": 3.5,
+      "total": 14.9,
+      "availability": "DISPONIBILE",
+      "match": "ID",
+      "format": "100 ml"
+    },
+    {
+      "date": "2026-11-18",
+      "product_id": "P004",
+      "pharmacy_id": "aurora",
+      "price": 10.9,
+      "shipping": 3.5,
+      "total": 14.4,
+      "availability": "DISPONIBILE",
+      "match": "ID",
+      "format": "100 ml"
+    },
+    {
+      "date": "2026-11-17",
+      "product_id": "P005",
+      "pharmacy_id": "aurora",
+      "price": 15.7,
+      "shipping": 3.5,
+      "total": 19.2,
+      "availability": "DISPONIBILE",
+      "match": "ID",
+      "format": "50 ml"
+    },
+    {
+      "date": "2026-11-18",
+      "product_id": "P005",
+      "pharmacy_id": "aurora",
+      "price": 15.2,
+      "shipping": 3.5,
+      "total": 18.7,
+      "availability": "DISPONIBILE",
+      "match": "ID",
+      "format": "50 ml"
+    }
+  ]
+}

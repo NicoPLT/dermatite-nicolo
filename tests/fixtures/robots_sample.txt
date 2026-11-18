@@ -1,0 +1,17 @@
+# robots.txt SIMULATO per i test
+User-agent: GPTBot
+Disallow: /
+
+User-agent: *
+Allow: */modules/*.css
+Disallow: /*?search_query=
+Disallow: /ricerca
+Disallow: /checkout$
+Disallow: /private/
+Allow: /private/public-page
+Disallow:
+
+User-agent: dermopricetracker
+Disallow: /solo-per-noi/
+
+Sitemap: https://www.example-pharmacy.it/1_index_sitemap.xml
