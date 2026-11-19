@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-18T09:51:45Z",
+  "updated_at": "2026-11-19T16:09:24Z",
   "statuses": [
     "DISCOVERED",
     "UNDER_REVIEW",
@@ -69,7 +69,7 @@
       ],
       "errors": [],
       "notes": "P005 (fluido invisibile senza profumo) non presente in sitemap: solo varianti colorata/edizione limitata/oil control.",
-      "last_run": "2026-11-18T09:51:45Z",
+      "last_run": "2026-11-19T16:09:24Z",
       "last_run_summary": {
         "OK": 4,
         "PREZZO NON VERIFICATO": 1
@@ -88,7 +88,7 @@
         "P005"
       ],
       "consecutive_failures": 0,
-      "last_success": "2026-11-18T09:51:45Z",
+      "last_success": "2026-11-19T16:09:24Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
         "product_id": "P001",
@@ -162,7 +162,7 @@
       ],
       "errors": [],
       "notes": "Sitemap molto grande (78 file prodotto): scansione sitemap solo settimanale. La pagina IT981401019 è Lipikar AP+M 200 ml (non 400). P002 400 ml = IT979265434.",
-      "last_run": "2026-11-18T09:51:45Z",
+      "last_run": "2026-11-19T16:09:24Z",
       "last_run_summary": {
         "OK": 4,
         "PREZZO NON VERIFICATO": 1
@@ -181,7 +181,7 @@
         "P005"
       ],
       "consecutive_failures": 0,
-      "last_success": "2026-11-18T09:51:45Z",
+      "last_success": "2026-11-19T16:09:24Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
         "product_id": "P001",
@@ -315,7 +315,7 @@
         "scraping_clause_found": false
       },
       "last_verified": "2026-11-18T07:55:00Z",
-      "scraper_status": "OK",
+      "scraper_status": "NOT_VERIFIED",
       "products_candidate_from_sitemap": [
         "P001",
         "P003",
@@ -327,24 +327,14 @@
       ],
       "errors": [],
       "notes": "Stessa piattaforma/catalogo di verafarma.it. JSON-LD espone il Minsan come sku/mpn (non l'EAN).",
-      "last_run": "2026-11-18T09:51:45Z",
+      "last_run": "2026-11-19T16:09:24Z",
       "last_run_summary": {
-        "OK": 4,
+        "MATCH NON AFFIDABILE": 4,
         "NON TROVATO": 1
       },
-      "products_found": [
-        "P001",
-        "P003",
-        "P004",
-        "P005"
-      ],
-      "products_with_verified_price": [
-        "P001",
-        "P003",
-        "P004",
-        "P005"
-      ],
-      "consecutive_failures": 0,
+      "products_found": [],
+      "products_with_verified_price": [],
+      "consecutive_failures": 1,
       "last_success": "2026-11-18T09:51:45Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
@@ -410,7 +400,7 @@
       ],
       "errors": [],
       "notes": "Catalogo con slug identici a meafarma.it. Due URL candidati per Lipocrema 50 ml: da disambiguare con il Minsan.",
-      "last_run": "2026-11-18T09:51:45Z",
+      "last_run": "2026-11-19T16:09:24Z",
       "last_run_summary": {
         "OK": 5
       },
@@ -429,7 +419,7 @@
         "P005"
       ],
       "consecutive_failures": 0,
-      "last_success": "2026-11-18T09:51:45Z",
+      "last_success": "2026-11-19T16:09:24Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
         "product_id": "P001",
@@ -621,7 +611,7 @@
         "scraping_clause_found": false
       },
       "last_verified": "2026-11-18T07:55:00Z",
-      "scraper_status": "OK",
+      "scraper_status": "NOT_VERIFIED",
       "products_candidate_from_sitemap": [
         "P001",
         "P003",
@@ -634,9 +624,9 @@
       ],
       "errors": [],
       "notes": "ATTENZIONE: il prezzo nel JSON-LD (9,83) differisce dal prezzo mostrato/microdata/meta (10,42) su Ceramol Crema Mani: il JSON-LD sembra condiviso con farmasave. Lo scraper deve preferire microdata/HTML e segnalare il conflitto. P002 400 ml non trovato (solo 200 ml).",
-      "last_run": "2026-11-18T09:51:45Z",
+      "last_run": "2026-11-19T16:09:24Z",
       "last_run_summary": {
-        "OK": 4,
+        "PREZZO NON VERIFICATO": 4,
         "NON TROVATO": 1
       },
       "products_found": [
@@ -645,13 +635,8 @@
         "P004",
         "P005"
       ],
-      "products_with_verified_price": [
-        "P001",
-        "P003",
-        "P004",
-        "P005"
-      ],
-      "consecutive_failures": 0,
+      "products_with_verified_price": [],
+      "consecutive_failures": 1,
       "last_success": "2026-11-18T09:51:45Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
@@ -723,7 +708,7 @@
       ],
       "errors": [],
       "notes": "La pagina 'informazioni-di-spedizione' è esclusa da robots.txt: costi di spedizione da configurare manualmente da fonte consentita.",
-      "last_run": "2026-11-18T09:51:45Z",
+      "last_run": "2026-11-19T16:09:24Z",
       "last_run_summary": {
         "OK": 5
       },
@@ -742,7 +727,7 @@
         "P005"
       ],
       "consecutive_failures": 0,
-      "last_success": "2026-11-18T09:51:45Z",
+      "last_success": "2026-11-19T16:09:24Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
         "product_id": "P001",
@@ -812,7 +797,7 @@
       ],
       "errors": [],
       "notes": "Nessun JSON-LD Product: prezzo da meta product:price:amount + HTML. EAN presente nell'URL prodotto.",
-      "last_run": "2026-11-18T09:51:45Z",
+      "last_run": "2026-11-19T16:09:24Z",
       "last_run_summary": {
         "OK": 5
       },
@@ -831,7 +816,7 @@
         "P005"
       ],
       "consecutive_failures": 0,
-      "last_success": "2026-11-18T09:51:45Z",
+      "last_success": "2026-11-19T16:09:24Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
         "product_id": "P001",
@@ -891,7 +876,7 @@
       "products_verified_on_page": [],
       "errors": [],
       "notes": "Solo HTML, nessun dato strutturato. Spedizione gratuita dichiarata in homepage 'a partire da € 79,90' (da verificare). Non vende P002, P003, P004.",
-      "last_run": "2026-11-18T09:51:45Z",
+      "last_run": "2026-11-19T16:09:24Z",
       "last_run_summary": {
         "OK": 2,
         "NON TROVATO": 3
@@ -905,7 +890,7 @@
         "P005"
       ],
       "consecutive_failures": 0,
-      "last_success": "2026-11-18T09:51:45Z",
+      "last_success": "2026-11-19T16:09:24Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
         "product_id": "P001",
@@ -979,7 +964,7 @@
       ],
       "errors": [],
       "notes": "JSON-LD completo con EAN (gtin13) e Minsan (sku): fonte migliore per la verifica degli identificativi.",
-      "last_run": "2026-11-18T09:51:45Z",
+      "last_run": "2026-11-19T16:09:24Z",
       "last_run_summary": {
         "OK": 5
       },
@@ -998,7 +983,7 @@
         "P005"
       ],
       "consecutive_failures": 0,
-      "last_success": "2026-11-18T09:51:45Z",
+      "last_success": "2026-11-19T16:09:24Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
         "product_id": "P001",
@@ -6156,5 +6141,6 @@
         "result": "ancora bloccato: Accesso negato/challenge anti-bot su topfarmacia.it (HTTP 403): nessun tentativo di aggiramento"
       }
     ]
-  }
+  },
+  "updated_by_run": "run-20261119T160924Z"
 }
