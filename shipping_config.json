@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-18T08:19:58Z",
+  "updated_at": "2026-11-23T18:53:59Z",
   "zone": "Italia continentale (Milano). Isole, Livigno, Venezia e zone disagiate hanno tariffe diverse non considerate.",
   "max_age_days": 60,
   "status_levels": {
@@ -30,7 +30,7 @@
       "pickup_locations": [],
       "source_url": "https://www.redcare.it/faq/",
       "source_quote": "Le spese di spedizione sono gratuite per ordini di importo uguale o superiore a € 18,99 [...] le spese di spedizioni ammontano a € 3,99. [...] Contrassegno con supplemento di 3,95€",
-      "verified_at": "2026-11-18",
+      "verified_at": "2026-11-23",
       "reliability": "alta",
       "auto_check": {
         "url": "https://www.redcare.it/faq/",
@@ -39,12 +39,13 @@
           "free_threshold_eur": "uguale o superiore a\\s*€\\s*(\\d+[.,]\\d{2})"
         },
         "last_check": {
-          "at": "2026-11-18T08:19:23Z",
+          "at": "2026-11-23T18:53:19Z",
           "found": {
             "standard_cost_eur": 3.99,
             "free_threshold_eur": 18.99
           },
           "differences": [],
+          "applied": [],
           "error": null
         }
       },
@@ -72,12 +73,16 @@
           "free_threshold_eur": "Per ordini superiori ad euro\\s*(\\d+[.,]\\d{2})\\s*la spedizione è gratis"
         },
         "last_check": {
-          "at": "2026-11-18T08:19:27Z",
+          "at": "2026-11-23T18:53:24Z",
           "found": {
-            "standard_cost_eur": 5.0,
-            "free_threshold_eur": 69.0
+            "standard_cost_eur": null,
+            "free_threshold_eur": null
           },
-          "differences": [],
+          "differences": [
+            "standard_cost_eur: non trovato o ambiguo sulla pagina",
+            "free_threshold_eur: non trovato o ambiguo sulla pagina"
+          ],
+          "applied": [],
           "error": null
         }
       },
@@ -105,12 +110,16 @@
           "free_threshold_eur": "Per ordini superiori ad euro\\s*(\\d+[.,]\\d{2})\\s*la spedizione è gratis"
         },
         "last_check": {
-          "at": "2026-11-18T08:19:30Z",
+          "at": "2026-11-23T18:53:27Z",
           "found": {
-            "standard_cost_eur": 5.0,
-            "free_threshold_eur": 29.9
+            "standard_cost_eur": null,
+            "free_threshold_eur": null
           },
-          "differences": [],
+          "differences": [
+            "standard_cost_eur: non trovato o ambiguo sulla pagina",
+            "free_threshold_eur: non trovato o ambiguo sulla pagina"
+          ],
+          "applied": [],
           "error": null
         }
       },
@@ -129,7 +138,7 @@
       "pickup_locations": [],
       "source_url": "https://farmastrike.it/info-spedizioni",
       "source_quote": "SPEDIZIONE CLASSICA per tutti gli ordini a 5,99€ [...] contrassegno [...] pari a 3,50€",
-      "verified_at": "2026-11-18",
+      "verified_at": "2026-11-23",
       "reliability": "alta",
       "auto_check": {
         "url": "https://farmastrike.it/info-spedizioni",
@@ -137,11 +146,12 @@
           "standard_cost_eur": "SPEDIZIONE CLASSICA per tutti gli ordini a\\s*(\\d+[.,]\\d{2})"
         },
         "last_check": {
-          "at": "2026-11-18T08:19:34Z",
+          "at": "2026-11-23T18:53:31Z",
           "found": {
             "standard_cost_eur": 5.99
           },
           "differences": [],
+          "applied": [],
           "error": null
         }
       },
@@ -160,7 +170,7 @@
       "pickup_locations": [],
       "source_url": "https://meafarma.it/informazioni-di-spedizione",
       "source_quote": "Per ordini superiori a 79,90€, la spedizione è GRATUITA [...] Ordini inferiori a 79,90€ (escluse Sardegna, Venezia, Isole minori): €5,90 [...] Contrassegno [...] €5,00",
-      "verified_at": "2026-11-18",
+      "verified_at": "2026-11-23",
       "reliability": "alta",
       "auto_check": {
         "url": "https://meafarma.it/informazioni-di-spedizione",
@@ -168,11 +178,12 @@
           "free_threshold_eur": "Per ordini\\s*superiori a\\s*(\\d+[.,]\\d{2})"
         },
         "last_check": {
-          "at": "2026-11-18T08:19:38Z",
+          "at": "2026-11-23T18:53:36Z",
           "found": {
             "free_threshold_eur": 79.9
           },
           "differences": [],
+          "applied": [],
           "error": null
         }
       },
@@ -191,7 +202,7 @@
       "pickup_locations": [],
       "source_url": "https://farmavillage.it/info-spedizioni",
       "source_quote": "Spedizione gratuita a partire da € 79,90 in tutta Italia [...] Spediamo in tutta Italia con Corriere Espresso a soli 5.90€",
-      "verified_at": "2026-11-18",
+      "verified_at": "2026-11-23",
       "reliability": "alta",
       "auto_check": {
         "url": "https://farmavillage.it/info-spedizioni",
@@ -200,12 +211,13 @@
           "free_threshold_eur": "gratuita a partire da\\s*€\\s*(\\d+[.,]\\d{2})"
         },
         "last_check": {
-          "at": "2026-11-18T08:19:43Z",
+          "at": "2026-11-23T18:53:40Z",
           "found": {
             "standard_cost_eur": 5.9,
             "free_threshold_eur": 79.9
           },
           "differences": [],
+          "applied": [],
           "error": null
         }
       },
@@ -235,7 +247,7 @@
       ],
       "source_url": "https://www.alpifarma.it/content/8-spedizioni",
       "source_quote": "Corriere espresso a domicilio: € 4,99 [...] Ritiro presso il nostro punto vendita: GRATUITO [...] Per ordini di importo superiore a € 59,00, la spedizione con corriere espresso o Fermopoint è GRATUITA.",
-      "verified_at": "2026-11-18",
+      "verified_at": "2026-11-23",
       "reliability": "alta",
       "auto_check": {
         "url": "https://www.alpifarma.it/content/8-spedizioni",
@@ -244,12 +256,13 @@
           "free_threshold_eur": "superiore a\\s*€\\s*(\\d+[.,]\\d{2})"
         },
         "last_check": {
-          "at": "2026-11-18T08:19:51Z",
+          "at": "2026-11-23T18:53:49Z",
           "found": {
             "standard_cost_eur": 4.99,
             "free_threshold_eur": 59.0
           },
           "differences": [],
+          "applied": [],
           "error": null
         }
       },
@@ -279,7 +292,7 @@
       ],
       "source_url": "https://www.clubfarma.it/content/102-spedizione-su-clubfarma",
       "source_quote": "Le spese di spedizione sono di 5,99€ al di sotto di 59,90€ (sempre gratuite per ritiro in punto vendita fisico), mentre sono gratuite al di sopra di questo importo.",
-      "verified_at": "2026-11-18",
+      "verified_at": "2026-11-23",
       "reliability": "alta",
       "auto_check": {
         "url": "https://www.clubfarma.it/content/102-spedizione-su-clubfarma",
@@ -288,12 +301,13 @@
           "free_threshold_eur": "al di sotto di\\s*(\\d+[.,]\\d{2})"
         },
         "last_check": {
-          "at": "2026-11-18T08:19:55Z",
+          "at": "2026-11-23T18:53:54Z",
           "found": {
             "standard_cost_eur": 5.99,
             "free_threshold_eur": 59.9
           },
           "differences": [],
+          "applied": [],
           "error": null
         }
       },

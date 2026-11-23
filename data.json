@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-11-22T14:57:32Z",
-  "generated_at_rome": "22/11/2026 15:58",
+  "generated_at": "2026-11-23T18:53:59Z",
+  "generated_at_rome": "23/11/2026 19:54",
   "status": "OK",
   "scope": {
     "type": "completa",
@@ -16,11 +16,11 @@
     ],
     "pharmacies_carried": [],
     "carried_from": null,
-    "last_full_run_at": "2026-11-22T14:57:32Z"
+    "last_full_run_at": "2026-11-23T18:53:59Z"
   },
   "disclaimer": "Miglior prezzo trovato tra le farmacie monitorate",
   "run": {
-    "duration_s": 40.1,
+    "duration_s": 39.1,
     "pharmacies_attempted": 7,
     "pharmacies_with_offers": 7,
     "dry_run": false,
@@ -141,7 +141,7 @@
         "css": "DISPONIBILE"
       },
       "availability_method": "json_ld+meta+css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -186,7 +186,7 @@
         "css": "NON DISPONIBILE"
       },
       "availability_method": "fonti in disaccordo: meta=DISPONIBILE, css=NON DISPONIBILE",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": false,
       "notes": [
         "disponibilità: fonti in disaccordo (fonti in disaccordo: meta=DISPONIBILE, css=NON DISPONIBILE)",
@@ -236,7 +236,7 @@
         "css": "DISPONIBILE"
       },
       "availability_method": "json_ld+meta+css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -286,7 +286,7 @@
         "css": "DISPONIBILE"
       },
       "availability_method": "json_ld+meta+css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -336,7 +336,7 @@
         "css": "DISPONIBILE"
       },
       "availability_method": "json_ld+meta+css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -385,7 +385,7 @@
         "css": "DISPONIBILE"
       },
       "availability_method": "json_ld+css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -434,7 +434,7 @@
         "css": "NON DISPONIBILE"
       },
       "availability_method": "json_ld+css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [
@@ -489,7 +489,7 @@
         "css": "DISPONIBILE"
       },
       "availability_method": "json_ld+css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -538,7 +538,7 @@
         "css": "DISPONIBILE"
       },
       "availability_method": "json_ld+css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -587,7 +587,7 @@
         "css": "DISPONIBILE"
       },
       "availability_method": "json_ld+css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -634,7 +634,7 @@
         "css": "DISPONIBILE"
       },
       "availability_method": "css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -681,7 +681,7 @@
         "css": "NON DISPONIBILE"
       },
       "availability_method": "css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -697,7 +697,7 @@
       "product_id": "P003",
       "pharmacy_id": "farmaciairisdiana",
       "status": "OK",
-      "price": 16.01,
+      "price": 15.99,
       "currency": "EUR",
       "availability": "DISPONIBILE",
       "url": "https://farmaciairisdiana.it/prodotti-per-la-cute/35081-ceramol-lipocrema-311-100-ml-8029408107014.html",
@@ -716,8 +716,8 @@
         ]
       },
       "price_sources": {
-        "meta": 16.01,
-        "css": 16.01
+        "meta": 15.99,
+        "css": 15.99
       },
       "price_method": "meta+css",
       "price_conflict": false,
@@ -725,7 +725,7 @@
         "css": "DISPONIBILE"
       },
       "availability_method": "css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -772,7 +772,7 @@
         "css": "DISPONIBILE"
       },
       "availability_method": "css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -791,7 +791,7 @@
       "product_id": "P005",
       "pharmacy_id": "farmaciairisdiana",
       "status": "OK",
-      "price": 17.96,
+      "price": 16.81,
       "currency": "EUR",
       "availability": "DISPONIBILE",
       "url": "https://farmaciairisdiana.it/Solari-Per-Il-Corpo/30014-anthelios-fluido-uvm50-s-prof-3337875797597.html",
@@ -810,8 +810,8 @@
         ]
       },
       "price_sources": {
-        "meta": 17.96,
-        "css": 17.96
+        "meta": 16.81,
+        "css": 16.81
       },
       "price_method": "meta+css",
       "price_conflict": false,
@@ -819,7 +819,7 @@
         "css": "DISPONIBILE"
       },
       "availability_method": "css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -865,7 +865,7 @@
         "json_ld": "DISPONIBILE"
       },
       "availability_method": "json_ld",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -911,7 +911,7 @@
         "json_ld": "NON DISPONIBILE"
       },
       "availability_method": "json_ld",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [
@@ -963,7 +963,7 @@
         "json_ld": "DISPONIBILE"
       },
       "availability_method": "json_ld",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -1009,7 +1009,7 @@
         "json_ld": "DISPONIBILE"
       },
       "availability_method": "json_ld",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -1055,7 +1055,7 @@
         "json_ld": "DISPONIBILE"
       },
       "availability_method": "json_ld",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -1099,7 +1099,7 @@
         "css": "DISPONIBILE"
       },
       "availability_method": "css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -1132,7 +1132,7 @@
       "price_conflict": false,
       "availability_sources": {},
       "availability_method": null,
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": false,
       "notes": [
         "nessun URL candidato da sitemap/ricerca"
@@ -1164,7 +1164,7 @@
       "price_conflict": false,
       "availability_sources": {},
       "availability_method": null,
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": false,
       "notes": [
         "nessun URL candidato da sitemap/ricerca"
@@ -1196,7 +1196,7 @@
       "price_conflict": false,
       "availability_sources": {},
       "availability_method": null,
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": false,
       "notes": [
         "nessun URL candidato da sitemap/ricerca"
@@ -1239,7 +1239,7 @@
         "css": "DISPONIBILE"
       },
       "availability_method": "css",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -1285,7 +1285,7 @@
         "json_ld": "DISPONIBILE"
       },
       "availability_method": "json_ld",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -1331,7 +1331,7 @@
         "json_ld": "NON DISPONIBILE"
       },
       "availability_method": "json_ld",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -1374,7 +1374,7 @@
         "json_ld": "DISPONIBILE"
       },
       "availability_method": "json_ld",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -1420,7 +1420,7 @@
         "json_ld": "DISPONIBILE"
       },
       "availability_method": "json_ld",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -1466,7 +1466,7 @@
         "json_ld": "DISPONIBILE"
       },
       "availability_method": "json_ld",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -1512,7 +1512,7 @@
         "json_ld": "DISPONIBILE"
       },
       "availability_method": "json_ld",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -1552,7 +1552,7 @@
       "price_conflict": false,
       "availability_sources": {},
       "availability_method": "nessuna fonte",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": false,
       "notes": [
         "nessun prezzo esposto in pagina"
@@ -1597,7 +1597,7 @@
         "json_ld": "DISPONIBILE"
       },
       "availability_method": "json_ld",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -1643,7 +1643,7 @@
         "json_ld": "DISPONIBILE"
       },
       "availability_method": "json_ld",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -1689,7 +1689,7 @@
         "json_ld": "DISPONIBILE"
       },
       "availability_method": "json_ld",
-      "scraped_at": "2026-11-22T14:57:32Z",
+      "scraped_at": "2026-11-23T18:53:59Z",
       "verified": true,
       "notes": [],
       "rejected_candidates": [],
@@ -1706,6 +1706,60 @@
     }
   ],
   "candidate_offers": [
+    {
+      "product_id": "P001",
+      "status": "OK",
+      "url": "https://www.farmae.it/products/xemose-huile-nettoyante-fp-1lt",
+      "title": "Uriage Xemose Olio Lavante 1 Litro",
+      "price": 23.37,
+      "availability": "DISPONIBILE",
+      "match_level": "ID",
+      "match_reasons": [
+        "identificativo coincidente: EAN 3661434003370, Minsan 927291005"
+      ],
+      "variant": null,
+      "shipping_jsonld": null,
+      "price_method": "json_ld+meta",
+      "format": "1000 ml",
+      "scraped_at": "2026-11-23T18:50:40Z",
+      "notes": [],
+      "rejected": [],
+      "pharmacy_id": "farmae",
+      "pharmacy_name": "Farmaè",
+      "domain": "farmae.it",
+      "pharmacy_status": "UNDER_REVIEW",
+      "jsonld_compatibility": "FULL",
+      "reliability": "NON_VERIFICATO",
+      "source": "probe",
+      "usable": false
+    },
+    {
+      "product_id": "P001",
+      "status": "OK",
+      "url": "https://www.amicafarmacia.com/products/uriage-xemose-huile-olio-detergente-ultra-delicato-viso-e-corpo-per-pelle-secca-o-molto-secca-1-litro?_pos=2&_sid=116f58070&_ss=r",
+      "title": "Uriage Xemose Olio Lavante 1 Litro",
+      "price": 22.78,
+      "availability": "DISPONIBILE",
+      "match_level": "ID",
+      "match_reasons": [
+        "identificativo coincidente: EAN 3661434003370, Minsan 927291005"
+      ],
+      "variant": null,
+      "shipping_jsonld": null,
+      "price_method": "json_ld+meta",
+      "format": "1000 ml",
+      "scraped_at": "2026-11-23T18:50:40Z",
+      "notes": [],
+      "rejected": [],
+      "pharmacy_id": "amicafarmacia",
+      "pharmacy_name": "Amica Farmacia",
+      "domain": "amicafarmacia.com",
+      "pharmacy_status": "UNDER_REVIEW",
+      "jsonld_compatibility": "FULL",
+      "reliability": "NON_VERIFICATO",
+      "source": "probe",
+      "usable": false
+    },
     {
       "product_id": "P001",
       "status": "OK",
@@ -2018,6 +2072,180 @@
       "reliability": "NON_VERIFICATO",
       "source": "probe",
       "usable": false
+    },
+    {
+      "product_id": "P001",
+      "status": "OK",
+      "url": "https://www.tuttofarma.it/latti-gel-oli-e-creme-detergenti/29617-uriage-xemose-olio-lavante-lenitivo-doccia-e-bagno-1-l-3661434003370.html",
+      "title": "Uriage Xemose C8+ Olio Lavante Lenitivo Doccia e Bagno Pelle Secca 1 L",
+      "price": 23.6,
+      "availability": "DISPONIBILE",
+      "match_level": "ID",
+      "match_reasons": [
+        "identificativo coincidente: EAN 3661434003370, Minsan 927291005"
+      ],
+      "variant": null,
+      "shipping_jsonld": [
+        {
+          "cost": 5.0,
+          "currency": "EUR",
+          "country": "IT"
+        }
+      ],
+      "price_method": "json_ld+meta",
+      "format": "1000 ml",
+      "scraped_at": "2026-11-23T18:50:40Z",
+      "notes": [],
+      "rejected": [],
+      "pharmacy_id": "tuttofarma",
+      "pharmacy_name": "Tuttofarma",
+      "domain": "tuttofarma.it",
+      "pharmacy_status": "UNDER_REVIEW",
+      "jsonld_compatibility": "FULL",
+      "reliability": "NON_VERIFICATO",
+      "source": "probe",
+      "usable": false
+    },
+    {
+      "product_id": "P004",
+      "status": "OK",
+      "url": "https://www.tuttofarma.it/creme-mani/50520-ceramol-crema-mani-100-ml-8029408093058.html",
+      "title": "Ceramol 311 Crema Mani Riparatrice e Protettrice 100ml",
+      "price": 12.84,
+      "availability": "DISPONIBILE",
+      "match_level": "ID",
+      "match_reasons": [
+        "identificativo coincidente: EAN 8029408093058, Minsan 977658020"
+      ],
+      "variant": null,
+      "shipping_jsonld": [
+        {
+          "cost": 5.0,
+          "currency": "EUR",
+          "country": "IT"
+        }
+      ],
+      "price_method": "json_ld+meta",
+      "format": "100 ml",
+      "scraped_at": "2026-11-23T18:50:40Z",
+      "notes": [],
+      "rejected": [],
+      "pharmacy_id": "tuttofarma",
+      "pharmacy_name": "Tuttofarma",
+      "domain": "tuttofarma.it",
+      "pharmacy_status": "UNDER_REVIEW",
+      "jsonld_compatibility": "FULL",
+      "reliability": "NON_VERIFICATO",
+      "source": "probe",
+      "usable": false
+    },
+    {
+      "product_id": "P001",
+      "status": "OK",
+      "url": "https://www.docpeter.it/products/xemose-olio-detergente-1-l?_pos=1&_sid=ccf20d7cd&_ss=r",
+      "title": "Uriage Xemose olio detergente 1 l",
+      "price": 22.4,
+      "availability": "DISPONIBILE",
+      "match_level": "ID",
+      "match_reasons": [
+        "identificativo coincidente: EAN 3661434003370, Minsan 927291005"
+      ],
+      "variant": null,
+      "shipping_jsonld": null,
+      "price_method": "json_ld+meta",
+      "format": "1000 ml",
+      "scraped_at": "2026-11-23T18:50:40Z",
+      "notes": [],
+      "rejected": [],
+      "pharmacy_id": "docpeter",
+      "pharmacy_name": "DocPeter",
+      "domain": "docpeter.it",
+      "pharmacy_status": "UNDER_REVIEW",
+      "jsonld_compatibility": "FULL",
+      "reliability": "NON_VERIFICATO",
+      "source": "probe",
+      "usable": false
+    },
+    {
+      "product_id": "P003",
+      "status": "OK",
+      "url": "https://www.docpeter.it/products/ceramol-lipocrema-311-100ml?_pos=1&_sid=2c7131727&_ss=r",
+      "title": "Ceramol lipocrema 311 100ml",
+      "price": 19.11,
+      "availability": "DISPONIBILE",
+      "match_level": "ID",
+      "match_reasons": [
+        "identificativo coincidente: EAN 8029408107014, Minsan 980512762"
+      ],
+      "variant": null,
+      "shipping_jsonld": null,
+      "price_method": "json_ld+meta",
+      "format": "100 ml",
+      "scraped_at": "2026-11-23T18:50:40Z",
+      "notes": [],
+      "rejected": [],
+      "pharmacy_id": "docpeter",
+      "pharmacy_name": "DocPeter",
+      "domain": "docpeter.it",
+      "pharmacy_status": "UNDER_REVIEW",
+      "jsonld_compatibility": "FULL",
+      "reliability": "NON_VERIFICATO",
+      "source": "probe",
+      "usable": false
+    },
+    {
+      "product_id": "P004",
+      "status": "OK",
+      "url": "https://www.docpeter.it/products/ceramol-crema-mani-100-ml?_pos=1&_sid=f12c37961&_ss=r",
+      "title": "Ceramol Crema Mani 311 Riparatrice e Protettiva 100 ml",
+      "price": 13.15,
+      "availability": "DISPONIBILE",
+      "match_level": "ID",
+      "match_reasons": [
+        "identificativo coincidente: EAN 8029408093058, Minsan 977658020"
+      ],
+      "variant": null,
+      "shipping_jsonld": null,
+      "price_method": "json_ld+meta",
+      "format": "100 ml",
+      "scraped_at": "2026-11-23T18:50:40Z",
+      "notes": [],
+      "rejected": [],
+      "pharmacy_id": "docpeter",
+      "pharmacy_name": "DocPeter",
+      "domain": "docpeter.it",
+      "pharmacy_status": "UNDER_REVIEW",
+      "jsonld_compatibility": "FULL",
+      "reliability": "NON_VERIFICATO",
+      "source": "probe",
+      "usable": false
+    },
+    {
+      "product_id": "P005",
+      "status": "OK",
+      "url": "https://www.docpeter.it/products/anthelios-fluido-inv-uvm50-special?_pos=1&_sid=d65f64a57&_ss=r",
+      "title": "Anthelios Uvmune 400 Fluido Protezione Ultra SP50+ 50ml",
+      "price": 18.52,
+      "availability": "DISPONIBILE",
+      "match_level": "ID",
+      "match_reasons": [
+        "identificativo coincidente: EAN 3337875797597, Minsan 982981666"
+      ],
+      "variant": null,
+      "shipping_jsonld": null,
+      "price_method": "json_ld+meta",
+      "format": "50 ml",
+      "scraped_at": "2026-11-23T18:50:40Z",
+      "notes": [],
+      "rejected": [],
+      "pharmacy_id": "docpeter",
+      "pharmacy_name": "DocPeter",
+      "domain": "docpeter.it",
+      "pharmacy_status": "UNDER_REVIEW",
+      "jsonld_compatibility": "FULL",
+      "reliability": "NON_VERIFICATO",
+      "source": "probe",
+      "usable": false
     }
   ],
   "best_prices": {
@@ -2030,7 +2258,7 @@
       "match_level": "ID",
       "single_item_shipping": 4.99,
       "single_item_total": 18.23,
-      "scraped_at": "2026-11-22T14:57:32Z"
+      "scraped_at": "2026-11-23T18:53:59Z"
     },
     "P002": null,
     "P003": {
@@ -2042,7 +2270,7 @@
       "match_level": "ID",
       "single_item_shipping": 5.99,
       "single_item_total": 21.55,
-      "scraped_at": "2026-11-22T14:57:32Z"
+      "scraped_at": "2026-11-23T18:53:59Z"
     },
     "P004": {
       "pharmacy_id": "farmastrike",
@@ -2053,7 +2281,7 @@
       "match_level": "ID",
       "single_item_shipping": 5.99,
       "single_item_total": 16.58,
-      "scraped_at": "2026-11-22T14:57:32Z"
+      "scraped_at": "2026-11-23T18:53:59Z"
     },
     "P005": {
       "pharmacy_id": "redcare",
@@ -2064,7 +2292,7 @@
       "match_level": "ID",
       "single_item_shipping": 3.99,
       "single_item_total": 17.48,
-      "scraped_at": "2026-11-22T14:57:32Z"
+      "scraped_at": "2026-11-23T18:53:59Z"
     }
   },
   "shipping": {
@@ -2077,11 +2305,11 @@
       "pickup_available": false,
       "pickup_cost_eur": null,
       "source_url": "https://www.redcare.it/faq/",
-      "verified_at": "2026-11-18",
+      "verified_at": "2026-11-23",
       "reliability": "alta",
       "notes": "",
       "status": "verificata",
-      "status_reason": "verificata il 2026-11-18"
+      "status_reason": "verificata il 2026-11-23"
     },
     "farmasave": {
       "standard_cost_eur": 5.0,
@@ -2095,8 +2323,8 @@
       "verified_at": "2026-11-18",
       "reliability": "alta",
       "notes": "Soglia trattata come esclusiva ('superiori a'): a 69,00 € esatti si paga la spedizione (interpretazione prudente). La pagina spedizioni (widget CMS) è esclusa da robots.txt.",
-      "status": "verificata",
-      "status_reason": "verificata il 2026-11-18"
+      "status": "discordante",
+      "status_reason": "controllo del 2026-11-23 sulla pagina ufficiale: standard_cost_eur: non trovato o ambiguo sulla pagina; free_threshold_eur: non trovato o ambiguo sulla pagina"
     },
     "verafarma": {
       "standard_cost_eur": 5.0,
@@ -2110,8 +2338,8 @@
       "verified_at": "2026-11-18",
       "reliability": "alta",
       "notes": "Importo del supplemento contrassegno non leggibile nel testo estratto: lasciato null.",
-      "status": "verificata",
-      "status_reason": "verificata il 2026-11-18"
+      "status": "discordante",
+      "status_reason": "controllo del 2026-11-23 sulla pagina ufficiale: standard_cost_eur: non trovato o ambiguo sulla pagina; free_threshold_eur: non trovato o ambiguo sulla pagina"
     },
     "farmastrike": {
       "standard_cost_eur": 5.99,
@@ -2122,11 +2350,11 @@
       "pickup_available": null,
       "pickup_cost_eur": null,
       "source_url": "https://farmastrike.it/info-spedizioni",
-      "verified_at": "2026-11-18",
+      "verified_at": "2026-11-23",
       "reliability": "alta",
       "notes": "Nessuna soglia di spedizione gratuita dichiarata nella pagina ufficiale.",
       "status": "verificata",
-      "status_reason": "verificata il 2026-11-18"
+      "status_reason": "verificata il 2026-11-23"
     },
     "meafarma": {
       "standard_cost_eur": 5.9,
@@ -2137,11 +2365,11 @@
       "pickup_available": null,
       "pickup_cost_eur": null,
       "source_url": "https://meafarma.it/informazioni-di-spedizione",
-      "verified_at": "2026-11-18",
+      "verified_at": "2026-11-23",
       "reliability": "alta",
       "notes": "Il percorso '/informazioni-di-spedizione/' (con barra finale) è escluso da robots.txt; '/informazioni-di-spedizione' (senza barra) è consentito ed è il link del sito. Possibili supplementi per prodotti pesanti/voluminosi.",
       "status": "verificata",
-      "status_reason": "verificata il 2026-11-18"
+      "status_reason": "verificata il 2026-11-23"
     },
     "farmavillage": {
       "standard_cost_eur": 5.9,
@@ -2152,11 +2380,11 @@
       "pickup_available": null,
       "pickup_cost_eur": null,
       "source_url": "https://farmavillage.it/info-spedizioni",
-      "verified_at": "2026-11-18",
+      "verified_at": "2026-11-23",
       "reliability": "alta",
       "notes": "",
       "status": "verificata",
-      "status_reason": "verificata il 2026-11-18"
+      "status_reason": "verificata il 2026-11-23"
     },
     "alpifarma": {
       "standard_cost_eur": 4.99,
@@ -2167,11 +2395,11 @@
       "pickup_available": true,
       "pickup_cost_eur": 0.0,
       "source_url": "https://www.alpifarma.it/content/8-spedizioni",
-      "verified_at": "2026-11-18",
+      "verified_at": "2026-11-23",
       "reliability": "alta",
       "notes": "Disponibile anche Fermopoint (punto di ritiro) a 3,90 €: non modellato.",
       "status": "verificata",
-      "status_reason": "verificata il 2026-11-18"
+      "status_reason": "verificata il 2026-11-23"
     },
     "clubfarma": {
       "standard_cost_eur": 5.99,
@@ -2182,11 +2410,11 @@
       "pickup_available": true,
       "pickup_cost_eur": 0.0,
       "source_url": "https://www.clubfarma.it/content/102-spedizione-su-clubfarma",
-      "verified_at": "2026-11-18",
+      "verified_at": "2026-11-23",
       "reliability": "alta",
       "notes": "Indirizzo del punto vendita fisico non verificato: il ritiro non viene proposto finché la località non è nota. Disponibile anche InPost Locker (3,99 €): non modellato.",
       "status": "verificata",
-      "status_reason": "verificata il 2026-11-18"
+      "status_reason": "verificata il 2026-11-23"
     },
     "farmaciairisdiana": {
       "standard_cost_eur": null,
@@ -2273,8 +2501,8 @@
       "scraper_status": "OK",
       "platform": "PrestaShop",
       "collection_method": "sitemap+pagina_prodotto",
-      "last_run": "2026-11-22T14:57:32Z",
-      "last_success": "2026-11-22T14:57:32Z",
+      "last_run": "2026-11-23T18:53:59Z",
+      "last_success": "2026-11-23T18:53:59Z",
       "products_found": [
         "P001",
         "P002",
@@ -2292,7 +2520,7 @@
       "notes": "P005 (fluido invisibile senza profumo) non presente in sitemap: solo varianti colorata/edizione limitata/oil control.",
       "last_verified": "2026-11-18T07:55:00Z",
       "run": {
-        "duration_s": 18.2,
+        "duration_s": 19.4,
         "fatal": null,
         "requests": 6
       }
@@ -2305,8 +2533,8 @@
       "scraper_status": "OK",
       "platform": "custom (istio-envoy)",
       "collection_method": "sitemap+pagina_prodotto",
-      "last_run": "2026-11-22T14:57:32Z",
-      "last_success": "2026-11-22T14:57:32Z",
+      "last_run": "2026-11-23T18:53:59Z",
+      "last_success": "2026-11-23T18:53:59Z",
       "products_found": [
         "P001",
         "P002",
@@ -2324,7 +2552,7 @@
       "notes": "Sitemap molto grande (78 file prodotto): scansione sitemap solo settimanale. La pagina IT981401019 è Lipikar AP+M 200 ml (non 400). P002 400 ml = IT979265434.",
       "last_verified": "2026-11-18T07:55:00Z",
       "run": {
-        "duration_s": 19.0,
+        "duration_s": 21.2,
         "fatal": null,
         "requests": 6
       }
@@ -2373,8 +2601,8 @@
       "scraper_status": "OK",
       "platform": "OpenCart",
       "collection_method": "ricerca_interna+sitemap+pagina_prodotto",
-      "last_run": "2026-11-22T14:57:32Z",
-      "last_success": "2026-11-22T14:57:32Z",
+      "last_run": "2026-11-23T18:53:59Z",
+      "last_success": "2026-11-23T18:53:59Z",
       "products_found": [
         "P001",
         "P002",
@@ -2393,7 +2621,7 @@
       "notes": "Catalogo con slug identici a meafarma.it. Due URL candidati per Lipocrema 50 ml: da disambiguare con il Minsan.",
       "last_verified": "2026-11-18T07:55:00Z",
       "run": {
-        "duration_s": 22.0,
+        "duration_s": 22.5,
         "fatal": null,
         "requests": 7
       }
@@ -2466,8 +2694,8 @@
       "scraper_status": "OK",
       "platform": "OpenCart",
       "collection_method": "ricerca_interna+sitemap+pagina_prodotto",
-      "last_run": "2026-11-22T14:57:32Z",
-      "last_success": "2026-11-22T14:57:32Z",
+      "last_run": "2026-11-23T18:53:59Z",
+      "last_success": "2026-11-23T18:53:59Z",
       "products_found": [
         "P001",
         "P002",
@@ -2486,7 +2714,7 @@
       "notes": "La pagina 'informazioni-di-spedizione' è esclusa da robots.txt: costi di spedizione da configurare manualmente da fonte consentita.",
       "last_verified": "2026-11-18T07:55:00Z",
       "run": {
-        "duration_s": 19.4,
+        "duration_s": 19.3,
         "fatal": null,
         "requests": 6
       }
@@ -2499,8 +2727,8 @@
       "scraper_status": "OK",
       "platform": "PrestaShop",
       "collection_method": "sitemap+pagina_prodotto",
-      "last_run": "2026-11-22T14:57:32Z",
-      "last_success": "2026-11-22T14:57:32Z",
+      "last_run": "2026-11-23T18:53:59Z",
+      "last_success": "2026-11-23T18:53:59Z",
       "products_found": [
         "P001",
         "P002",
@@ -2519,7 +2747,7 @@
       "notes": "Nessun JSON-LD Product: prezzo da meta product:price:amount + HTML. EAN presente nell'URL prodotto.",
       "last_verified": "2026-11-18T07:55:00Z",
       "run": {
-        "duration_s": 18.1,
+        "duration_s": 19.6,
         "fatal": null,
         "requests": 6
       }
@@ -2532,8 +2760,8 @@
       "scraper_status": "OK",
       "platform": "OpenCart",
       "collection_method": "ricerca_interna+pagina_prodotto",
-      "last_run": "2026-11-22T14:57:32Z",
-      "last_success": "2026-11-22T14:57:32Z",
+      "last_run": "2026-11-23T18:53:59Z",
+      "last_success": "2026-11-23T18:53:59Z",
       "products_found": [
         "P001",
         "P005"
@@ -2546,7 +2774,7 @@
       "notes": "Solo HTML, nessun dato strutturato. Spedizione gratuita dichiarata in homepage 'a partire da € 79,90' (da verificare). Non vende P002, P003, P004.",
       "last_verified": "2026-11-18T07:55:00Z",
       "run": {
-        "duration_s": 40.0,
+        "duration_s": 39.0,
         "fatal": null,
         "requests": 9
       }
@@ -2559,8 +2787,8 @@
       "scraper_status": "OK",
       "platform": "PrestaShop",
       "collection_method": "sitemap+pagina_prodotto",
-      "last_run": "2026-11-22T14:57:32Z",
-      "last_success": "2026-11-22T14:57:32Z",
+      "last_run": "2026-11-23T18:53:59Z",
+      "last_success": "2026-11-23T18:53:59Z",
       "products_found": [
         "P001",
         "P002",
@@ -2579,7 +2807,7 @@
       "notes": "JSON-LD completo con EAN (gtin13) e Minsan (sku): fonte migliore per la verifica degli identificativi.",
       "last_verified": "2026-11-18T07:55:00Z",
       "run": {
-        "duration_s": 21.2,
+        "duration_s": 20.8,
         "fatal": null,
         "requests": 7
       }
@@ -2608,16 +2836,21 @@
       "domain": "farmae.it",
       "base_url": "https://farmae.it",
       "status": "UNDER_REVIEW",
-      "scraper_status": "NO_SCRAPER",
+      "scraper_status": "PROBE_FULL",
       "platform": "Shopify",
       "collection_method": null,
       "last_run": null,
       "last_success": null,
-      "products_found": null,
+      "products_found": [
+        "P001"
+      ],
       "products_with_verified_price": null,
-      "errors": [],
+      "errors": [
+        "nessun URL candidato da sitemap/ricerca",
+        "sitemap: limite di 4 sitemap figlie raggiunto"
+      ],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": "2026-11-18T08:38:08Z",
+      "last_verified": "2026-11-23T18:50:40Z",
       "run": null
     },
     "amicafarmacia": {
@@ -2625,16 +2858,23 @@
       "domain": "amicafarmacia.com",
       "base_url": "https://amicafarmacia.com",
       "status": "UNDER_REVIEW",
-      "scraper_status": "NO_SCRAPER",
+      "scraper_status": "PROBE_FULL",
       "platform": "Shopify",
       "collection_method": null,
       "last_run": null,
       "last_success": null,
-      "products_found": null,
+      "products_found": [
+        "P001"
+      ],
       "products_with_verified_price": null,
-      "errors": [],
+      "errors": [
+        "nessun URL candidato da sitemap/ricerca",
+        "tetto di 25 richieste per amicafarmacia.com raggiunto",
+        "tetto di 25 richieste raggiunto: ricerca incompleta",
+        "sitemap: limite di 4 sitemap figlie raggiunto"
+      ],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": "2026-11-18T08:38:08Z",
+      "last_verified": "2026-11-23T18:50:40Z",
       "run": null
     },
     "1000farmacie": {
@@ -2711,41 +2951,57 @@
       "name": "Tuttofarma",
       "domain": "tuttofarma.it",
       "base_url": "https://tuttofarma.it",
-      "status": "DISCOVERED",
-      "scraper_status": "NO_SCRAPER",
-      "platform": null,
+      "status": "UNDER_REVIEW",
+      "scraper_status": "PROBE_FULL",
+      "platform": "PrestaShop",
       "collection_method": null,
       "last_run": null,
       "last_success": null,
-      "products_found": null,
+      "products_found": [
+        "P001",
+        "P004"
+      ],
       "products_with_verified_price": null,
-      "errors": [],
+      "errors": [
+        "nessun URL candidato da sitemap/ricerca",
+        "sitemap: limite di 4 sitemap figlie raggiunto",
+        "sitemap: limite di 4 sitemap figlie raggiunto",
+        "pattern di ricerca vietato da robots.txt: /ricerca?controller=search&s={q}"
+      ],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:50:40Z",
       "run": null
     },
     "docpeter": {
       "name": "DocPeter",
       "domain": "docpeter.it",
       "base_url": "https://docpeter.it",
-      "status": "DISCOVERED",
-      "scraper_status": "NO_SCRAPER",
-      "platform": null,
+      "status": "UNDER_REVIEW",
+      "scraper_status": "PROBE_FULL",
+      "platform": "Shopify",
       "collection_method": null,
       "last_run": null,
       "last_success": null,
-      "products_found": null,
+      "products_found": [
+        "P001",
+        "P003",
+        "P004",
+        "P005"
+      ],
       "products_with_verified_price": null,
-      "errors": [],
+      "errors": [
+        "nessun URL candidato da sitemap/ricerca",
+        "sitemap: limite di 4 sitemap figlie raggiunto"
+      ],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:50:40Z",
       "run": null
     },
     "drmax": {
       "name": "Dr. Max",
       "domain": "drmax.it",
       "base_url": "https://drmax.it",
-      "status": "DISCOVERED",
+      "status": "BLOCKED",
       "scraper_status": "NO_SCRAPER",
       "platform": null,
       "collection_method": null,
@@ -2753,16 +3009,18 @@
       "last_success": null,
       "products_found": null,
       "products_with_verified_price": null,
-      "errors": [],
+      "errors": [
+        "Accesso negato/challenge anti-bot su drmax.it (HTTP 403): nessun tentativo di aggiramento"
+      ],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:50:59Z",
       "run": null
     },
     "benufarmacia": {
       "name": "BENU Farmacia",
       "domain": "benufarmacia.it",
       "base_url": "https://benufarmacia.it",
-      "status": "DISCOVERED",
+      "status": "BLOCKED",
       "scraper_status": "NO_SCRAPER",
       "platform": null,
       "collection_method": null,
@@ -2770,18 +3028,20 @@
       "last_success": null,
       "products_found": null,
       "products_with_verified_price": null,
-      "errors": [],
+      "errors": [
+        "homepage vietata da robots.txt"
+      ],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:50:59Z",
       "run": null
     },
     "farmaciamusto": {
       "name": "Farmacia Dr. Musto Francesco e & C. snc",
       "domain": "farmaciamusto.it",
       "base_url": "https://farmaciamusto.it",
-      "status": "DISCOVERED",
+      "status": "UNDER_REVIEW",
       "scraper_status": "NO_SCRAPER",
-      "platform": null,
+      "platform": "sconosciuta",
       "collection_method": null,
       "last_run": null,
       "last_success": null,
@@ -2789,14 +3049,14 @@
       "products_with_verified_price": null,
       "errors": [],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:50:59Z",
       "run": null
     },
     "farmaciaalaibac": {
       "name": "Farmacia Alaibac della dott.ssa Paola Amalia Maria Alaibac S.a.s.",
       "domain": "farmaciaalaibac.it",
       "base_url": "https://farmaciaalaibac.it",
-      "status": "DISCOVERED",
+      "status": "BLOCKED",
       "scraper_status": "NO_SCRAPER",
       "platform": null,
       "collection_method": null,
@@ -2804,18 +3064,20 @@
       "last_success": null,
       "products_found": null,
       "products_with_verified_price": null,
-      "errors": [],
+      "errors": [
+        "homepage vietata da robots.txt"
+      ],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:50:59Z",
       "run": null
     },
     "alfarma14snc": {
       "name": "Farmacia Alfarma 14 dei dottori D'alba Martina e Negro Alessio s.n.c.",
       "domain": "alfarma14snc.it",
       "base_url": "https://alfarma14snc.it",
-      "status": "DISCOVERED",
+      "status": "UNDER_REVIEW",
       "scraper_status": "NO_SCRAPER",
-      "platform": null,
+      "platform": "WooCommerce",
       "collection_method": null,
       "last_run": null,
       "last_success": null,
@@ -2823,16 +3085,16 @@
       "products_with_verified_price": null,
       "errors": [],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:50:59Z",
       "run": null
     },
     "farmaciamigali": {
       "name": "Farmacia Alfonso Migali",
       "domain": "farmaciamigali.it",
       "base_url": "https://farmaciamigali.it",
-      "status": "DISCOVERED",
+      "status": "UNDER_REVIEW",
       "scraper_status": "NO_SCRAPER",
-      "platform": null,
+      "platform": "WooCommerce",
       "collection_method": null,
       "last_run": null,
       "last_success": null,
@@ -2840,16 +3102,16 @@
       "products_with_verified_price": null,
       "errors": [],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:50:59Z",
       "run": null
     },
     "farmaciabaltini": {
       "name": "Farmacia Baltini",
       "domain": "farmaciabaltini.it",
       "base_url": "https://farmaciabaltini.it",
-      "status": "DISCOVERED",
+      "status": "UNDER_REVIEW",
       "scraper_status": "NO_SCRAPER",
-      "platform": null,
+      "platform": "sconosciuta",
       "collection_method": null,
       "last_run": null,
       "last_success": null,
@@ -2857,14 +3119,14 @@
       "products_with_verified_price": null,
       "errors": [],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:51:03Z",
       "run": null
     },
     "farmaciabenincasa": {
       "name": "Farmacia Benincasa dott. Francesco",
       "domain": "farmaciabenincasa.it",
       "base_url": "https://farmaciabenincasa.it",
-      "status": "DISCOVERED",
+      "status": "INACTIVE",
       "scraper_status": "NO_SCRAPER",
       "platform": null,
       "collection_method": null,
@@ -2872,16 +3134,18 @@
       "last_success": null,
       "products_found": null,
       "products_with_verified_price": null,
-      "errors": [],
+      "errors": [
+        "HTTP 500 dopo 3 tentativi: https://farmaciabenincasa.it/"
+      ],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:51:04Z",
       "run": null
     },
     "ubifarma": {
       "name": "Farmacia Brescia del dr. Rossano Brescia e c. S.a.s.",
       "domain": "ubifarma.it",
       "base_url": "https://ubifarma.it",
-      "status": "DISCOVERED",
+      "status": "BLOCKED",
       "scraper_status": "NO_SCRAPER",
       "platform": null,
       "collection_method": null,
@@ -2889,18 +3153,20 @@
       "last_success": null,
       "products_found": null,
       "products_with_verified_price": null,
-      "errors": [],
+      "errors": [
+        "homepage vietata da robots.txt"
+      ],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:51:06Z",
       "run": null
     },
     "laboratorifarmaciacamboa": {
       "name": "Farmacia Camboa Giovanni",
       "domain": "laboratorifarmaciacamboa.it",
       "base_url": "https://laboratorifarmaciacamboa.it",
-      "status": "DISCOVERED",
+      "status": "UNDER_REVIEW",
       "scraper_status": "NO_SCRAPER",
-      "platform": null,
+      "platform": "Shopify",
       "collection_method": null,
       "last_run": null,
       "last_success": null,
@@ -2908,14 +3174,14 @@
       "products_with_verified_price": null,
       "errors": [],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:51:06Z",
       "run": null
     },
     "essentialfarma": {
       "name": "Farmacia Caputo/Panico s.r.l.",
       "domain": "essentialfarma.com",
       "base_url": "https://essentialfarma.com",
-      "status": "DISCOVERED",
+      "status": "BLOCKED",
       "scraper_status": "NO_SCRAPER",
       "platform": null,
       "collection_method": null,
@@ -2923,16 +3189,18 @@
       "last_success": null,
       "products_found": null,
       "products_with_verified_price": null,
-      "errors": [],
+      "errors": [
+        "homepage vietata da robots.txt"
+      ],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:51:15Z",
       "run": null
     },
     "farmaciacasteldelmonte": {
       "name": "Farmacia Castel del Monte s.a.s. del dottor A. Civita & C.",
       "domain": "farmaciacasteldelmonte.it",
       "base_url": "https://farmaciacasteldelmonte.it",
-      "status": "DISCOVERED",
+      "status": "BLOCKED",
       "scraper_status": "NO_SCRAPER",
       "platform": null,
       "collection_method": null,
@@ -2940,26 +3208,31 @@
       "last_success": null,
       "products_found": null,
       "products_with_verified_price": null,
-      "errors": [],
+      "errors": [
+        "homepage vietata da robots.txt"
+      ],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:51:16Z",
       "run": null
     },
     "farmaporter": {
       "name": "Farmacia Cecca dott.ssa Alessandra",
       "domain": "farmaporter.it",
       "base_url": "https://farmaporter.it",
-      "status": "DISCOVERED",
-      "scraper_status": "NO_SCRAPER",
-      "platform": null,
+      "status": "UNDER_REVIEW",
+      "scraper_status": "PROBE_NONE",
+      "platform": "sconosciuta",
       "collection_method": null,
       "last_run": null,
       "last_success": null,
-      "products_found": null,
+      "products_found": [],
       "products_with_verified_price": null,
-      "errors": [],
+      "errors": [
+        "nessun URL candidato da sitemap/ricerca",
+        "nessun dato strutturato (JSON-LD, microdata, meta prezzo): pagina non valutata"
+      ],
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:50:40Z",
       "run": null
     },
     "farmaciadesanctis": {
@@ -4852,12 +5125,12 @@
   },
   "market": {
     "total": 144,
-    "discovered": 126,
-    "under_review": 7,
+    "discovered": 111,
+    "under_review": 15,
     "verified": 7,
     "active": 7,
-    "blocked": 2,
-    "inactive": 2,
+    "blocked": 8,
+    "inactive": 3,
     "unreachable": 4,
     "new_last_7_days": 131
   },
@@ -4885,7 +5158,7 @@
     "notes": [
       "Nessun prezzo rilevato in farmacia fisica: i prezzi in negozio non sono pubblicati online, quindi l'acquisto in negozio (modalità C) non è calcolabile. Puoi inserirli in store_prices.json.",
       "Impossibile comprare tutti e 5 i prodotti: nessuna offerta verificata e disponibile per P002. I carrelli sotto sono PARZIALI.",
-      "4 carrelli incompleti hanno un costo NOTO inferiore al migliore verificato: potrebbero convenire ma mancano dati fondamentali (es. spedizione sconosciuta)."
+      "5 carrelli incompleti hanno un costo NOTO inferiore al migliore verificato: potrebbero convenire ma mancano dati fondamentali (es. spedizione sconosciuta)."
     ],
     "best_overall": {
       "total": 63.1,
@@ -4914,7 +5187,7 @@
           "url": "https://www.alpifarma.it/dermatologici-corpo/3282-uriage-xemose-huile-lavante-olio-detergente-lenitivo-1-litro-3661434003370.html",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         },
         {
           "product_id": "P003",
@@ -4926,7 +5199,7 @@
           "url": "https://www.redcare.it/cosmetici-igiene/IT980512762/ceramol-lipocrema-311.htm",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         },
         {
           "product_id": "P004",
@@ -4938,7 +5211,7 @@
           "url": "https://www.redcare.it/cosmetici-igiene/IT977658020/ceramol-311-crema-mani.htm",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         },
         {
           "product_id": "P005",
@@ -4950,7 +5223,7 @@
           "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         }
       ],
       "orders": [
@@ -5015,7 +5288,7 @@
           "url": "https://farmastrike.it/xemose-olio-detlenitivo1lt",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         },
         {
           "product_id": "P003",
@@ -5027,7 +5300,7 @@
           "url": "https://farmastrike.it/ceramol-lipocrema-311-100ml-0",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         },
         {
           "product_id": "P004",
@@ -5039,7 +5312,7 @@
           "url": "https://farmastrike.it/ceramol-crema-311-mani-100ml",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         },
         {
           "product_id": "P005",
@@ -5051,7 +5324,7 @@
           "url": "https://farmastrike.it/anthelios-uvm-flinv50-sp",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         }
       ],
       "orders": [
@@ -5103,7 +5376,7 @@
           "url": "https://www.alpifarma.it/dermatologici-corpo/3282-uriage-xemose-huile-lavante-olio-detergente-lenitivo-1-litro-3661434003370.html",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         },
         {
           "product_id": "P003",
@@ -5115,7 +5388,7 @@
           "url": "https://www.redcare.it/cosmetici-igiene/IT980512762/ceramol-lipocrema-311.htm",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         },
         {
           "product_id": "P004",
@@ -5127,7 +5400,7 @@
           "url": "https://www.redcare.it/cosmetici-igiene/IT977658020/ceramol-311-crema-mani.htm",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         },
         {
           "product_id": "P005",
@@ -5139,7 +5412,7 @@
           "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         }
       ],
       "orders": [
@@ -5205,7 +5478,7 @@
           "url": "https://www.alpifarma.it/dermatologici-corpo/3282-uriage-xemose-huile-lavante-olio-detergente-lenitivo-1-litro-3661434003370.html",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         },
         {
           "product_id": "P003",
@@ -5217,7 +5490,7 @@
           "url": "https://www.redcare.it/cosmetici-igiene/IT980512762/ceramol-lipocrema-311.htm",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         },
         {
           "product_id": "P004",
@@ -5229,7 +5502,7 @@
           "url": "https://www.redcare.it/cosmetici-igiene/IT977658020/ceramol-311-crema-mani.htm",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         },
         {
           "product_id": "P005",
@@ -5241,7 +5514,7 @@
           "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
           "match_level": "ID",
           "availability": "DISPONIBILE",
-          "scraped_at": "2026-11-22T14:57:32Z"
+          "scraped_at": "2026-11-23T18:53:59Z"
         }
       ],
       "orders": [
@@ -5307,7 +5580,7 @@
             "url": "https://farmastrike.it/xemose-olio-detlenitivo1lt",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P003",
@@ -5319,7 +5592,7 @@
             "url": "https://farmastrike.it/ceramol-lipocrema-311-100ml-0",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P004",
@@ -5331,7 +5604,7 @@
             "url": "https://farmastrike.it/ceramol-crema-311-mani-100ml",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P005",
@@ -5343,7 +5616,7 @@
             "url": "https://farmastrike.it/anthelios-uvm-flinv50-sp",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           }
         ],
         "orders": [
@@ -5395,7 +5668,7 @@
             "url": "https://www.alpifarma.it/dermatologici-corpo/3282-uriage-xemose-huile-lavante-olio-detergente-lenitivo-1-litro-3661434003370.html",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P003",
@@ -5407,7 +5680,7 @@
             "url": "https://www.redcare.it/cosmetici-igiene/IT980512762/ceramol-lipocrema-311.htm",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P004",
@@ -5419,7 +5692,7 @@
             "url": "https://www.redcare.it/cosmetici-igiene/IT977658020/ceramol-311-crema-mani.htm",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P005",
@@ -5431,7 +5704,7 @@
             "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           }
         ],
         "orders": [
@@ -5500,7 +5773,7 @@
               "url": "https://www.alpifarma.it/dermatologici-corpo/3282-uriage-xemose-huile-lavante-olio-detergente-lenitivo-1-litro-3661434003370.html",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P003",
@@ -5512,7 +5785,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT980512762/ceramol-lipocrema-311.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P004",
@@ -5524,7 +5797,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT977658020/ceramol-311-crema-mani.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P005",
@@ -5536,7 +5809,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             }
           ],
           "orders": [
@@ -5601,7 +5874,7 @@
               "url": "https://farmastrike.it/xemose-olio-detlenitivo1lt",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P003",
@@ -5613,7 +5886,7 @@
               "url": "https://farmastrike.it/ceramol-lipocrema-311-100ml-0",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P004",
@@ -5625,7 +5898,7 @@
               "url": "https://farmastrike.it/ceramol-crema-311-mani-100ml",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P005",
@@ -5637,7 +5910,7 @@
               "url": "https://farmastrike.it/anthelios-uvm-flinv50-sp",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             }
           ],
           "orders": [
@@ -5689,7 +5962,7 @@
               "url": "https://www.alpifarma.it/dermatologici-corpo/3282-uriage-xemose-huile-lavante-olio-detergente-lenitivo-1-litro-3661434003370.html",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P003",
@@ -5701,7 +5974,7 @@
               "url": "https://www.alpifarma.it/prodotti-dermatologici/33488-ceramol-lipocrema-311-100-ml-8029408107014.html",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P004",
@@ -5713,7 +5986,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT977658020/ceramol-311-crema-mani.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P005",
@@ -5725,7 +5998,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             }
           ],
           "orders": [
@@ -5791,7 +6064,7 @@
               "url": "https://farmastrike.it/xemose-olio-detlenitivo1lt",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P003",
@@ -5803,7 +6076,7 @@
               "url": "https://farmastrike.it/ceramol-lipocrema-311-100ml-0",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P004",
@@ -5815,7 +6088,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT977658020/ceramol-311-crema-mani.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P005",
@@ -5827,7 +6100,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             }
           ],
           "orders": [
@@ -5893,7 +6166,7 @@
               "url": "https://www.alpifarma.it/dermatologici-corpo/3282-uriage-xemose-huile-lavante-olio-detergente-lenitivo-1-litro-3661434003370.html",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P003",
@@ -5905,7 +6178,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT980512762/ceramol-lipocrema-311.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P004",
@@ -5917,7 +6190,7 @@
               "url": "https://www.alpifarma.it/creme-idratanti/26683-ceramol-crema-mani-100ml-8029408093058.html",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P005",
@@ -5929,7 +6202,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             }
           ],
           "orders": [
@@ -5995,7 +6268,7 @@
               "url": "https://www.alpifarma.it/dermatologici-corpo/3282-uriage-xemose-huile-lavante-olio-detergente-lenitivo-1-litro-3661434003370.html",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P003",
@@ -6007,7 +6280,7 @@
               "url": "https://farmastrike.it/ceramol-lipocrema-311-100ml-0",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P004",
@@ -6019,7 +6292,7 @@
               "url": "https://farmastrike.it/ceramol-crema-311-mani-100ml",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P005",
@@ -6031,7 +6304,7 @@
               "url": "https://farmastrike.it/anthelios-uvm-flinv50-sp",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             }
           ],
           "orders": [
@@ -6094,7 +6367,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT927291005/uriage-xemose-olio-lavante-lenitivo-1l.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P003",
@@ -6106,7 +6379,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT980512762/ceramol-lipocrema-311.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P004",
@@ -6118,7 +6391,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT977658020/ceramol-311-crema-mani.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P005",
@@ -6130,7 +6403,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             }
           ],
           "orders": [
@@ -6184,7 +6457,7 @@
               "url": "https://meafarma.it/xemose-olio-detergente-1l",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P003",
@@ -6196,7 +6469,7 @@
               "url": "https://meafarma.it/ceramol-lipocrema-311-100ml-0",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P004",
@@ -6208,7 +6481,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT977658020/ceramol-311-crema-mani.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P005",
@@ -6220,7 +6493,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             }
           ],
           "orders": [
@@ -6287,7 +6560,7 @@
               "url": "https://www.alpifarma.it/dermatologici-corpo/3282-uriage-xemose-huile-lavante-olio-detergente-lenitivo-1-litro-3661434003370.html",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P003",
@@ -6299,7 +6572,7 @@
               "url": "https://farmastrike.it/ceramol-lipocrema-311-100ml-0",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P004",
@@ -6311,7 +6584,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT977658020/ceramol-311-crema-mani.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P005",
@@ -6323,7 +6596,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             }
           ],
           "orders": [
@@ -6401,7 +6674,7 @@
               "url": "https://farmastrike.it/xemose-olio-detlenitivo1lt",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P003",
@@ -6413,7 +6686,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT980512762/ceramol-lipocrema-311.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P004",
@@ -6425,7 +6698,7 @@
               "url": "https://farmastrike.it/ceramol-crema-311-mani-100ml",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             },
             {
               "product_id": "P005",
@@ -6437,7 +6710,7 @@
               "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
               "match_level": "ID",
               "availability": "DISPONIBILE",
-              "scraped_at": "2026-11-22T14:57:32Z"
+              "scraped_at": "2026-11-23T18:53:59Z"
             }
           ],
           "orders": [
@@ -6483,7 +6756,7 @@
     "incomplete_alternatives": [
       {
         "total": null,
-        "known_cost": 60.12,
+        "known_cost": 60.1,
         "complete": false,
         "reliability": "incompleta",
         "mode": "E",
@@ -6494,7 +6767,7 @@
           "farmaciairisdiana",
           "redcare"
         ],
-        "products_cost": 55.13,
+        "products_cost": 55.11,
         "shipping_cost": 4.99,
         "pickup_cost": 0.0,
         "travel_cost": 0.0,
@@ -6509,7 +6782,7 @@
             "url": "https://www.alpifarma.it/dermatologici-corpo/3282-uriage-xemose-huile-lavante-olio-detergente-lenitivo-1-litro-3661434003370.html",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P003",
@@ -6517,11 +6790,11 @@
             "channel": "domicilio",
             "seller": "farmaciairisdiana",
             "seller_name": "Farmacia Iris Diana",
-            "price": 16.01,
+            "price": 15.99,
             "url": "https://farmaciairisdiana.it/prodotti-per-la-cute/35081-ceramol-lipocrema-311-100-ml-8029408107014.html",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P004",
@@ -6533,7 +6806,7 @@
             "url": "https://www.redcare.it/cosmetici-igiene/IT977658020/ceramol-311-crema-mani.htm",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P005",
@@ -6545,7 +6818,7 @@
             "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           }
         ],
         "orders": [
@@ -6566,7 +6839,7 @@
             "channel": "domicilio",
             "seller": "farmaciairisdiana",
             "seller_name": "Farmacia Iris Diana",
-            "subtotal": 16.01,
+            "subtotal": 15.99,
             "products": [
               "P003"
             ],
@@ -6602,7 +6875,7 @@
       },
       {
         "total": null,
-        "known_cost": 61.69,
+        "known_cost": 61.67,
         "complete": false,
         "reliability": "incompleta",
         "mode": "E",
@@ -6612,7 +6885,7 @@
           "farmaciairisdiana",
           "redcare"
         ],
-        "products_cost": 61.69,
+        "products_cost": 61.67,
         "shipping_cost": 0.0,
         "pickup_cost": 0.0,
         "travel_cost": 0.0,
@@ -6627,7 +6900,7 @@
             "url": "https://www.redcare.it/cosmetici-igiene/IT927291005/uriage-xemose-olio-lavante-lenitivo-1l.htm",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P003",
@@ -6635,11 +6908,11 @@
             "channel": "domicilio",
             "seller": "farmaciairisdiana",
             "seller_name": "Farmacia Iris Diana",
-            "price": 16.01,
+            "price": 15.99,
             "url": "https://farmaciairisdiana.it/prodotti-per-la-cute/35081-ceramol-lipocrema-311-100-ml-8029408107014.html",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P004",
@@ -6651,7 +6924,7 @@
             "url": "https://farmaciairisdiana.it/Nutrienti-e-lenitivi/34990-ceramol-311-crema-mani-100-ml-8029408093058.html",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P005",
@@ -6663,7 +6936,7 @@
             "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           }
         ],
         "orders": [
@@ -6687,7 +6960,7 @@
             "channel": "domicilio",
             "seller": "farmaciairisdiana",
             "seller_name": "Farmacia Iris Diana",
-            "subtotal": 27.81,
+            "subtotal": 27.79,
             "products": [
               "P003",
               "P004"
@@ -6708,7 +6981,7 @@
       },
       {
         "total": null,
-        "known_cost": 62.28,
+        "known_cost": 62.26,
         "complete": false,
         "reliability": "incompleta",
         "mode": "E",
@@ -6718,7 +6991,7 @@
           "farmaciairisdiana",
           "redcare"
         ],
-        "products_cost": 62.28,
+        "products_cost": 62.26,
         "shipping_cost": 0.0,
         "pickup_cost": 0.0,
         "travel_cost": 0.0,
@@ -6733,7 +7006,7 @@
             "url": "https://www.redcare.it/cosmetici-igiene/IT927291005/uriage-xemose-olio-lavante-lenitivo-1l.htm",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P003",
@@ -6741,11 +7014,11 @@
             "channel": "domicilio",
             "seller": "farmaciairisdiana",
             "seller_name": "Farmacia Iris Diana",
-            "price": 16.01,
+            "price": 15.99,
             "url": "https://farmaciairisdiana.it/prodotti-per-la-cute/35081-ceramol-lipocrema-311-100-ml-8029408107014.html",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P004",
@@ -6757,7 +7030,7 @@
             "url": "https://www.redcare.it/cosmetici-igiene/IT977658020/ceramol-311-crema-mani.htm",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P005",
@@ -6769,7 +7042,7 @@
             "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           }
         ],
         "orders": [
@@ -6794,7 +7067,7 @@
             "channel": "domicilio",
             "seller": "farmaciairisdiana",
             "seller_name": "Farmacia Iris Diana",
-            "subtotal": 16.01,
+            "subtotal": 15.99,
             "products": [
               "P003"
             ],
@@ -6840,7 +7113,7 @@
             "url": "https://www.alpifarma.it/dermatologici-corpo/3282-uriage-xemose-huile-lavante-olio-detergente-lenitivo-1-litro-3661434003370.html",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P003",
@@ -6852,7 +7125,7 @@
             "url": "https://www.redcare.it/cosmetici-igiene/IT980512762/ceramol-lipocrema-311.htm",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P004",
@@ -6864,7 +7137,7 @@
             "url": "https://farmaciairisdiana.it/Nutrienti-e-lenitivi/34990-ceramol-311-crema-mani-100-ml-8029408093058.html",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P005",
@@ -6876,7 +7149,7 @@
             "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           }
         ],
         "orders": [
@@ -6933,19 +7206,18 @@
       },
       {
         "total": null,
-        "known_cost": 63.52,
+        "known_cost": 62.83,
         "complete": false,
         "reliability": "incompleta",
         "mode": "E",
         "mode_label": "Tutto online a domicilio da più farmacie",
-        "n_pharmacies": 3,
+        "n_pharmacies": 2,
         "pharmacies": [
           "alpifarma",
-          "farmaciairisdiana",
-          "redcare"
+          "farmaciairisdiana"
         ],
-        "products_cost": 54.54,
-        "shipping_cost": 8.98,
+        "products_cost": 57.84,
+        "shipping_cost": 4.99,
         "pickup_cost": 0.0,
         "travel_cost": 0.0,
         "items": [
@@ -6959,7 +7231,7 @@
             "url": "https://www.alpifarma.it/dermatologici-corpo/3282-uriage-xemose-huile-lavante-olio-detergente-lenitivo-1-litro-3661434003370.html",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P003",
@@ -6967,11 +7239,11 @@
             "channel": "domicilio",
             "seller": "farmaciairisdiana",
             "seller_name": "Farmacia Iris Diana",
-            "price": 16.01,
+            "price": 15.99,
             "url": "https://farmaciairisdiana.it/prodotti-per-la-cute/35081-ceramol-lipocrema-311-100-ml-8029408107014.html",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P004",
@@ -6983,19 +7255,19 @@
             "url": "https://farmaciairisdiana.it/Nutrienti-e-lenitivi/34990-ceramol-311-crema-mani-100-ml-8029408093058.html",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           },
           {
             "product_id": "P005",
             "product_name": "La Roche-Posay Anthelios UVMune 400 Invisible Fluid SPF50+",
             "channel": "domicilio",
-            "seller": "redcare",
-            "seller_name": "Redcare",
-            "price": 13.49,
-            "url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
+            "seller": "farmaciairisdiana",
+            "seller_name": "Farmacia Iris Diana",
+            "price": 16.81,
+            "url": "https://farmaciairisdiana.it/Solari-Per-Il-Corpo/30014-anthelios-fluido-uvm50-s-prof-3337875797597.html",
             "match_level": "ID",
             "availability": "DISPONIBILE",
-            "scraped_at": "2026-11-22T14:57:32Z"
+            "scraped_at": "2026-11-23T18:53:59Z"
           }
         ],
         "orders": [
@@ -7016,10 +7288,11 @@
             "channel": "domicilio",
             "seller": "farmaciairisdiana",
             "seller_name": "Farmacia Iris Diana",
-            "subtotal": 27.81,
+            "subtotal": 44.6,
             "products": [
               "P003",
-              "P004"
+              "P004",
+              "P005"
             ],
             "shipping": null,
             "free_shipping": false,
@@ -7027,19 +7300,6 @@
               "costo di spedizione sconosciuto (non è gratis)"
             ],
             "shipping_reliability": "sconosciuta"
-          },
-          {
-            "channel": "domicilio",
-            "seller": "redcare",
-            "seller_name": "Redcare",
-            "subtotal": 13.49,
-            "products": [
-              "P005"
-            ],
-            "shipping": 3.99,
-            "free_shipping": false,
-            "shipping_notes": [],
-            "shipping_reliability": "alta"
           }
         ],
         "travel": [],
@@ -8365,7 +8625,7 @@
     "rate_limited": 0,
     "robots": 0,
     "errors": 0,
-    "candidate_offers": 11,
+    "candidate_offers": 19,
     "shipping_unverified": [
       "farmaciairisdiana"
     ]
@@ -8403,8 +8663,8 @@
     }
   ],
   "last_attempt": {
-    "at": "2026-11-22T14:57:32Z",
+    "at": "2026-11-23T18:53:59Z",
     "status": "OK"
   },
-  "run_id": "run-20261122T145732Z"
+  "run_id": "run-20261123T185359Z"
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-22T14:57:32Z",
+  "updated_at": "2026-11-23T18:53:59Z",
   "statuses": [
     "DISCOVERED",
     "UNDER_REVIEW",
@@ -69,7 +69,7 @@
       ],
       "errors": [],
       "notes": "P005 (fluido invisibile senza profumo) non presente in sitemap: solo varianti colorata/edizione limitata/oil control.",
-      "last_run": "2026-11-22T14:57:32Z",
+      "last_run": "2026-11-23T18:53:59Z",
       "last_run_summary": {
         "OK": 4,
         "PREZZO NON VERIFICATO": 1
@@ -88,7 +88,7 @@
         "P005"
       ],
       "consecutive_failures": 0,
-      "last_success": "2026-11-22T14:57:32Z",
+      "last_success": "2026-11-23T18:53:59Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
         "product_id": "P001",
@@ -162,7 +162,7 @@
       ],
       "errors": [],
       "notes": "Sitemap molto grande (78 file prodotto): scansione sitemap solo settimanale. La pagina IT981401019 è Lipikar AP+M 200 ml (non 400). P002 400 ml = IT979265434.",
-      "last_run": "2026-11-22T14:57:32Z",
+      "last_run": "2026-11-23T18:53:59Z",
       "last_run_summary": {
         "OK": 4,
         "PREZZO NON VERIFICATO": 1
@@ -181,7 +181,7 @@
         "P005"
       ],
       "consecutive_failures": 0,
-      "last_success": "2026-11-22T14:57:32Z",
+      "last_success": "2026-11-23T18:53:59Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
         "product_id": "P001",
@@ -405,7 +405,7 @@
       ],
       "errors": [],
       "notes": "Catalogo con slug identici a meafarma.it. Due URL candidati per Lipocrema 50 ml: da disambiguare con il Minsan.",
-      "last_run": "2026-11-22T14:57:32Z",
+      "last_run": "2026-11-23T18:53:59Z",
       "last_run_summary": {
         "OK": 5
       },
@@ -424,7 +424,7 @@
         "P005"
       ],
       "consecutive_failures": 0,
-      "last_success": "2026-11-22T14:57:32Z",
+      "last_success": "2026-11-23T18:53:59Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
         "product_id": "P001",
@@ -718,7 +718,7 @@
       ],
       "errors": [],
       "notes": "La pagina 'informazioni-di-spedizione' è esclusa da robots.txt: costi di spedizione da configurare manualmente da fonte consentita.",
-      "last_run": "2026-11-22T14:57:32Z",
+      "last_run": "2026-11-23T18:53:59Z",
       "last_run_summary": {
         "OK": 5
       },
@@ -737,7 +737,7 @@
         "P005"
       ],
       "consecutive_failures": 0,
-      "last_success": "2026-11-22T14:57:32Z",
+      "last_success": "2026-11-23T18:53:59Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
         "product_id": "P001",
@@ -807,7 +807,7 @@
       ],
       "errors": [],
       "notes": "Nessun JSON-LD Product: prezzo da meta product:price:amount + HTML. EAN presente nell'URL prodotto.",
-      "last_run": "2026-11-22T14:57:32Z",
+      "last_run": "2026-11-23T18:53:59Z",
       "last_run_summary": {
         "OK": 5
       },
@@ -826,7 +826,7 @@
         "P005"
       ],
       "consecutive_failures": 0,
-      "last_success": "2026-11-22T14:57:32Z",
+      "last_success": "2026-11-23T18:53:59Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
         "product_id": "P001",
@@ -886,7 +886,7 @@
       "products_verified_on_page": [],
       "errors": [],
       "notes": "Solo HTML, nessun dato strutturato. Spedizione gratuita dichiarata in homepage 'a partire da € 79,90' (da verificare). Non vende P002, P003, P004.",
-      "last_run": "2026-11-22T14:57:32Z",
+      "last_run": "2026-11-23T18:53:59Z",
       "last_run_summary": {
         "OK": 2,
         "NON TROVATO": 3
@@ -900,7 +900,7 @@
         "P005"
       ],
       "consecutive_failures": 0,
-      "last_success": "2026-11-22T14:57:32Z",
+      "last_success": "2026-11-23T18:53:59Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
         "product_id": "P001",
@@ -974,7 +974,7 @@
       ],
       "errors": [],
       "notes": "JSON-LD completo con EAN (gtin13) e Minsan (sku): fonte migliore per la verifica degli identificativi.",
-      "last_run": "2026-11-22T14:57:32Z",
+      "last_run": "2026-11-23T18:53:59Z",
       "last_run_summary": {
         "OK": 5
       },
@@ -993,7 +993,7 @@
         "P005"
       ],
       "consecutive_failures": 0,
-      "last_success": "2026-11-22T14:57:32Z",
+      "last_success": "2026-11-23T18:53:59Z",
       "activated_at": "2026-11-18T08:56:49Z",
       "activation_evidence": {
         "product_id": "P001",
@@ -1079,13 +1079,16 @@
       ],
       "structured_data": null,
       "tos": null,
-      "last_verified": "2026-11-18T08:38:08Z",
-      "scraper_status": "NO_SCRAPER",
+      "last_verified": "2026-11-23T18:50:40Z",
+      "scraper_status": "PROBE_FULL",
       "products_candidate_from_sitemap": [
         "P001"
       ],
       "products_verified_on_page": [],
-      "errors": [],
+      "errors": [
+        "nessun URL candidato da sitemap/ricerca",
+        "sitemap: limite di 4 sitemap figlie raggiunto"
+      ],
       "otc_online_authorization": null,
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
       "audit": {
@@ -1123,6 +1126,171 @@
           "status": "UNDER_REVIEW",
           "reason": "verifica automatica della scoperta"
         }
+      ],
+      "jsonld_compatibility": "FULL",
+      "probe": {
+        "at": "2026-11-23T18:50:40Z",
+        "compatibility": "FULL",
+        "reason": "1 offerte autentiche (prezzo + disponibilità + EAN/Minsan coincidente)",
+        "requests": 24,
+        "budget": 25,
+        "budget_exhausted": false,
+        "search_url_template": null,
+        "sitemaps_used": [
+          "https://www.farmae.it/sitemap.xml"
+        ],
+        "paths_used": [
+          "/",
+          "/catalogsearch/result/",
+          "/index.php",
+          "/products/xemose-huile-nettoyante-fp-1lt",
+          "/ricerca",
+          "/search",
+          "/sitemap.xml",
+          "/sitemap_products_1.xml",
+          "/sitemap_products_2.xml",
+          "/sitemap_products_3.xml",
+          "/sitemap_products_4.xml"
+        ],
+        "products_found": [
+          "P001"
+        ],
+        "products_not_found": [
+          "P002",
+          "P003",
+          "P004",
+          "P005"
+        ],
+        "examples": [
+          {
+            "product_id": "P001",
+            "url": "https://www.farmae.it/products/xemose-huile-nettoyante-fp-1lt",
+            "price": 23.37,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "variant": null
+          }
+        ],
+        "errors": [
+          "nessun URL candidato da sitemap/ricerca",
+          "sitemap: limite di 4 sitemap figlie raggiunto"
+        ],
+        "offers": [
+          {
+            "product_id": "P001",
+            "status": "OK",
+            "url": "https://www.farmae.it/products/xemose-huile-nettoyante-fp-1lt",
+            "title": "Uriage Xemose Olio Lavante 1 Litro",
+            "price": 23.37,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "match_reasons": [
+              "identificativo coincidente: EAN 3661434003370, Minsan 927291005"
+            ],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": "json_ld+meta",
+            "format": "1000 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [],
+            "rejected": []
+          },
+          {
+            "product_id": "P002",
+            "status": "NON TROVATO",
+            "url": null,
+            "title": null,
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": null,
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "400 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "nessun URL candidato da sitemap/ricerca"
+            ],
+            "rejected": []
+          },
+          {
+            "product_id": "P003",
+            "status": "NON TROVATO",
+            "url": null,
+            "title": null,
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": null,
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "100 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "nessun URL candidato da sitemap/ricerca"
+            ],
+            "rejected": []
+          },
+          {
+            "product_id": "P004",
+            "status": "NON TROVATO",
+            "url": null,
+            "title": null,
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": null,
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "100 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "nessun URL candidato da sitemap/ricerca"
+            ],
+            "rejected": []
+          },
+          {
+            "product_id": "P005",
+            "status": "NON TROVATO",
+            "url": null,
+            "title": null,
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": null,
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "50 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "nessun URL candidato da sitemap/ricerca"
+            ],
+            "rejected": []
+          }
+        ],
+        "urls_fetched": [
+          "https://www.farmae.it/sitemap.xml",
+          "https://www.farmae.it/sitemap_products_1.xml?from=10621834854664&to=10621948625160",
+          "https://www.farmae.it/sitemap_products_2.xml?from=10621948657928&to=10623368888584",
+          "https://www.farmae.it/sitemap_products_3.xml?from=10623368921352&to=10623404572936",
+          "https://www.farmae.it/sitemap_products_4.xml?from=10623404605704&to=10623462179080",
+          "https://farmae.it/",
+          "https://farmae.it/search?q=lipikar+baume+ap%2Bm+400",
+          "https://farmae.it/?s=lipikar+baume+ap%2Bm+400",
+          "https://farmae.it/catalogsearch/result/?q=lipikar+baume+ap%2Bm+400",
+          "https://farmae.it/ricerca?q=lipikar+baume+ap%2Bm+400",
+          "https://farmae.it/search?search=lipikar+baume+ap%2Bm+400",
+          "https://farmae.it/index.php?route=product/search&search=lipikar+baume+ap%2Bm+400",
+          "https://farmae.it/ricerca?controller=search&s=lipikar+baume+ap%2Bm+400",
+          "https://www.farmae.it/products/xemose-huile-nettoyante-fp-1lt"
+        ]
+      },
+      "products_found": [
+        "P001"
       ]
     },
     {
@@ -1144,11 +1312,16 @@
       ],
       "structured_data": null,
       "tos": null,
-      "last_verified": "2026-11-18T08:38:08Z",
-      "scraper_status": "NO_SCRAPER",
+      "last_verified": "2026-11-23T18:50:40Z",
+      "scraper_status": "PROBE_FULL",
       "products_candidate_from_sitemap": [],
       "products_verified_on_page": [],
-      "errors": [],
+      "errors": [
+        "nessun URL candidato da sitemap/ricerca",
+        "tetto di 25 richieste per amicafarmacia.com raggiunto",
+        "tetto di 25 richieste raggiunto: ricerca incompleta",
+        "sitemap: limite di 4 sitemap figlie raggiunto"
+      ],
       "otc_online_authorization": null,
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
       "audit": {
@@ -1182,6 +1355,175 @@
           "status": "UNDER_REVIEW",
           "reason": "verifica automatica della scoperta"
         }
+      ],
+      "jsonld_compatibility": "FULL",
+      "probe": {
+        "at": "2026-11-23T18:50:40Z",
+        "compatibility": "FULL",
+        "reason": "1 offerte autentiche (prezzo + disponibilità + EAN/Minsan coincidente)",
+        "requests": 25,
+        "budget": 25,
+        "budget_exhausted": true,
+        "search_url_template": "/search?q={q}",
+        "sitemaps_used": [
+          "https://www.amicafarmacia.com/sitemap.xml"
+        ],
+        "paths_used": [
+          "/",
+          "/products/uriage-xemose-huile-olio-detergente-ultra-delicato-viso-e-corpo-per-pelle-secca-o-molto-secca-1-litro",
+          "/search",
+          "/sitemap.xml",
+          "/sitemap_products_1.xml",
+          "/sitemap_products_2.xml",
+          "/sitemap_products_3.xml",
+          "/sitemap_products_4.xml"
+        ],
+        "products_found": [
+          "P001"
+        ],
+        "products_not_found": [
+          "P002",
+          "P003",
+          "P004",
+          "P005"
+        ],
+        "examples": [
+          {
+            "product_id": "P001",
+            "url": "https://www.amicafarmacia.com/products/uriage-xemose-huile-olio-detergente-ultra-delicato-viso-e-corpo-per-pelle-secca-o-molto-secca-1-litro?_pos=2&_sid=116f58070&_ss=r",
+            "price": 22.78,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "variant": null
+          }
+        ],
+        "errors": [
+          "nessun URL candidato da sitemap/ricerca",
+          "tetto di 25 richieste per amicafarmacia.com raggiunto",
+          "tetto di 25 richieste raggiunto: ricerca incompleta",
+          "sitemap: limite di 4 sitemap figlie raggiunto"
+        ],
+        "offers": [
+          {
+            "product_id": "P001",
+            "status": "OK",
+            "url": "https://www.amicafarmacia.com/products/uriage-xemose-huile-olio-detergente-ultra-delicato-viso-e-corpo-per-pelle-secca-o-molto-secca-1-litro?_pos=2&_sid=116f58070&_ss=r",
+            "title": "Uriage Xemose Olio Lavante 1 Litro",
+            "price": 22.78,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "match_reasons": [
+              "identificativo coincidente: EAN 3661434003370, Minsan 927291005"
+            ],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": "json_ld+meta",
+            "format": "1000 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [],
+            "rejected": []
+          },
+          {
+            "product_id": "P002",
+            "status": "NON TROVATO",
+            "url": null,
+            "title": null,
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": null,
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "400 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "nessun URL candidato da sitemap/ricerca",
+              "tetto di 25 richieste raggiunto: ricerca incompleta"
+            ],
+            "rejected": []
+          },
+          {
+            "product_id": "P003",
+            "status": "ERRORE",
+            "url": null,
+            "title": null,
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": null,
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "100 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "tetto di 25 richieste per amicafarmacia.com raggiunto",
+              "tetto di 25 richieste raggiunto: ricerca incompleta"
+            ],
+            "rejected": []
+          },
+          {
+            "product_id": "P004",
+            "status": "ERRORE",
+            "url": null,
+            "title": null,
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": null,
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "100 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "tetto di 25 richieste per amicafarmacia.com raggiunto",
+              "tetto di 25 richieste raggiunto: ricerca incompleta"
+            ],
+            "rejected": []
+          },
+          {
+            "product_id": "P005",
+            "status": "ERRORE",
+            "url": null,
+            "title": null,
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": null,
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "50 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "tetto di 25 richieste per amicafarmacia.com raggiunto",
+              "tetto di 25 richieste per amicafarmacia.com raggiunto",
+              "tetto di 25 richieste raggiunto: ricerca incompleta"
+            ],
+            "rejected": []
+          }
+        ],
+        "urls_fetched": [
+          "https://www.amicafarmacia.com/sitemap.xml",
+          "https://www.amicafarmacia.com/sitemap_products_1.xml?from=10652333670664&to=10652752675080",
+          "https://www.amicafarmacia.com/sitemap_products_2.xml?from=10652752707848&to=10652830630152",
+          "https://www.amicafarmacia.com/sitemap_products_3.xml?from=10652830695688&to=10652911829256",
+          "https://www.amicafarmacia.com/sitemap_products_4.xml?from=10652911862024&to=10652983787784",
+          "https://amicafarmacia.com/",
+          "https://amicafarmacia.com/search?q=xemose+olio+detergente+1l",
+          "https://amicafarmacia.com/search?q=lipikar+baume+ap%2Bm+400",
+          "https://amicafarmacia.com/search?q=lipikar+baume",
+          "https://amicafarmacia.com/search?q=ceramol+lipocrema+311+100+ml",
+          "https://amicafarmacia.com/search?q=ceramol+crema+mani+311",
+          "https://amicafarmacia.com/search?q=anthelios+uvmune+fluido+invisibile",
+          "https://www.amicafarmacia.com/products/uriage-xemose-huile-olio-detergente-ultra-delicato-viso-e-corpo-per-pelle-secca-o-molto-secca-1-litro?_pos=2&_sid=116f58070&_ss=r"
+        ]
+      },
+      "search_url_template": "/search?q={q}",
+      "products_found": [
+        "P001"
       ]
     },
     {
@@ -2008,22 +2350,269 @@
       "country": "IT",
       "ships_to_italy": null,
       "ships_to_italy_source": null,
-      "status": "DISCOVERED",
+      "status": "UNDER_REVIEW",
       "source": "elenco iniziale curato (da verificare)",
       "discovered_at": "2026-11-18T08:37:52Z",
       "collection_method": null,
-      "platform": null,
+      "platform": "PrestaShop",
       "robots": null,
-      "sitemaps": [],
+      "sitemaps": [
+        "http://www.tuttofarma.it/module/yebsitemaps/sitemap?name=sitemap_1",
+        "http://www.tuttofarma.it/module/yebsitemaps/sitemap?name=sitemap_2"
+      ],
       "structured_data": null,
       "tos": null,
-      "last_verified": null,
-      "scraper_status": "NO_SCRAPER",
-      "products_candidate_from_sitemap": [],
+      "last_verified": "2026-11-23T18:50:40Z",
+      "scraper_status": "PROBE_FULL",
+      "products_candidate_from_sitemap": [
+        "P001",
+        "P003",
+        "P004",
+        "P005"
+      ],
       "products_verified_on_page": [],
-      "errors": [],
+      "errors": [
+        "nessun URL candidato da sitemap/ricerca",
+        "sitemap: limite di 4 sitemap figlie raggiunto",
+        "sitemap: limite di 4 sitemap figlie raggiunto",
+        "pattern di ricerca vietato da robots.txt: /ricerca?controller=search&s={q}"
+      ],
       "otc_online_authorization": null,
-      "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico."
+      "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
+      "audit": {
+        "checked_at": "2026-11-23T18:50:59Z",
+        "reachable": true,
+        "errors": [],
+        "robots": {
+          "status": 200,
+          "mode": "rules",
+          "note": "",
+          "sitemaps": [
+            "http://www.tuttofarma.it/module/yebsitemaps/sitemap?name=sitemap_1",
+            "http://www.tuttofarma.it/module/yebsitemaps/sitemap?name=sitemap_2"
+          ]
+        },
+        "final_url": "https://www.tuttofarma.it/",
+        "platform": "PrestaShop",
+        "json_ld_on_home": true,
+        "title": "Farmacia OnLine Italiana - TuttoFarma",
+        "sitemaps": [
+          "http://www.tuttofarma.it/module/yebsitemaps/sitemap?name=sitemap_1",
+          "http://www.tuttofarma.it/module/yebsitemaps/sitemap?name=sitemap_2"
+        ],
+        "sitemap_errors": [
+          "limite di 6 sitemap figlie raggiunto"
+        ],
+        "product_candidates": {
+          "P001": [
+            "https://www.tuttofarma.it/latti-gel-oli-e-creme-detergenti/29617-uriage-xemose-olio-lavante-lenitivo-doccia-e-bagno-1-l-3661434003370.html"
+          ],
+          "P003": [
+            "https://www.tuttofarma.it/creme-per-pelle-atopica/80174-ceramol-lipocrema-311-crema-per-pelli-delicate-100ml-8029408107014.html"
+          ],
+          "P004": [
+            "https://www.tuttofarma.it/creme-mani/50520-ceramol-crema-mani-100-ml-8029408093058.html"
+          ],
+          "P005": [
+            "https://www.tuttofarma.it/solari-viso-da-usare-tutti-i-giorni/85572-la-roche-posay-anthelios-uvmune-400-crema-solare-viso-spf50-50ml-3337875797597.html"
+          ]
+        },
+        "verdict": "UNDER_REVIEW"
+      },
+      "status_history": [
+        {
+          "at": "2026-11-23T18:50:59Z",
+          "status": "UNDER_REVIEW",
+          "reason": "verifica automatica della scoperta"
+        }
+      ],
+      "jsonld_compatibility": "FULL",
+      "probe": {
+        "at": "2026-11-23T18:50:40Z",
+        "compatibility": "FULL",
+        "reason": "2 offerte autentiche (prezzo + disponibilità + EAN/Minsan coincidente)",
+        "requests": 25,
+        "budget": 25,
+        "budget_exhausted": false,
+        "search_url_template": null,
+        "sitemaps_used": [
+          "http://www.tuttofarma.it/module/yebsitemaps/sitemap?name=sitemap_1",
+          "http://www.tuttofarma.it/module/yebsitemaps/sitemap?name=sitemap_2"
+        ],
+        "paths_used": [
+          "/",
+          "/catalogsearch/result/",
+          "/creme-mani/50520-ceramol-crema-mani-100-ml-8029408093058.html",
+          "/index.php",
+          "/latti-gel-oli-e-creme-detergenti/29617-uriage-xemose-olio-lavante-lenitivo-doccia-e-bagno-1-l-3661434003370.html",
+          "/module/yebsitemaps/sitemap",
+          "/ricerca",
+          "/search"
+        ],
+        "products_found": [
+          "P001",
+          "P004"
+        ],
+        "products_not_found": [
+          "P002",
+          "P003",
+          "P005"
+        ],
+        "examples": [
+          {
+            "product_id": "P001",
+            "url": "https://www.tuttofarma.it/latti-gel-oli-e-creme-detergenti/29617-uriage-xemose-olio-lavante-lenitivo-doccia-e-bagno-1-l-3661434003370.html",
+            "price": 23.6,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "variant": null
+          },
+          {
+            "product_id": "P004",
+            "url": "https://www.tuttofarma.it/creme-mani/50520-ceramol-crema-mani-100-ml-8029408093058.html",
+            "price": 12.84,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "variant": null
+          }
+        ],
+        "errors": [
+          "nessun URL candidato da sitemap/ricerca",
+          "sitemap: limite di 4 sitemap figlie raggiunto",
+          "sitemap: limite di 4 sitemap figlie raggiunto",
+          "pattern di ricerca vietato da robots.txt: /ricerca?controller=search&s={q}"
+        ],
+        "offers": [
+          {
+            "product_id": "P001",
+            "status": "OK",
+            "url": "https://www.tuttofarma.it/latti-gel-oli-e-creme-detergenti/29617-uriage-xemose-olio-lavante-lenitivo-doccia-e-bagno-1-l-3661434003370.html",
+            "title": "Uriage Xemose C8+ Olio Lavante Lenitivo Doccia e Bagno Pelle Secca 1 L",
+            "price": 23.6,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "match_reasons": [
+              "identificativo coincidente: EAN 3661434003370, Minsan 927291005"
+            ],
+            "variant": null,
+            "shipping_jsonld": [
+              {
+                "cost": 5.0,
+                "currency": "EUR",
+                "country": "IT"
+              }
+            ],
+            "price_method": "json_ld+meta",
+            "format": "1000 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [],
+            "rejected": []
+          },
+          {
+            "product_id": "P002",
+            "status": "NON TROVATO",
+            "url": null,
+            "title": null,
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": null,
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "400 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "nessun URL candidato da sitemap/ricerca"
+            ],
+            "rejected": []
+          },
+          {
+            "product_id": "P003",
+            "status": "NON TROVATO",
+            "url": null,
+            "title": null,
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": null,
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "100 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "nessun URL candidato da sitemap/ricerca"
+            ],
+            "rejected": []
+          },
+          {
+            "product_id": "P004",
+            "status": "OK",
+            "url": "https://www.tuttofarma.it/creme-mani/50520-ceramol-crema-mani-100-ml-8029408093058.html",
+            "title": "Ceramol 311 Crema Mani Riparatrice e Protettrice 100ml",
+            "price": 12.84,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "match_reasons": [
+              "identificativo coincidente: EAN 8029408093058, Minsan 977658020"
+            ],
+            "variant": null,
+            "shipping_jsonld": [
+              {
+                "cost": 5.0,
+                "currency": "EUR",
+                "country": "IT"
+              }
+            ],
+            "price_method": "json_ld+meta",
+            "format": "100 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [],
+            "rejected": []
+          },
+          {
+            "product_id": "P005",
+            "status": "NON TROVATO",
+            "url": null,
+            "title": null,
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": null,
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "50 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "nessun URL candidato da sitemap/ricerca"
+            ],
+            "rejected": []
+          }
+        ],
+        "urls_fetched": [
+          "http://www.tuttofarma.it/module/yebsitemaps/sitemap?name=sitemap_1",
+          "http://www.tuttofarma.it/module/yebsitemaps/sitemap?name=sitemap_2",
+          "https://www.tuttofarma.it/module/yebsitemaps/sitemap?fc=module&name=product_1_1",
+          "https://www.tuttofarma.it/module/yebsitemaps/sitemap?fc=module&name=product_1_10",
+          "https://www.tuttofarma.it/module/yebsitemaps/sitemap?fc=module&name=product_1_11",
+          "https://www.tuttofarma.it/module/yebsitemaps/sitemap?fc=module&name=product_1_12",
+          "https://tuttofarma.it/",
+          "https://tuttofarma.it/search?q=lipikar+baume+ap%2Bm+400",
+          "https://tuttofarma.it/?s=lipikar+baume+ap%2Bm+400",
+          "https://tuttofarma.it/catalogsearch/result/?q=lipikar+baume+ap%2Bm+400",
+          "https://tuttofarma.it/ricerca?q=lipikar+baume+ap%2Bm+400",
+          "https://tuttofarma.it/search?search=lipikar+baume+ap%2Bm+400",
+          "https://tuttofarma.it/index.php?route=product/search&search=lipikar+baume+ap%2Bm+400",
+          "https://www.tuttofarma.it/latti-gel-oli-e-creme-detergenti/29617-uriage-xemose-olio-lavante-lenitivo-doccia-e-bagno-1-l-3661434003370.html",
+          "https://www.tuttofarma.it/creme-mani/50520-ceramol-crema-mani-100-ml-8029408093058.html"
+        ]
+      },
+      "products_found": [
+        "P001",
+        "P004"
+      ]
     },
     {
       "id": "docpeter",
@@ -2033,22 +2622,254 @@
       "country": "IT",
       "ships_to_italy": null,
       "ships_to_italy_source": null,
-      "status": "DISCOVERED",
+      "status": "UNDER_REVIEW",
       "source": "elenco iniziale curato (da verificare)",
       "discovered_at": "2026-11-18T08:37:52Z",
       "collection_method": null,
-      "platform": null,
+      "platform": "Shopify",
       "robots": null,
-      "sitemaps": [],
+      "sitemaps": [
+        "https://www.docpeter.it/sitemap.xml"
+      ],
       "structured_data": null,
       "tos": null,
-      "last_verified": null,
-      "scraper_status": "NO_SCRAPER",
+      "last_verified": "2026-11-23T18:50:40Z",
+      "scraper_status": "PROBE_FULL",
       "products_candidate_from_sitemap": [],
       "products_verified_on_page": [],
-      "errors": [],
+      "errors": [
+        "nessun URL candidato da sitemap/ricerca",
+        "sitemap: limite di 4 sitemap figlie raggiunto"
+      ],
       "otc_online_authorization": null,
-      "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico."
+      "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
+      "audit": {
+        "checked_at": "2026-11-23T18:50:59Z",
+        "reachable": true,
+        "errors": [],
+        "robots": {
+          "status": 200,
+          "mode": "rules",
+          "note": "",
+          "sitemaps": [
+            "https://www.docpeter.it/sitemap.xml"
+          ]
+        },
+        "final_url": "https://www.docpeter.it/",
+        "platform": "Shopify",
+        "json_ld_on_home": true,
+        "title": "Docpeter - Farmacia Online Docpeter, Leader per soddisfazione clienti – Farmacia online Docpeter , leader per soddisfazione clienti",
+        "sitemaps": [
+          "https://www.docpeter.it/sitemap.xml"
+        ],
+        "sitemap_errors": [
+          "limite di 6 sitemap figlie raggiunto"
+        ],
+        "product_candidates": {},
+        "verdict": "UNDER_REVIEW"
+      },
+      "status_history": [
+        {
+          "at": "2026-11-23T18:50:59Z",
+          "status": "UNDER_REVIEW",
+          "reason": "verifica automatica della scoperta"
+        }
+      ],
+      "jsonld_compatibility": "FULL",
+      "probe": {
+        "at": "2026-11-23T18:50:40Z",
+        "compatibility": "FULL",
+        "reason": "4 offerte autentiche (prezzo + disponibilità + EAN/Minsan coincidente)",
+        "requests": 25,
+        "budget": 25,
+        "budget_exhausted": false,
+        "search_url_template": "/search?q={q}",
+        "sitemaps_used": [
+          "https://www.docpeter.it/sitemap.xml"
+        ],
+        "paths_used": [
+          "/",
+          "/products/anthelios-fluido-inv-uvm50-special",
+          "/products/ceramol-crema-mani-100-ml",
+          "/products/ceramol-lipocrema-311-100ml",
+          "/products/xemose-olio-detergente-1-l",
+          "/search",
+          "/sitemap.xml",
+          "/sitemap_products_1.xml",
+          "/sitemap_products_2.xml",
+          "/sitemap_products_3.xml",
+          "/sitemap_products_4.xml"
+        ],
+        "products_found": [
+          "P001",
+          "P003",
+          "P004",
+          "P005"
+        ],
+        "products_not_found": [
+          "P002"
+        ],
+        "examples": [
+          {
+            "product_id": "P001",
+            "url": "https://www.docpeter.it/products/xemose-olio-detergente-1-l?_pos=1&_sid=ccf20d7cd&_ss=r",
+            "price": 22.4,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "variant": null
+          },
+          {
+            "product_id": "P003",
+            "url": "https://www.docpeter.it/products/ceramol-lipocrema-311-100ml?_pos=1&_sid=2c7131727&_ss=r",
+            "price": 19.11,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "variant": null
+          },
+          {
+            "product_id": "P004",
+            "url": "https://www.docpeter.it/products/ceramol-crema-mani-100-ml?_pos=1&_sid=f12c37961&_ss=r",
+            "price": 13.15,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "variant": null
+          },
+          {
+            "product_id": "P005",
+            "url": "https://www.docpeter.it/products/anthelios-fluido-inv-uvm50-special?_pos=1&_sid=d65f64a57&_ss=r",
+            "price": 18.52,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "variant": null
+          }
+        ],
+        "errors": [
+          "nessun URL candidato da sitemap/ricerca",
+          "sitemap: limite di 4 sitemap figlie raggiunto"
+        ],
+        "offers": [
+          {
+            "product_id": "P001",
+            "status": "OK",
+            "url": "https://www.docpeter.it/products/xemose-olio-detergente-1-l?_pos=1&_sid=ccf20d7cd&_ss=r",
+            "title": "Uriage Xemose olio detergente 1 l",
+            "price": 22.4,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "match_reasons": [
+              "identificativo coincidente: EAN 3661434003370, Minsan 927291005"
+            ],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": "json_ld+meta",
+            "format": "1000 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [],
+            "rejected": []
+          },
+          {
+            "product_id": "P002",
+            "status": "NON TROVATO",
+            "url": null,
+            "title": null,
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": null,
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "400 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "nessun URL candidato da sitemap/ricerca"
+            ],
+            "rejected": []
+          },
+          {
+            "product_id": "P003",
+            "status": "OK",
+            "url": "https://www.docpeter.it/products/ceramol-lipocrema-311-100ml?_pos=1&_sid=2c7131727&_ss=r",
+            "title": "Ceramol lipocrema 311 100ml",
+            "price": 19.11,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "match_reasons": [
+              "identificativo coincidente: EAN 8029408107014, Minsan 980512762"
+            ],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": "json_ld+meta",
+            "format": "100 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [],
+            "rejected": []
+          },
+          {
+            "product_id": "P004",
+            "status": "OK",
+            "url": "https://www.docpeter.it/products/ceramol-crema-mani-100-ml?_pos=1&_sid=f12c37961&_ss=r",
+            "title": "Ceramol Crema Mani 311 Riparatrice e Protettiva 100 ml",
+            "price": 13.15,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "match_reasons": [
+              "identificativo coincidente: EAN 8029408093058, Minsan 977658020"
+            ],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": "json_ld+meta",
+            "format": "100 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [],
+            "rejected": []
+          },
+          {
+            "product_id": "P005",
+            "status": "OK",
+            "url": "https://www.docpeter.it/products/anthelios-fluido-inv-uvm50-special?_pos=1&_sid=d65f64a57&_ss=r",
+            "title": "Anthelios Uvmune 400 Fluido Protezione Ultra SP50+ 50ml",
+            "price": 18.52,
+            "availability": "DISPONIBILE",
+            "match_level": "ID",
+            "match_reasons": [
+              "identificativo coincidente: EAN 3337875797597, Minsan 982981666"
+            ],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": "json_ld+meta",
+            "format": "50 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [],
+            "rejected": []
+          }
+        ],
+        "urls_fetched": [
+          "https://www.docpeter.it/sitemap.xml",
+          "https://www.docpeter.it/sitemap_products_1.xml?from=10299496825133&to=10299530182957",
+          "https://www.docpeter.it/sitemap_products_2.xml?from=10299530248493&to=10299563671853",
+          "https://www.docpeter.it/sitemap_products_3.xml?from=10299563704621&to=10299597521197",
+          "https://www.docpeter.it/sitemap_products_4.xml?from=10299597553965&to=10299652342061",
+          "https://docpeter.it/",
+          "https://docpeter.it/search?q=xemose+olio+detergente+1l",
+          "https://docpeter.it/search?q=lipikar+baume+ap%2Bm+400",
+          "https://docpeter.it/search?q=lipikar+baume",
+          "https://docpeter.it/search?q=ceramol+lipocrema+311+100+ml",
+          "https://docpeter.it/search?q=ceramol+crema+mani+311",
+          "https://docpeter.it/search?q=anthelios+uvmune+fluido+invisibile",
+          "https://www.docpeter.it/products/xemose-olio-detergente-1-l?_pos=1&_sid=ccf20d7cd&_ss=r",
+          "https://www.docpeter.it/products/ceramol-lipocrema-311-100ml?_pos=1&_sid=2c7131727&_ss=r",
+          "https://www.docpeter.it/products/ceramol-crema-mani-100-ml?_pos=1&_sid=f12c37961&_ss=r",
+          "https://www.docpeter.it/products/anthelios-fluido-inv-uvm50-special?_pos=1&_sid=d65f64a57&_ss=r"
+        ]
+      },
+      "search_url_template": "/search?q={q}",
+      "products_found": [
+        "P001",
+        "P003",
+        "P004",
+        "P005"
+      ]
     },
     {
       "id": "drmax",
@@ -2058,7 +2879,7 @@
       "country": "IT",
       "ships_to_italy": null,
       "ships_to_italy_source": null,
-      "status": "DISCOVERED",
+      "status": "BLOCKED",
       "source": "elenco iniziale curato (da verificare)",
       "discovered_at": "2026-11-18T08:37:52Z",
       "collection_method": null,
@@ -2067,13 +2888,30 @@
       "sitemaps": [],
       "structured_data": null,
       "tos": null,
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:50:59Z",
       "scraper_status": "NO_SCRAPER",
       "products_candidate_from_sitemap": [],
       "products_verified_on_page": [],
-      "errors": [],
+      "errors": [
+        "Accesso negato/challenge anti-bot su drmax.it (HTTP 403): nessun tentativo di aggiramento"
+      ],
       "otc_online_authorization": null,
-      "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico."
+      "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
+      "audit": {
+        "checked_at": "2026-11-23T18:50:59Z",
+        "reachable": false,
+        "errors": [
+          "Accesso negato/challenge anti-bot su drmax.it (HTTP 403): nessun tentativo di aggiramento"
+        ],
+        "verdict": "BLOCKED"
+      },
+      "status_history": [
+        {
+          "at": "2026-11-23T18:50:59Z",
+          "status": "BLOCKED",
+          "reason": "verifica automatica della scoperta"
+        }
+      ]
     },
     {
       "id": "benufarmacia",
@@ -2083,7 +2921,7 @@
       "country": "IT",
       "ships_to_italy": null,
       "ships_to_italy_source": null,
-      "status": "DISCOVERED",
+      "status": "BLOCKED",
       "source": "elenco iniziale curato (da verificare)",
       "discovered_at": "2026-11-18T08:37:52Z",
       "collection_method": null,
@@ -2092,13 +2930,36 @@
       "sitemaps": [],
       "structured_data": null,
       "tos": null,
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:50:59Z",
       "scraper_status": "NO_SCRAPER",
       "products_candidate_from_sitemap": [],
       "products_verified_on_page": [],
-      "errors": [],
+      "errors": [
+        "homepage vietata da robots.txt"
+      ],
       "otc_online_authorization": null,
-      "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico."
+      "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
+      "audit": {
+        "checked_at": "2026-11-23T18:50:59Z",
+        "reachable": false,
+        "errors": [
+          "homepage vietata da robots.txt"
+        ],
+        "robots": {
+          "status": null,
+          "mode": "disallow_all",
+          "note": "robots.txt irraggiungibile: per prudenza nessun accesso",
+          "sitemaps": []
+        },
+        "verdict": "BLOCKED"
+      },
+      "status_history": [
+        {
+          "at": "2026-11-23T18:50:59Z",
+          "status": "BLOCKED",
+          "reason": "verifica automatica della scoperta"
+        }
+      ]
     },
     {
       "id": "farmaciamusto",
@@ -2108,16 +2969,18 @@
       "country": "IT",
       "ships_to_italy": null,
       "ships_to_italy_source": null,
-      "status": "DISCOVERED",
+      "status": "UNDER_REVIEW",
       "source": "open data Regione Puglia (dati.puglia.it)",
       "discovered_at": "2026-11-18T08:38:04Z",
       "collection_method": null,
-      "platform": null,
+      "platform": "sconosciuta",
       "robots": null,
-      "sitemaps": [],
+      "sitemaps": [
+        "https://farmaciamusto.it/sitemap.xml"
+      ],
       "structured_data": null,
       "tos": null,
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:50:59Z",
       "scraper_status": "NO_SCRAPER",
       "products_candidate_from_sitemap": [],
       "products_verified_on_page": [],
@@ -2129,7 +2992,35 @@
         "warning": "Autorizzazione alla vendita online di MEDICINALI: non implica la vendita di dermocosmetici."
       },
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "city": "Oria"
+      "city": "Oria",
+      "audit": {
+        "checked_at": "2026-11-23T18:50:59Z",
+        "reachable": true,
+        "errors": [],
+        "robots": {
+          "status": 200,
+          "mode": "rules",
+          "note": "",
+          "sitemaps": []
+        },
+        "final_url": "https://www.farmaciamusto.it/",
+        "platform": "sconosciuta",
+        "json_ld_on_home": true,
+        "title": "Candyspinz 🎖️ Sito Ufficiale Italia - Gioca Ora, Bonus e Giri Gratuiti",
+        "sitemaps": [
+          "https://farmaciamusto.it/sitemap.xml"
+        ],
+        "sitemap_errors": [],
+        "product_candidates": {},
+        "verdict": "UNDER_REVIEW"
+      },
+      "status_history": [
+        {
+          "at": "2026-11-23T18:50:59Z",
+          "status": "UNDER_REVIEW",
+          "reason": "verifica automatica della scoperta"
+        }
+      ]
     },
     {
       "id": "farmaciaalaibac",
@@ -2139,7 +3030,7 @@
       "country": "IT",
       "ships_to_italy": null,
       "ships_to_italy_source": null,
-      "status": "DISCOVERED",
+      "status": "BLOCKED",
       "source": "open data Regione Puglia (dati.puglia.it)",
       "discovered_at": "2026-11-18T08:38:04Z",
       "collection_method": null,
@@ -2148,11 +3039,13 @@
       "sitemaps": [],
       "structured_data": null,
       "tos": null,
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:50:59Z",
       "scraper_status": "NO_SCRAPER",
       "products_candidate_from_sitemap": [],
       "products_verified_on_page": [],
-      "errors": [],
+      "errors": [
+        "homepage vietata da robots.txt"
+      ],
       "otc_online_authorization": {
         "listed_in": "elenco regionale Puglia dei soggetti autorizzati alla vendita online di medicinali OTC/SOP",
         "dataset": "farmacie-autorizzate-alla-vendita-online-di-medicinali-sop-otc-per-uso-umano",
@@ -2160,7 +3053,28 @@
         "warning": "Autorizzazione alla vendita online di MEDICINALI: non implica la vendita di dermocosmetici."
       },
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "city": "Lequile"
+      "city": "Lequile",
+      "audit": {
+        "checked_at": "2026-11-23T18:50:59Z",
+        "reachable": false,
+        "errors": [
+          "homepage vietata da robots.txt"
+        ],
+        "robots": {
+          "status": null,
+          "mode": "disallow_all",
+          "note": "robots.txt irraggiungibile: per prudenza nessun accesso",
+          "sitemaps": []
+        },
+        "verdict": "BLOCKED"
+      },
+      "status_history": [
+        {
+          "at": "2026-11-23T18:50:59Z",
+          "status": "BLOCKED",
+          "reason": "verifica automatica della scoperta"
+        }
+      ]
     },
     {
       "id": "alfarma14snc",
@@ -2170,16 +3084,21 @@
       "country": "IT",
       "ships_to_italy": null,
       "ships_to_italy_source": null,
-      "status": "DISCOVERED",
+      "status": "UNDER_REVIEW",
       "source": "open data Regione Puglia (dati.puglia.it)",
       "discovered_at": "2026-11-18T08:38:04Z",
       "collection_method": null,
-      "platform": null,
+      "platform": "WooCommerce",
       "robots": null,
-      "sitemaps": [],
+      "sitemaps": [
+        "https://www.alfarma14snc.it/post-sitemap.xml",
+        "https://www.alfarma14snc.it/page-sitemap.xml",
+        "https://www.alfarma14snc.it/product-sitemap.xml",
+        "https://www.alfarma14snc.it/product_cat-sitemap.xml"
+      ],
       "structured_data": null,
       "tos": null,
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:50:59Z",
       "scraper_status": "NO_SCRAPER",
       "products_candidate_from_sitemap": [],
       "products_verified_on_page": [],
@@ -2191,7 +3110,43 @@
         "warning": "Autorizzazione alla vendita online di MEDICINALI: non implica la vendita di dermocosmetici."
       },
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "city": "Sanarica"
+      "city": "Sanarica",
+      "audit": {
+        "checked_at": "2026-11-23T18:50:59Z",
+        "reachable": true,
+        "errors": [],
+        "robots": {
+          "status": 200,
+          "mode": "rules",
+          "note": "",
+          "sitemaps": [
+            "https://www.alfarma14snc.it/post-sitemap.xml",
+            "https://www.alfarma14snc.it/page-sitemap.xml",
+            "https://www.alfarma14snc.it/product-sitemap.xml",
+            "https://www.alfarma14snc.it/product_cat-sitemap.xml"
+          ]
+        },
+        "final_url": "https://www.alfarma14snc.it/",
+        "platform": "WooCommerce",
+        "json_ld_on_home": true,
+        "title": "Alfarma 14: prodotti farmaceutici online a Lecce",
+        "sitemaps": [
+          "https://www.alfarma14snc.it/post-sitemap.xml",
+          "https://www.alfarma14snc.it/page-sitemap.xml",
+          "https://www.alfarma14snc.it/product-sitemap.xml",
+          "https://www.alfarma14snc.it/product_cat-sitemap.xml"
+        ],
+        "sitemap_errors": [],
+        "product_candidates": {},
+        "verdict": "UNDER_REVIEW"
+      },
+      "status_history": [
+        {
+          "at": "2026-11-23T18:50:59Z",
+          "status": "UNDER_REVIEW",
+          "reason": "verifica automatica della scoperta"
+        }
+      ]
     },
     {
       "id": "farmaciamigali",
@@ -2201,16 +3156,19 @@
       "country": "IT",
       "ships_to_italy": null,
       "ships_to_italy_source": null,
-      "status": "DISCOVERED",
+      "status": "UNDER_REVIEW",
       "source": "open data Regione Puglia (dati.puglia.it)",
       "discovered_at": "2026-11-18T08:38:04Z",
       "collection_method": null,
-      "platform": null,
+      "platform": "WooCommerce",
       "robots": null,
-      "sitemaps": [],
+      "sitemaps": [
+        "https://www.farmaciamigali.it/sitemap.xml",
+        "https://www.farmaciamigali.it/sitemap.rss"
+      ],
       "structured_data": null,
       "tos": null,
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:50:59Z",
       "scraper_status": "NO_SCRAPER",
       "products_candidate_from_sitemap": [],
       "products_verified_on_page": [],
@@ -2222,7 +3180,39 @@
         "warning": "Autorizzazione alla vendita online di MEDICINALI: non implica la vendita di dermocosmetici."
       },
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "city": "Lecce"
+      "city": "Lecce",
+      "audit": {
+        "checked_at": "2026-11-23T18:50:59Z",
+        "reachable": true,
+        "errors": [],
+        "robots": {
+          "status": 200,
+          "mode": "rules",
+          "note": "",
+          "sitemaps": [
+            "https://www.farmaciamigali.it/sitemap.xml",
+            "https://www.farmaciamigali.it/sitemap.rss"
+          ]
+        },
+        "final_url": "https://www.farmaciamigali.it/",
+        "platform": "WooCommerce",
+        "json_ld_on_home": true,
+        "title": "Home - www.farmaciamigali.it",
+        "sitemaps": [
+          "https://www.farmaciamigali.it/sitemap.xml",
+          "https://www.farmaciamigali.it/sitemap.rss"
+        ],
+        "sitemap_errors": [],
+        "product_candidates": {},
+        "verdict": "UNDER_REVIEW"
+      },
+      "status_history": [
+        {
+          "at": "2026-11-23T18:50:59Z",
+          "status": "UNDER_REVIEW",
+          "reason": "verifica automatica della scoperta"
+        }
+      ]
     },
     {
       "id": "farmaciabaltini",
@@ -2232,16 +3222,18 @@
       "country": "IT",
       "ships_to_italy": null,
       "ships_to_italy_source": null,
-      "status": "DISCOVERED",
+      "status": "UNDER_REVIEW",
       "source": "open data Regione Puglia (dati.puglia.it)",
       "discovered_at": "2026-11-18T08:38:04Z",
       "collection_method": null,
-      "platform": null,
+      "platform": "sconosciuta",
       "robots": null,
-      "sitemaps": [],
+      "sitemaps": [
+        "https://farmaciabaltini.it/sitemap.xml"
+      ],
       "structured_data": null,
       "tos": null,
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:51:03Z",
       "scraper_status": "NO_SCRAPER",
       "products_candidate_from_sitemap": [],
       "products_verified_on_page": [],
@@ -2253,7 +3245,37 @@
         "warning": "Autorizzazione alla vendita online di MEDICINALI: non implica la vendita di dermocosmetici."
       },
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "city": "Squinzano"
+      "city": "Squinzano",
+      "audit": {
+        "checked_at": "2026-11-23T18:51:03Z",
+        "reachable": true,
+        "errors": [],
+        "robots": {
+          "status": 200,
+          "mode": "rules",
+          "note": "",
+          "sitemaps": []
+        },
+        "final_url": "https://www.farmaciabaltini.it/",
+        "platform": "sconosciuta",
+        "json_ld_on_home": false,
+        "title": "Farmacia Baltini",
+        "sitemaps": [
+          "https://farmaciabaltini.it/sitemap.xml"
+        ],
+        "sitemap_errors": [
+          "https://farmaciabaltini.it/sitemap.xml: HTTP 500 dopo 3 tentativi: https://farmaciabaltini.it/sitemap.xml"
+        ],
+        "product_candidates": {},
+        "verdict": "UNDER_REVIEW"
+      },
+      "status_history": [
+        {
+          "at": "2026-11-23T18:51:03Z",
+          "status": "UNDER_REVIEW",
+          "reason": "verifica automatica della scoperta"
+        }
+      ]
     },
     {
       "id": "farmaciabenincasa",
@@ -2263,7 +3285,7 @@
       "country": "IT",
       "ships_to_italy": null,
       "ships_to_italy_source": null,
-      "status": "DISCOVERED",
+      "status": "INACTIVE",
       "source": "open data Regione Puglia (dati.puglia.it)",
       "discovered_at": "2026-11-18T08:38:04Z",
       "collection_method": null,
@@ -2272,11 +3294,13 @@
       "sitemaps": [],
       "structured_data": null,
       "tos": null,
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:51:04Z",
       "scraper_status": "NO_SCRAPER",
       "products_candidate_from_sitemap": [],
       "products_verified_on_page": [],
-      "errors": [],
+      "errors": [
+        "HTTP 500 dopo 3 tentativi: https://farmaciabenincasa.it/"
+      ],
       "otc_online_authorization": {
         "listed_in": "elenco regionale Puglia dei soggetti autorizzati alla vendita online di medicinali OTC/SOP",
         "dataset": "farmacie-autorizzate-alla-vendita-online-di-medicinali-sop-otc-per-uso-umano",
@@ -2284,7 +3308,30 @@
         "warning": "Autorizzazione alla vendita online di MEDICINALI: non implica la vendita di dermocosmetici."
       },
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "city": "San Donato di LE"
+      "city": "San Donato di LE",
+      "audit": {
+        "checked_at": "2026-11-23T18:51:04Z",
+        "reachable": false,
+        "errors": [
+          "HTTP 500 dopo 3 tentativi: https://farmaciabenincasa.it/"
+        ],
+        "robots": {
+          "status": 200,
+          "mode": "rules",
+          "note": "",
+          "sitemaps": [
+            "https://www.farmaciabenincasa.it/sitemap_index.xml"
+          ]
+        },
+        "verdict": "INACTIVE"
+      },
+      "status_history": [
+        {
+          "at": "2026-11-23T18:51:04Z",
+          "status": "INACTIVE",
+          "reason": "verifica automatica della scoperta"
+        }
+      ]
     },
     {
       "id": "ubifarma",
@@ -2294,7 +3341,7 @@
       "country": "IT",
       "ships_to_italy": null,
       "ships_to_italy_source": null,
-      "status": "DISCOVERED",
+      "status": "BLOCKED",
       "source": "open data Regione Puglia (dati.puglia.it)",
       "discovered_at": "2026-11-18T08:38:04Z",
       "collection_method": null,
@@ -2303,11 +3350,13 @@
       "sitemaps": [],
       "structured_data": null,
       "tos": null,
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:51:06Z",
       "scraper_status": "NO_SCRAPER",
       "products_candidate_from_sitemap": [],
       "products_verified_on_page": [],
-      "errors": [],
+      "errors": [
+        "homepage vietata da robots.txt"
+      ],
       "otc_online_authorization": {
         "listed_in": "elenco regionale Puglia dei soggetti autorizzati alla vendita online di medicinali OTC/SOP",
         "dataset": "farmacie-autorizzate-alla-vendita-online-di-medicinali-sop-otc-per-uso-umano",
@@ -2315,7 +3364,28 @@
         "warning": "Autorizzazione alla vendita online di MEDICINALI: non implica la vendita di dermocosmetici."
       },
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "city": "Taranto"
+      "city": "Taranto",
+      "audit": {
+        "checked_at": "2026-11-23T18:51:06Z",
+        "reachable": false,
+        "errors": [
+          "homepage vietata da robots.txt"
+        ],
+        "robots": {
+          "status": null,
+          "mode": "disallow_all",
+          "note": "robots.txt irraggiungibile: per prudenza nessun accesso",
+          "sitemaps": []
+        },
+        "verdict": "BLOCKED"
+      },
+      "status_history": [
+        {
+          "at": "2026-11-23T18:51:06Z",
+          "status": "BLOCKED",
+          "reason": "verifica automatica della scoperta"
+        }
+      ]
     },
     {
       "id": "laboratorifarmaciacamboa",
@@ -2325,16 +3395,18 @@
       "country": "IT",
       "ships_to_italy": null,
       "ships_to_italy_source": null,
-      "status": "DISCOVERED",
+      "status": "UNDER_REVIEW",
       "source": "open data Regione Puglia (dati.puglia.it)",
       "discovered_at": "2026-11-18T08:38:04Z",
       "collection_method": null,
-      "platform": null,
+      "platform": "Shopify",
       "robots": null,
-      "sitemaps": [],
+      "sitemaps": [
+        "https://laboratorifarmaciacamboa.it/sitemap.xml"
+      ],
       "structured_data": null,
       "tos": null,
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:51:06Z",
       "scraper_status": "NO_SCRAPER",
       "products_candidate_from_sitemap": [],
       "products_verified_on_page": [],
@@ -2346,7 +3418,37 @@
         "warning": "Autorizzazione alla vendita online di MEDICINALI: non implica la vendita di dermocosmetici."
       },
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "city": "Uggiano la Chiesa"
+      "city": "Uggiano la Chiesa",
+      "audit": {
+        "checked_at": "2026-11-23T18:51:06Z",
+        "reachable": true,
+        "errors": [],
+        "robots": {
+          "status": 200,
+          "mode": "rules",
+          "note": "",
+          "sitemaps": [
+            "https://laboratorifarmaciacamboa.it/sitemap.xml"
+          ]
+        },
+        "final_url": "https://laboratorifarmaciacamboa.it/",
+        "platform": "Shopify",
+        "json_ld_on_home": true,
+        "title": "Laboratorio Galenico e Integratori dal 1948 | Farmacia Camboa\n – LABORATORI FARMACIA CAMBOA",
+        "sitemaps": [
+          "https://laboratorifarmaciacamboa.it/sitemap.xml"
+        ],
+        "sitemap_errors": [],
+        "product_candidates": {},
+        "verdict": "UNDER_REVIEW"
+      },
+      "status_history": [
+        {
+          "at": "2026-11-23T18:51:06Z",
+          "status": "UNDER_REVIEW",
+          "reason": "verifica automatica della scoperta"
+        }
+      ]
     },
     {
       "id": "essentialfarma",
@@ -2356,7 +3458,7 @@
       "country": "IT",
       "ships_to_italy": null,
       "ships_to_italy_source": null,
-      "status": "DISCOVERED",
+      "status": "BLOCKED",
       "source": "open data Regione Puglia (dati.puglia.it)",
       "discovered_at": "2026-11-18T08:38:04Z",
       "collection_method": null,
@@ -2365,11 +3467,13 @@
       "sitemaps": [],
       "structured_data": null,
       "tos": null,
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:51:15Z",
       "scraper_status": "NO_SCRAPER",
       "products_candidate_from_sitemap": [],
       "products_verified_on_page": [],
-      "errors": [],
+      "errors": [
+        "homepage vietata da robots.txt"
+      ],
       "otc_online_authorization": {
         "listed_in": "elenco regionale Puglia dei soggetti autorizzati alla vendita online di medicinali OTC/SOP",
         "dataset": "farmacie-autorizzate-alla-vendita-online-di-medicinali-sop-otc-per-uso-umano",
@@ -2377,7 +3481,28 @@
         "warning": "Autorizzazione alla vendita online di MEDICINALI: non implica la vendita di dermocosmetici."
       },
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "city": "Sannicola"
+      "city": "Sannicola",
+      "audit": {
+        "checked_at": "2026-11-23T18:51:15Z",
+        "reachable": false,
+        "errors": [
+          "homepage vietata da robots.txt"
+        ],
+        "robots": {
+          "status": null,
+          "mode": "disallow_all",
+          "note": "robots.txt irraggiungibile: per prudenza nessun accesso",
+          "sitemaps": []
+        },
+        "verdict": "BLOCKED"
+      },
+      "status_history": [
+        {
+          "at": "2026-11-23T18:51:15Z",
+          "status": "BLOCKED",
+          "reason": "verifica automatica della scoperta"
+        }
+      ]
     },
     {
       "id": "farmaciacasteldelmonte",
@@ -2387,7 +3512,7 @@
       "country": "IT",
       "ships_to_italy": null,
       "ships_to_italy_source": null,
-      "status": "DISCOVERED",
+      "status": "BLOCKED",
       "source": "open data Regione Puglia (dati.puglia.it)",
       "discovered_at": "2026-11-18T08:38:04Z",
       "collection_method": null,
@@ -2396,11 +3521,13 @@
       "sitemaps": [],
       "structured_data": null,
       "tos": null,
-      "last_verified": null,
+      "last_verified": "2026-11-23T18:51:16Z",
       "scraper_status": "NO_SCRAPER",
       "products_candidate_from_sitemap": [],
       "products_verified_on_page": [],
-      "errors": [],
+      "errors": [
+        "homepage vietata da robots.txt"
+      ],
       "otc_online_authorization": {
         "listed_in": "elenco regionale Puglia dei soggetti autorizzati alla vendita online di medicinali OTC/SOP",
         "dataset": "farmacie-autorizzate-alla-vendita-online-di-medicinali-sop-otc-per-uso-umano",
@@ -2408,7 +3535,28 @@
         "warning": "Autorizzazione alla vendita online di MEDICINALI: non implica la vendita di dermocosmetici."
       },
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "city": "Andria"
+      "city": "Andria",
+      "audit": {
+        "checked_at": "2026-11-23T18:51:16Z",
+        "reachable": false,
+        "errors": [
+          "homepage vietata da robots.txt"
+        ],
+        "robots": {
+          "status": null,
+          "mode": "disallow_all",
+          "note": "robots.txt irraggiungibile: per prudenza nessun accesso",
+          "sitemaps": []
+        },
+        "verdict": "BLOCKED"
+      },
+      "status_history": [
+        {
+          "at": "2026-11-23T18:51:16Z",
+          "status": "BLOCKED",
+          "reason": "verifica automatica della scoperta"
+        }
+      ]
     },
     {
       "id": "farmaporter",
@@ -2418,20 +3566,29 @@
       "country": "IT",
       "ships_to_italy": null,
       "ships_to_italy_source": null,
-      "status": "DISCOVERED",
+      "status": "UNDER_REVIEW",
       "source": "open data Regione Puglia (dati.puglia.it)",
       "discovered_at": "2026-11-18T08:38:04Z",
       "collection_method": null,
-      "platform": null,
+      "platform": "sconosciuta",
       "robots": null,
-      "sitemaps": [],
+      "sitemaps": [
+        "http://www.farmaporter.it/public/sitemap2.xml"
+      ],
       "structured_data": null,
       "tos": null,
-      "last_verified": null,
-      "scraper_status": "NO_SCRAPER",
-      "products_candidate_from_sitemap": [],
+      "last_verified": "2026-11-23T18:50:40Z",
+      "scraper_status": "PROBE_NONE",
+      "products_candidate_from_sitemap": [
+        "P002",
+        "P004",
+        "P005"
+      ],
       "products_verified_on_page": [],
-      "errors": [],
+      "errors": [
+        "nessun URL candidato da sitemap/ricerca",
+        "nessun dato strutturato (JSON-LD, microdata, meta prezzo): pagina non valutata"
+      ],
       "otc_online_authorization": {
         "listed_in": "elenco regionale Puglia dei soggetti autorizzati alla vendita online di medicinali OTC/SOP",
         "dataset": "farmacie-autorizzate-alla-vendita-online-di-medicinali-sop-otc-per-uso-umano",
@@ -2439,7 +3596,196 @@
         "warning": "Autorizzazione alla vendita online di MEDICINALI: non implica la vendita di dermocosmetici."
       },
       "notes": "Scoperto automaticamente: da verificare. Non viene mai attivato in automatico.",
-      "city": "Andria"
+      "city": "Andria",
+      "audit": {
+        "checked_at": "2026-11-23T18:51:17Z",
+        "reachable": true,
+        "errors": [],
+        "robots": {
+          "status": 200,
+          "mode": "rules",
+          "note": "",
+          "sitemaps": [
+            "http://www.farmaporter.it/public/sitemap2.xml"
+          ]
+        },
+        "final_url": "https://www.farmaporter.it/",
+        "platform": "sconosciuta",
+        "json_ld_on_home": true,
+        "title": "Home page | farmaporter.it",
+        "sitemaps": [
+          "http://www.farmaporter.it/public/sitemap2.xml"
+        ],
+        "sitemap_errors": [],
+        "product_candidates": {
+          "P002": [
+            "https://www.farmaporter.it/La-Roche-Posay-phas-(l''oreal)-Lipikar-Baume-Ap--M-400ml-z-248118"
+          ],
+          "P004": [
+            "https://www.farmaporter.it/Unifarco-Ceramol-Crema-Mani-100ml-z-331497"
+          ],
+          "P005": [
+            "https://www.farmaporter.it/La-Roche-Posay-phas-(l''oreal)-Anthelios-Fluido-Inv-Uvm50--Sp-z-333968"
+          ]
+        },
+        "verdict": "UNDER_REVIEW"
+      },
+      "status_history": [
+        {
+          "at": "2026-11-23T18:51:17Z",
+          "status": "UNDER_REVIEW",
+          "reason": "verifica automatica della scoperta"
+        }
+      ],
+      "jsonld_compatibility": "NONE",
+      "probe": {
+        "at": "2026-11-23T18:50:40Z",
+        "compatibility": "NONE",
+        "reason": "pagine prodotto trovate ma senza dati strutturati",
+        "requests": 16,
+        "budget": 25,
+        "budget_exhausted": false,
+        "search_url_template": null,
+        "sitemaps_used": [
+          "http://www.farmaporter.it/public/sitemap2.xml"
+        ],
+        "paths_used": [
+          "/",
+          "/La-Roche-Posay-phas-(l''oreal)-Anthelios-Fluido-Inv-Uvm50--Sp-z-333968",
+          "/La-Roche-Posay-phas-(l''oreal)-Lipikar-Baume-Ap--M-400ml-z-248118",
+          "/Unifarco-Ceramol-Crema-Mani-100ml-z-331497",
+          "/catalogsearch/result/",
+          "/index.php",
+          "/public/sitemap2.xml",
+          "/ricerca",
+          "/search"
+        ],
+        "products_found": [],
+        "products_not_found": [
+          "P001",
+          "P002",
+          "P003",
+          "P004",
+          "P005"
+        ],
+        "examples": [],
+        "errors": [
+          "nessun URL candidato da sitemap/ricerca",
+          "nessun dato strutturato (JSON-LD, microdata, meta prezzo): pagina non valutata"
+        ],
+        "offers": [
+          {
+            "product_id": "P001",
+            "status": "NON TROVATO",
+            "url": null,
+            "title": null,
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": null,
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "1000 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "nessun URL candidato da sitemap/ricerca"
+            ],
+            "rejected": []
+          },
+          {
+            "product_id": "P002",
+            "status": "NESSUN DATO STRUTTURATO",
+            "url": "https://www.farmaporter.it/La-Roche-Posay-phas-(l''oreal)-Lipikar-Baume-Ap--M-400ml-z-248118",
+            "title": "La Roche Posay-phas (l''oreal) Lipikar Baume Ap+ M 400ml",
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": "NESSUN_DATO",
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "400 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "nessun dato strutturato (JSON-LD, microdata, meta prezzo): pagina non valutata"
+            ],
+            "rejected": []
+          },
+          {
+            "product_id": "P003",
+            "status": "NON TROVATO",
+            "url": null,
+            "title": null,
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": null,
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "100 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "nessun URL candidato da sitemap/ricerca"
+            ],
+            "rejected": []
+          },
+          {
+            "product_id": "P004",
+            "status": "NESSUN DATO STRUTTURATO",
+            "url": "https://www.farmaporter.it/Unifarco-Ceramol-Crema-Mani-100ml-z-331497",
+            "title": "Unifarco Ceramol Crema Mani 100ml",
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": "NESSUN_DATO",
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "100 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "nessun dato strutturato (JSON-LD, microdata, meta prezzo): pagina non valutata"
+            ],
+            "rejected": []
+          },
+          {
+            "product_id": "P005",
+            "status": "NESSUN DATO STRUTTURATO",
+            "url": "https://www.farmaporter.it/La-Roche-Posay-phas-(l''oreal)-Anthelios-Fluido-Inv-Uvm50--Sp-z-333968",
+            "title": "La Roche Posay-phas (l''oreal) Anthelios Fluido Inv Uvm50+ Sp",
+            "price": null,
+            "availability": "SCONOSCIUTA",
+            "match_level": "NESSUN_DATO",
+            "match_reasons": [],
+            "variant": null,
+            "shipping_jsonld": null,
+            "price_method": null,
+            "format": "50 ml",
+            "scraped_at": "2026-11-23T18:50:40Z",
+            "notes": [
+              "nessun dato strutturato (JSON-LD, microdata, meta prezzo): pagina non valutata"
+            ],
+            "rejected": []
+          }
+        ],
+        "urls_fetched": [
+          "http://www.farmaporter.it/public/sitemap2.xml",
+          "https://farmaporter.it/",
+          "https://farmaporter.it/search?q=xemose+olio+detergente+1l",
+          "https://farmaporter.it/?s=xemose+olio+detergente+1l",
+          "https://farmaporter.it/catalogsearch/result/?q=xemose+olio+detergente+1l",
+          "https://farmaporter.it/ricerca?q=xemose+olio+detergente+1l",
+          "https://farmaporter.it/search?search=xemose+olio+detergente+1l",
+          "https://farmaporter.it/index.php?route=product/search&search=xemose+olio+detergente+1l",
+          "https://farmaporter.it/ricerca?controller=search&s=xemose+olio+detergente+1l",
+          "https://www.farmaporter.it/La-Roche-Posay-phas-(l''oreal)-Lipikar-Baume-Ap--M-400ml-z-248118",
+          "https://www.farmaporter.it/Unifarco-Ceramol-Crema-Mani-100ml-z-331497",
+          "https://www.farmaporter.it/La-Roche-Posay-phas-(l''oreal)-Anthelios-Fluido-Inv-Uvm50--Sp-z-333968"
+        ]
+      },
+      "products_found": []
     },
     {
       "id": "farmaciadesanctis",
@@ -5946,7 +7292,7 @@
     }
   },
   "last_discovery": {
-    "at": "2026-11-18T08:37:52Z",
+    "at": "2026-11-23T18:50:40Z",
     "sources": {
       "seed_domains": {
         "status": "OK",
@@ -5968,178 +7314,88 @@
         "note": "Trovaprezzi e idealo rispondono 403/challenge ai bot (18/11/2026): saltati. 'iFarma' non risulta un comparatore di prezzi (ifarma.net è una rivista): aggiungi qui l'URL corretto se esiste."
       }
     },
-    "added": [
-      "farmae.it",
-      "amicafarmacia.com",
-      "1000farmacie.it",
-      "farmacialoreto.it",
-      "farmacosmo.it",
-      "tuttofarma.it",
-      "docpeter.it",
-      "drmax.it",
-      "benufarmacia.it",
-      "farmaciamusto.it",
-      "farmaciaalaibac.it",
-      "alfarma14snc.it",
-      "farmaciamigali.it",
-      "farmaciabaltini.it",
-      "farmaciabenincasa.it",
-      "ubifarma.it",
-      "laboratorifarmaciacamboa.it",
-      "essentialfarma.com",
-      "farmaciacasteldelmonte.it",
-      "farmaporter.it",
-      "farmaciadesanctis.com",
-      "farmaciamurgo.it",
-      "farmaciacentro.it",
-      "farmaciaciccarone.it",
-      "farmateca.it",
-      "colfarma.it",
-      "farmacoshop.it",
-      "farmapiu.com",
-      "anticafarmaciadaddetta.it",
-      "plusfarma.it",
-      "farmafit.it",
-      "farmaden.it",
-      "farmaciadepalma.it",
-      "farmaciadevito.it",
-      "farmaspar.it",
-      "farmaindue.it",
-      "farma11.it",
-      "farmaciadelmonaco.it",
-      "farmaciadelsolelucera.it",
-      "farmaciadelsoleonline.it",
-      "okfarmacia.it",
-      "farmaciadonoreste.com",
-      "farmaciaperrino.it",
-      "farmaster.it",
-      "luparelli.it",
-      "farmaskoop.it",
-      "farmaciadesortis.com",
-      "farmaciaricciardiotranto.it",
-      "farmacialabombardapeschici.it",
-      "ultrafarma.it",
-      "farmacialeosalvatore.it",
-      "iperfarma.it",
-      "farmaworld.it",
-      "farmaciagasparronoci.it",
-      "famacia.bellitalia.shop.com",
-      "farmaciagiannelli.com",
-      "farmaciagreco.net",
-      "bigfarmacia.it",
-      "farmaciaigeafragagnano.it",
-      "farmaciaitria.com",
-      "pharmapop.it",
-      "farmacialattarulo.it",
-      "farmacialorusso.it",
-      "lovifarma.it",
-      "farmaciamalatostatte.it",
-      "farmaciamartina.it",
-      "medfarmacia.it",
-      "farmaciaon.it",
-      "farmaciamichelangelo.com",
-      "farmaciapetrelli.com",
-      "sanafarm.it",
-      "farmapre.it",
-      "farmagenius.it",
-      "ciaofarma.it",
-      "farmaspin.it",
-      "farmaseller.com",
-      "farmaciafonto.com",
-      "farmaciadeicuori.it",
-      "farmaciasalvatore.info",
-      "morefarma.it",
-      "farmaciasanroccovalenzano.it",
-      "labuonafarmacia.it",
-      "farmachiara.it",
-      "farmaciauno.it",
-      "pharmasantelena.it",
-      "granfarma.it",
-      "divafarma.it",
-      "farmaidea24.com",
-      "farmaciacomunaletriggiano.com",
-      "farmapo.it",
-      "farmafarma.it",
-      "gsvfarma.it",
-      "tuttomeopatia.com",
-      "farmatarget.it",
-      "farmaciasantalfonsolucera.it",
-      "farmaprime.it",
-      "farmaciatorsello.it",
-      "fillertime.eu",
-      "farmavale.it",
-      "farmaventura.it",
-      "recchiafarmacieshop.it",
-      "salbenitalia.it",
-      "parafarmaciaerario.it",
-      "parafarmaciacolucci.com",
-      "farmazone.it",
-      "farmaciedintorni.it",
-      "parafarmasan.it",
-      "parafarmaciabrunetti.it",
-      "parafarmaciacimino.it",
-      "farmacia-verde.it",
-      "viesteparafarmacia.it",
-      "piufarma.it",
-      "almafarm.it",
-      "farmalezzi.it",
-      "new-farma.it",
-      "diphar.it",
-      "parafarmacialovino.it",
-      "farmaessere.it",
-      "danoifarma.it",
-      "parafarmaciaverdi.it",
-      "farmaspeziale.it",
-      "borgofarma.com",
-      "naturfasrl.it",
-      "parafarmaciaforastiere.it",
-      "slfarma.it",
-      "farmaking.it",
-      "farmafa.it",
-      "stoinfarma.it",
-      "venturaspharma.it",
-      "farmaoasi.it",
-      "farmaveneziano.it"
-    ],
+    "added": [],
     "verified": [
       {
-        "domain": "farmae.it",
-        "status": "UNDER_REVIEW",
-        "candidates": [
-          "P001"
-        ]
-      },
-      {
-        "domain": "amicafarmacia.com",
-        "status": "UNDER_REVIEW",
-        "candidates": []
-      },
-      {
-        "domain": "1000farmacie.it",
+        "domain": "tuttofarma.it",
         "status": "UNDER_REVIEW",
         "candidates": [
           "P001",
-          "P005"
-        ]
-      },
-      {
-        "domain": "farmacialoreto.it",
-        "status": "UNDER_REVIEW",
-        "candidates": [
-          "P001",
-          "P002",
           "P003",
           "P004",
           "P005"
         ]
       },
       {
-        "domain": "farmacosmo.it",
+        "domain": "docpeter.it",
+        "status": "UNDER_REVIEW",
+        "candidates": []
+      },
+      {
+        "domain": "drmax.it",
+        "status": "BLOCKED",
+        "candidates": []
+      },
+      {
+        "domain": "benufarmacia.it",
+        "status": "BLOCKED",
+        "candidates": []
+      },
+      {
+        "domain": "farmaciamusto.it",
+        "status": "UNDER_REVIEW",
+        "candidates": []
+      },
+      {
+        "domain": "farmaciaalaibac.it",
+        "status": "BLOCKED",
+        "candidates": []
+      },
+      {
+        "domain": "alfarma14snc.it",
+        "status": "UNDER_REVIEW",
+        "candidates": []
+      },
+      {
+        "domain": "farmaciamigali.it",
+        "status": "UNDER_REVIEW",
+        "candidates": []
+      },
+      {
+        "domain": "farmaciabaltini.it",
+        "status": "UNDER_REVIEW",
+        "candidates": []
+      },
+      {
+        "domain": "farmaciabenincasa.it",
+        "status": "INACTIVE",
+        "candidates": []
+      },
+      {
+        "domain": "ubifarma.it",
+        "status": "BLOCKED",
+        "candidates": []
+      },
+      {
+        "domain": "laboratorifarmaciacamboa.it",
+        "status": "UNDER_REVIEW",
+        "candidates": []
+      },
+      {
+        "domain": "essentialfarma.com",
+        "status": "BLOCKED",
+        "candidates": []
+      },
+      {
+        "domain": "farmaciacasteldelmonte.it",
+        "status": "BLOCKED",
+        "candidates": []
+      },
+      {
+        "domain": "farmaporter.it",
         "status": "UNDER_REVIEW",
         "candidates": [
-          "P001",
           "P002",
-          "P003",
           "P004",
           "P005"
         ]
@@ -6147,10 +7403,82 @@
     ],
     "rechecked_blocked": [
       {
+        "domain": "efarma.com",
+        "result": "ancora bloccato: Accesso negato/challenge anti-bot su efarma.com (HTTP 403): nessun tentativo di aggiramento"
+      },
+      {
         "domain": "topfarmacia.it",
         "result": "ancora bloccato: Accesso negato/challenge anti-bot su topfarmacia.it (HTTP 403): nessun tentativo di aggiramento"
+      },
+      {
+        "domain": "drmax.it",
+        "result": "ancora bloccato: Accesso negato/challenge anti-bot su drmax.it (HTTP 403): nessun tentativo di aggiramento"
+      },
+      {
+        "domain": "benufarmacia.it",
+        "result": "ancora bloccato (robots.txt irraggiungibile: per prudenza nessun accesso)"
+      },
+      {
+        "domain": "farmaciaalaibac.it",
+        "result": "ancora bloccato (robots.txt irraggiungibile: per prudenza nessun accesso)"
+      },
+      {
+        "domain": "ubifarma.it",
+        "result": "ancora bloccato (robots.txt irraggiungibile: per prudenza nessun accesso)"
+      },
+      {
+        "domain": "essentialfarma.com",
+        "result": "ancora bloccato (robots.txt irraggiungibile: per prudenza nessun accesso)"
+      },
+      {
+        "domain": "farmaciacasteldelmonte.it",
+        "result": "ancora bloccato (robots.txt irraggiungibile: per prudenza nessun accesso)"
+      }
+    ],
+    "probed": [
+      {
+        "domain": "tuttofarma.it",
+        "compatibility": "FULL",
+        "products_found": [
+          "P001",
+          "P004"
+        ],
+        "requests": 25
+      },
+      {
+        "domain": "farmaporter.it",
+        "compatibility": "NONE",
+        "products_found": [],
+        "requests": 16
+      },
+      {
+        "domain": "farmae.it",
+        "compatibility": "FULL",
+        "products_found": [
+          "P001"
+        ],
+        "requests": 24
+      },
+      {
+        "domain": "amicafarmacia.com",
+        "compatibility": "FULL",
+        "products_found": [
+          "P001"
+        ],
+        "requests": 25
+      },
+      {
+        "domain": "docpeter.it",
+        "compatibility": "FULL",
+        "products_found": [
+          "P001",
+          "P003",
+          "P004",
+          "P005"
+        ],
+        "requests": 25
       }
     ]
   },
-  "updated_by_run": "run-20261122T145732Z"
+  "updated_by_run": "run-20261123T185359Z"
 }
