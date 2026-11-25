@@ -3,92 +3,92 @@
   "note": "Cache degli URL prodotto. Seme iniziale dalle sitemap lette il 18/11/2026 (analisi Fase 1).",
   "pharmacies": {
     "alpifarma": {
-      "sitemap_scanned_at": "2026-11-18T09:14:55Z",
+      "sitemap_scanned_at": "2026-11-25T17:45:31Z",
       "products": {
         "P001": {
           "candidates": [
             "https://www.alpifarma.it/dermatologici-corpo/3282-uriage-xemose-huile-lavante-olio-detergente-lenitivo-1-litro-3661434003370.html"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://www.alpifarma.it/dermatologici-corpo/3282-uriage-xemose-huile-lavante-olio-detergente-lenitivo-1-litro-3661434003370.html",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P002": {
           "candidates": [
             "https://www.alpifarma.it/idratanti-ed-emolienti/24426-la-roche-posay-lipikar-baume-apm-400ml-3337875696548.html"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://www.alpifarma.it/idratanti-ed-emolienti/24426-la-roche-posay-lipikar-baume-apm-400ml-3337875696548.html",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P004": {
           "candidates": [
             "https://www.alpifarma.it/creme-idratanti/26683-ceramol-crema-mani-100ml-8029408093058.html"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://www.alpifarma.it/creme-idratanti/26683-ceramol-crema-mani-100ml-8029408093058.html",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P005": {
           "candidates": [
             "https://www.alpifarma.it/solari-viso-e-labbra/23677-la-roche-posay-anthelios-spf-50-fluido-senza-profumo-50ml-3337875797597.html"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://www.alpifarma.it/solari-viso-e-labbra/23677-la-roche-posay-anthelios-spf-50-fluido-senza-profumo-50ml-3337875797597.html",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P003": {
           "candidates": [
             "https://www.alpifarma.it/prodotti-dermatologici/33488-ceramol-lipocrema-311-100-ml-8029408107014.html"
           ],
-          "candidates_updated_at": "2026-11-18T09:14:55Z",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
           "candidates_method": "sitemap",
           "matched_url": "https://www.alpifarma.it/prodotti-dermatologici/33488-ceramol-lipocrema-311-100-ml-8029408107014.html",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         }
       }
     },
     "redcare": {
-      "sitemap_scanned_at": "2026-11-18T09:14:55Z",
+      "sitemap_scanned_at": "2026-11-25T17:45:31Z",
       "products": {
         "P001": {
           "candidates": [
             "https://www.redcare.it/cosmetici-igiene/IT927291005/uriage-xemose-olio-lavante-lenitivo-1l.htm"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://www.redcare.it/cosmetici-igiene/IT927291005/uriage-xemose-olio-lavante-lenitivo-1l.htm",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P002": {
           "candidates": [
             "https://www.redcare.it/cosmetici-igiene/IT979265434/la-roche-posay-lipikar-crema-corpo-riparatore-tripla-azione.htm"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://www.redcare.it/cosmetici-igiene/IT979265434/la-roche-posay-lipikar-crema-corpo-riparatore-tripla-azione.htm",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P004": {
           "candidates": [
             "https://www.redcare.it/cosmetici-igiene/IT977658020/ceramol-311-crema-mani.htm"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://www.redcare.it/cosmetici-igiene/IT977658020/ceramol-311-crema-mani.htm",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P005": {
           "candidates": [
@@ -98,21 +98,21 @@
             "https://www.redcare.it/cosmetici-igiene/17636593/roche-posay-anthelios-inv-fluid-get-uvmune-lsf-50.htm",
             "https://www.redcare.it/articolo/BE04807475/la-roche-posay-anthelios-uvmune-onzichtbare-fluide-anti-pigmentvlekken-50ml.htm"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://www.redcare.it/cosmetici-igiene/IT982981666/la-roche-posay-anthelios-uvmune-400-fluido-invisibile-spf50.htm",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P003": {
           "candidates": [
             "https://www.redcare.it/cosmetici-igiene/IT980512762/ceramol-lipocrema-311.htm"
           ],
-          "candidates_updated_at": "2026-11-18T09:14:55Z",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
           "candidates_method": "sitemap",
           "matched_url": "https://www.redcare.it/cosmetici-igiene/IT980512762/ceramol-lipocrema-311.htm",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         }
       }
     },
@@ -191,60 +191,60 @@
       }
     },
     "farmastrike": {
-      "sitemap_scanned_at": "2026-11-18T09:14:55Z",
+      "sitemap_scanned_at": "2026-11-25T17:45:31Z",
       "products": {
         "P001": {
           "candidates": [
             "https://farmastrike.it/xemose-olio-detlenitivo1lt"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://farmastrike.it/xemose-olio-detlenitivo1lt",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P002": {
           "candidates": [
             "https://farmastrike.it/lipikar-baume-apm-400ml",
             "https://farmastrike.it/lipikar-baume-ap400ml"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://farmastrike.it/lipikar-baume-apm-400ml",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P004": {
           "candidates": [
             "https://farmastrike.it/ceramol-crema-311-mani-100ml"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://farmastrike.it/ceramol-crema-311-mani-100ml",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P005": {
           "candidates": [
             "https://farmastrike.it/anthelios-uvm-flinv50-sp",
             "https://farmastrike.it/anthelios-uvm-fluido-prosp-le"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://farmastrike.it/anthelios-uvm-flinv50-sp",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P003": {
           "candidates": [
             "https://farmastrike.it/ceramol-lipocrema-311-100ml",
             "https://farmastrike.it/ceramol-lipocrema-311-100ml-0"
           ],
-          "candidates_updated_at": "2026-11-18T09:14:55Z",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
           "candidates_method": "sitemap",
           "matched_url": "https://farmastrike.it/ceramol-lipocrema-311-100ml-0",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         }
       }
     },
@@ -371,170 +371,170 @@
       }
     },
     "meafarma": {
-      "sitemap_scanned_at": "2026-11-18T09:14:55Z",
+      "sitemap_scanned_at": "2026-11-25T17:45:31Z",
       "products": {
         "P001": {
           "candidates": [
             "https://meafarma.it/xemose-olio-detergente-1l"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://meafarma.it/xemose-olio-detergente-1l",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P002": {
           "candidates": [
             "https://meafarma.it/lipikar-baume-ap-m-400ml"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://meafarma.it/lipikar-baume-ap-m-400ml",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P004": {
           "candidates": [
             "https://meafarma.it/ceramol-crema-311-mani-100ml"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://meafarma.it/ceramol-crema-311-mani-100ml",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P005": {
           "candidates": [
             "https://meafarma.it/anthelios-uvm-fluido-invisibile-50-sp",
             "https://meafarma.it/anthelios-uvm-fluido-prosp-le"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://meafarma.it/anthelios-uvm-fluido-invisibile-50-sp",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P003": {
           "candidates": [
             "https://meafarma.it/ceramol-lipocrema-311-100ml-0"
           ],
-          "candidates_updated_at": "2026-11-18T09:14:55Z",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
           "candidates_method": "sitemap",
           "matched_url": "https://meafarma.it/ceramol-lipocrema-311-100ml-0",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         }
       }
     },
     "farmaciairisdiana": {
-      "sitemap_scanned_at": "2026-11-18T09:14:55Z",
+      "sitemap_scanned_at": "2026-11-25T17:45:31Z",
       "products": {
         "P001": {
           "candidates": [
             "https://farmaciairisdiana.it/Detergenti-e-struccanti/23491-xemose-olio-detergente-1l-3661434003370.html"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://farmaciairisdiana.it/Detergenti-e-struccanti/23491-xemose-olio-detergente-1l-3661434003370.html",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P002": {
           "candidates": [
             "https://farmaciairisdiana.it/Idratanti-e-lenitivi/14566-lipikar-baume-ap-m-400ml-3337875696548.html"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://farmaciairisdiana.it/Idratanti-e-lenitivi/14566-lipikar-baume-ap-m-400ml-3337875696548.html",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P004": {
           "candidates": [
             "https://farmaciairisdiana.it/Nutrienti-e-lenitivi/34990-ceramol-311-crema-mani-100-ml-8029408093058.html"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://farmaciairisdiana.it/Nutrienti-e-lenitivi/34990-ceramol-311-crema-mani-100-ml-8029408093058.html",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P005": {
           "candidates": [
             "https://farmaciairisdiana.it/Solari-Per-Il-Corpo/30014-anthelios-fluido-uvm50-s-prof-3337875797597.html"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://farmaciairisdiana.it/Solari-Per-Il-Corpo/30014-anthelios-fluido-uvm50-s-prof-3337875797597.html",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P003": {
           "candidates": [
             "https://farmaciairisdiana.it/prodotti-per-la-cute/35081-ceramol-lipocrema-311-100-ml-8029408107014.html"
           ],
-          "candidates_updated_at": "2026-11-18T09:14:55Z",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
           "candidates_method": "sitemap",
           "matched_url": "https://farmaciairisdiana.it/prodotti-per-la-cute/35081-ceramol-lipocrema-311-100-ml-8029408107014.html",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         }
       }
     },
     "clubfarma": {
-      "sitemap_scanned_at": "2026-11-18T09:14:55Z",
+      "sitemap_scanned_at": "2026-11-25T17:45:31Z",
       "products": {
         "P001": {
           "candidates": [
             "https://www.clubfarma.it/p/23164-uriage-xemose-olio-detergente-lenitivo-1l"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://www.clubfarma.it/p/23164-uriage-xemose-olio-detergente-lenitivo-1l",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P002": {
           "candidates": [
             "https://www.clubfarma.it/p/40010-lipikar-baume-ap-m-balsamo-riparatore-per-pelle-secca-o-atopica-400ml",
             "https://www.clubfarma.it/p/132280-lipikar-baume-ap-400ml-nas-ro"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://www.clubfarma.it/p/40010-lipikar-baume-ap-m-balsamo-riparatore-per-pelle-secca-o-atopica-400ml",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P004": {
           "candidates": [
             "https://www.clubfarma.it/p/41784-ceramol-crema-311-mani-100ml"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://www.clubfarma.it/p/41784-ceramol-crema-311-mani-100ml",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P005": {
           "candidates": [
             "https://www.clubfarma.it/p/55771-anthelios-uvm-fluido-inv-spf50",
             "https://www.clubfarma.it/p/170710-anthelios-uvm-fluido-prosp-le"
           ],
-          "candidates_updated_at": "2026-11-18T08:20:00Z",
-          "candidates_method": "sitemap (analisi iniziale)",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
+          "candidates_method": "sitemap",
           "matched_url": "https://www.clubfarma.it/p/55771-anthelios-uvm-fluido-inv-spf50",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P003": {
           "candidates": [
             "https://www.clubfarma.it/p/50757-ceramol-lipocrema-311-100ml"
           ],
-          "candidates_updated_at": "2026-11-18T09:14:55Z",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
           "candidates_method": "sitemap",
           "matched_url": "https://www.clubfarma.it/p/50757-ceramol-lipocrema-311-100ml",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         }
       }
     },
@@ -544,39 +544,39 @@
           "candidates": [
             "https://farmavillage.it/xemose-olio-detergente-1-l"
           ],
-          "candidates_updated_at": "2026-11-18T08:29:41Z",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
           "candidates_method": "ricerca interna",
           "matched_url": "https://farmavillage.it/xemose-olio-detergente-1-l",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P002": {
           "candidates": [],
-          "candidates_updated_at": "2026-11-24T18:27:48Z",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
           "candidates_method": "ricerca interna"
         },
         "P004": {
           "candidates": [],
-          "candidates_updated_at": "2026-11-24T18:27:48Z",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
           "candidates_method": "ricerca interna"
         },
         "P005": {
           "candidates": [
             "https://farmavillage.it/anthelios-uvmune-fluido-invisibile-spf50-senza-profumo-50-ml"
           ],
-          "candidates_updated_at": "2026-11-18T08:29:41Z",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
           "candidates_method": "ricerca interna",
           "matched_url": "https://farmavillage.it/anthelios-uvmune-fluido-invisibile-spf50-senza-profumo-50-ml",
           "match_level": "ID",
-          "last_matched_at": "2026-11-24T18:27:48Z"
+          "last_matched_at": "2026-11-25T17:45:31Z"
         },
         "P003": {
           "candidates": [],
-          "candidates_updated_at": "2026-11-24T18:27:48Z",
+          "candidates_updated_at": "2026-11-25T17:45:31Z",
           "candidates_method": "ricerca interna"
         }
       }
     }
   },
-  "updated_by_run": "run-20261124T182748Z"
+  "updated_by_run": "run-20261125T174531Z"
 }
